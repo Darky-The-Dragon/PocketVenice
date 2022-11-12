@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">PocketVenice</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_your_password">FORGOT YOUR PASSWORD?</string>
+    <string name="desc_logo">App logo</string>
+    <string name="desc_email">Email icon</string>
+    <string name="desc_pass">Password icon</string>
+    <string name="register_question">You don\'t have an account?</string>
+    <string name="register">Register</string>
 </resources>
