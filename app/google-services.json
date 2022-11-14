@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "679371057343",
+    "firebase_url": "https://pocket-venice-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "pocket-venice",
     "storage_bucket": "pocket-venice.appspot.com"
   },

@@ -1,0 +1,122 @@
+package com.progetto_ingegneria.pocketvenice;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private TextView textViewLogin, textViewRegister, textViewForgotPassword;
+    private EditText editTextUsername, editTextPassword;
+    private ProgressBar progressBar;
+
+    private FirebaseAuth mAuth;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Check if the user is already authenticated:
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() != null){
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
+
+        setContentView(R.layout.activity_login);
+
+        editTextUsername = findViewById(R.id.username);
+        editTextPassword = findViewById(R.id.password);
+
+        progressBar = findViewById(R.id.progress_bar);
+
+        textViewLogin = findViewById(R.id.login);
+        textViewLogin.setOnClickListener(this);
+        textViewRegister = findViewById(R.id.register);
+        textViewRegister.setOnClickListener(this);
+        textViewForgotPassword = findViewById(R.id.forgotPassword);
+        textViewForgotPassword.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.login:
+                authenticateUser();
+                break;
+            case R.id.register:
+                startActivity(new Intent(this, RegisterActivity.class));
+                break;
+            case R.id.forgotPassword:
+                startActivity(new Intent(this, ResetPasswordActivity.class));
+                break;
+        }
+    }
+
+    private void authenticateUser() {
+        String email = editTextUsername.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+
+        if(email.isEmpty()){
+            editTextUsername.setError("Email field can't be empty!");
+            editTextUsername.requestFocus();
+        }
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextUsername.setError("Please provide a valid email!");
+            editTextUsername.requestFocus();
+        }
+        else if(password.isEmpty()){
+            editTextPassword.setError("Password field can't be empty!");
+            editTextPassword.requestFocus();
+        }
+        else if(password.length()<6){
+            editTextPassword.setError("The password must be at least 6 characters long!");
+            editTextPassword.requestFocus();
+        }
+        else {
+            progressBar.setVisibility(View.VISIBLE);
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            assert user != null;
+                            if(user.isEmailVerified()) {
+                                progressBar.setVisibility(View.GONE);
+                                showMainActivity();
+                            }
+                            else{
+                                user.sendEmailVerification();
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(LoginActivity.this,
+                                        "Verify your email address first",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(LoginActivity.this,
+                                    "Wrong Credentials. Invalid Username or Password.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private void showMainActivity() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+}
