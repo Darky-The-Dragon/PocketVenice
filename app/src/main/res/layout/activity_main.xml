@@ -14,13 +14,14 @@
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/logout"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:text="@string/logout" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ProgressBar
             android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyleLarge"
@@ -32,8 +33,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
-        </ProgressBar>
+            tools:ignore="MissingConstraints"></ProgressBar>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

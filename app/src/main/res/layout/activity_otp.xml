@@ -24,97 +24,93 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="45dp"
-                android:src="@drawable/logo"
-                android:contentDescription="@string/desc_logo" />
+                android:contentDescription="@string/desc_logo"
+                android:src="@drawable/logo" />
 
         </FrameLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginStart="60dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/otp1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="60dp"
             android:gravity="center"
-            android:autofillHints="*"
-            android:background="@drawable/blue_border_rounded_corner"
-            android:fontFamily="@font/poppins_medium"
-            android:hint="@string/asterisk"
-            android:inputType="number"
-            android:maxLines="1"
-            android:textColorHint="#1976D2"
-            android:textCursorDrawable="@drawable/cursor_color"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1">
-        </EditText>
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/otp2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:autofillHints="*"
-            android:background="@drawable/blue_border_rounded_corner"
-            android:fontFamily="@font/poppins_medium"
-            android:hint="@string/asterisk"
-            android:inputType="number"
-            android:maxLines="1"
-            android:textColorHint="#1976D2"
-            android:textCursorDrawable="@drawable/cursor_color"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1">
-        </EditText>
+            <EditText
+                android:id="@+id/otp1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:autofillHints="*"
+                android:background="@drawable/blue_border_rounded_corner"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:hint="@string/asterisk"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColorHint="#1976D2"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:textSize="30sp"
+                android:textStyle="bold"></EditText>
 
-        <EditText
-            android:id="@+id/otp3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:autofillHints="*"
-            android:background="@drawable/blue_border_rounded_corner"
-            android:fontFamily="@font/poppins_medium"
-            android:hint="@string/asterisk"
-            android:inputType="number"
-            android:maxLines="1"
-            android:textColorHint="#1976D2"
-            android:textCursorDrawable="@drawable/cursor_color"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1">
-        </EditText>
+            <EditText
+                android:id="@+id/otp2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:autofillHints="*"
+                android:background="@drawable/blue_border_rounded_corner"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:hint="@string/asterisk"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColorHint="#1976D2"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:textSize="30sp"
+                android:textStyle="bold"></EditText>
 
-        <EditText
-            android:id="@+id/otp4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:autofillHints="*"
-            android:background="@drawable/blue_border_rounded_corner"
-            android:fontFamily="@font/poppins_medium"
-            android:hint="@string/asterisk"
-            android:inputType="number"
-            android:maxLines="1"
-            android:textColorHint="#1976D2"
-            android:textCursorDrawable="@drawable/cursor_color"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1">
-        </EditText>
+            <EditText
+                android:id="@+id/otp3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:autofillHints="*"
+                android:background="@drawable/blue_border_rounded_corner"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:hint="@string/asterisk"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColorHint="#1976D2"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:textSize="30sp"
+                android:textStyle="bold"></EditText>
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/otp4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:autofillHints="*"
+                android:background="@drawable/blue_border_rounded_corner"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:hint="@string/asterisk"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColorHint="#1976D2"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:textSize="30sp"
+                android:textStyle="bold"></EditText>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/login"
@@ -136,9 +132,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
 
             <TextView
@@ -146,13 +142,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="end"
                 android:fontFamily="@font/poppins_medium"
+                android:gravity="end"
                 android:padding="4dp"
                 android:text="@string/didn_t_receive"
                 android:textColor="#666666"
-                android:textSize="11sp"
-                />
+                android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/register"
@@ -163,7 +158,7 @@
                 android:padding="4dp"
                 android:text="@string/resend_code"
                 android:textColor="#1566e0"
-                android:textSize="11sp"/>
+                android:textSize="11sp" />
 
         </LinearLayout>
 
@@ -173,6 +168,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ProgressBar
             android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyleLarge"
@@ -184,8 +180,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
-        </ProgressBar>
+            tools:ignore="MissingConstraints"></ProgressBar>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,5 @@
 package com.progetto_ingegneria.pocketvenice;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,17 +9,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
+    FirebaseAuth mAuth;
     private TextView textViewSubmit, textViewLogin;
     private EditText editTextEmail;
     private ProgressBar progressBar;
-
-    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +50,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void resetPassword () {
+    private void resetPassword() {
 
         String email = editTextEmail.getText().toString().trim();
 

@@ -1,8 +1,5 @@
 package com.progetto_ingegneria.pocketvenice;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,9 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // Check if the user is already authenticated:
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser() != null){
+        if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
@@ -54,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.login:
                 authenticateUser();
                 break;
@@ -71,34 +67,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editTextUsername.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             editTextUsername.setError("Email field can't be empty!");
             editTextUsername.requestFocus();
-        }
-        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextUsername.setError("Please provide a valid email!");
             editTextUsername.requestFocus();
-        }
-        else if(password.isEmpty()){
+        } else if (password.isEmpty()) {
             editTextPassword.setError("Password field can't be empty!");
             editTextPassword.requestFocus();
-        }
-        else if(password.length()<6){
+        } else if (password.length() < 6) {
             editTextPassword.setError("The password must be at least 6 characters long!");
             editTextPassword.requestFocus();
-        }
-        else {
+        } else {
             progressBar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             assert user != null;
-                            if(user.isEmailVerified()) {
+                            if (user.isEmailVerified()) {
                                 progressBar.setVisibility(View.GONE);
                                 showMainActivity();
-                            }
-                            else{
+                            } else {
                                 user.sendEmailVerification();
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(LoginActivity.this,

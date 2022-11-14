@@ -1,8 +1,5 @@
 package com.progetto_ingegneria.pocketvenice;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -13,9 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -56,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.logo:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
@@ -69,60 +65,48 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void registerUser() {
         String fullName = editTextFullName.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
-        String email= editTextEmail.getText().toString().toLowerCase().trim();
-        String mobile= editTextMobile.getText().toString().trim();
+        String email = editTextEmail.getText().toString().toLowerCase().trim();
+        String mobile = editTextMobile.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String confirmPassword = editTextConfirmPassword.getText().toString().trim();
 
-        if(fullName.isEmpty()){
+        if (fullName.isEmpty()) {
             editTextFullName.setError("Full Name is required!");
             editTextFullName.requestFocus();
-        }
-        else if(age.isEmpty()){
+        } else if (age.isEmpty()) {
             editTextAge.setError("Age is required!");
             editTextAge.requestFocus();
-        }
-        else if(email.isEmpty()){
+        } else if (email.isEmpty()) {
             editTextEmail.setError("An email is required!");
             editTextEmail.requestFocus();
-        }
-        else if(mobile.isEmpty()){
+        } else if (mobile.isEmpty()) {
             editTextMobile.setError("A phone number is needed for verification!");
             editTextMobile.requestFocus();
-        }
-        else if(password.isEmpty()){
+        } else if (password.isEmpty()) {
             editTextPassword.setError("A password is required!");
             editTextPassword.requestFocus();
-        }
-        else if(confirmPassword.isEmpty()){
+        } else if (confirmPassword.isEmpty()) {
             editTextConfirmPassword.setError("Confirming your password is required!");
             editTextConfirmPassword.requestFocus();
-        }
-        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Please provide a valid email!");
             editTextEmail.requestFocus();
-        }
-        else if(!Patterns.PHONE.matcher(mobile).matches()){
+        } else if (!Patterns.PHONE.matcher(mobile).matches()) {
             editTextEmail.setError("Please provide a valid phone number!");
             editTextEmail.requestFocus();
-        }
-        else if(fullName.length()<3){
+        } else if (fullName.length() < 3) {
             editTextPassword.setError("Your full name must be at least 3 characters long!");
             editTextPassword.requestFocus();
-        }
-        else if(Integer.parseInt(age)<14){
+        } else if (Integer.parseInt(age) < 14) {
             editTextAge.setError("You must be at least 14 year old to register!");
             editTextAge.requestFocus();
-        }
-        else if(password.length()<6){
+        } else if (password.length() < 6) {
             editTextPassword.setError("The password must be at least 6 characters long!");
             editTextPassword.requestFocus();
-        }
-        else if(!password.equals(confirmPassword)){
+        } else if (!password.equals(confirmPassword)) {
             editTextConfirmPassword.setError("The passwords don't match!");
             editTextConfirmPassword.requestFocus();
-        }
-        else {
+        } else {
             progressBar.setVisibility(View.VISIBLE);
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
@@ -133,14 +117,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(task1 -> {
 
-                                        if(task1.isSuccessful()){
+                                        if (task1.isSuccessful()) {
                                             progressBar.setVisibility(View.GONE);
                                             Toast.makeText(RegisterActivity.this,
                                                     "User has been registered successfully!",
                                                     Toast.LENGTH_LONG).show();
                                             showLoginActivity();
-                                        }
-                                        else{
+                                        } else {
                                             progressBar.setVisibility(View.GONE);
                                             Toast.makeText(RegisterActivity.this,
                                                     "Failed to register! Try again",
@@ -157,7 +140,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void showLoginActivity(){
+    private void showLoginActivity() {
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }

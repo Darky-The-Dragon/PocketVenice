@@ -1,15 +1,14 @@
 package com.progetto_ingegneria.pocketvenice;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.logout){
+        if (v.getId() == R.id.logout) {
             progressBar.setVisibility(View.VISIBLE);
             FirebaseAuth.getInstance().signOut();
             progressBar.setVisibility(View.GONE);
