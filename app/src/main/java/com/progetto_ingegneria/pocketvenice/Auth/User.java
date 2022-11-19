@@ -1,4 +1,4 @@
-package com.progetto_ingegneria.pocketvenice;
+package com.progetto_ingegneria.pocketvenice.Auth;
 
 public class User {
 

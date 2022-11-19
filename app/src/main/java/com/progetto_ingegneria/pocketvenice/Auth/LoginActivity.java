@@ -1,4 +1,4 @@
-package com.progetto_ingegneria.pocketvenice;
+package com.progetto_ingegneria.pocketvenice.Auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.progetto_ingegneria.pocketvenice.MainActivity;
+import com.progetto_ingegneria.pocketvenice.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 

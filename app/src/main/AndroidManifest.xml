@@ -12,23 +12,14 @@
         android:theme="@style/Theme.PocketVenice"
         tools:targetApi="33">
         <activity
-            android:name=".ResetPasswordActivity"
+            android:name=".Auth.ResetPasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Profile"
-            android:exported="false"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.PocketVenice.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".LoginActivity"
+            android:name=".Auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,14 +32,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".OTP"
+            android:name=".Auth.OTP"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Auth.RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
