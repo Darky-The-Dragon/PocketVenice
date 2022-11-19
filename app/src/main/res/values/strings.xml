@@ -31,6 +31,12 @@
     <string name="asterisk">*</string>
     <string name="didn_t_receive">Didn\'t receive the OTP?</string>
 
+    <string name="News">News</string>
+    <string name="Events">Events</string>
+    <string name="Place">Place</string>
+    <string name="Map">Map</string>
+
+
 
     <string name="title_activity_profile">Profile</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -49,6 +55,8 @@
     <string name="password_reset">Password Reset</string>
     <string name="logout">Logout</string>
     <string name="message_icon">Message button icon</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
