@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Check if the user is already authenticated:
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
-            showMainActivity();
+            emailVerification();
             finish();
         }
 
@@ -86,18 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            assert user != null;
-                            if (user.isEmailVerified()) {
-                                progressBar.setVisibility(View.GONE);
-                                showMainActivity();
-                            } else {
-                                user.sendEmailVerification();
-                                progressBar.setVisibility(View.GONE);
-                                Toast.makeText(LoginActivity.this,
-                                        "Verify your email address first",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                            emailVerification();
                         } else {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(LoginActivity.this,
@@ -111,5 +100,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void showMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
         finish();
+    }
+
+    private void emailVerification(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        if (user.isEmailVerified()) {
+            progressBar.setVisibility(View.GONE);
+            showMainActivity();
+        } else {
+            user.sendEmailVerification();
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(LoginActivity.this,
+                    "Verify your email address first",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }
