@@ -27,15 +27,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Check if the user is already authenticated:
-        mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null) {
-            emailVerification();
-            finish();
-        }
-
         setContentView(R.layout.activity_login);
+        mAuth = FirebaseAuth.getInstance();
 
         editTextUsername = findViewById(R.id.username);
         editTextPassword = findViewById(R.id.password);
@@ -48,6 +41,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewRegister.setOnClickListener(this);
         textViewForgotPassword = findViewById(R.id.forgotPassword);
         textViewForgotPassword.setOnClickListener(this);
+
+        if (mAuth.getCurrentUser() != null) {
+            progressBar.setVisibility(View.VISIBLE);
+            emailVerification();
+        }
+
     }
 
     @Override
@@ -97,23 +96,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void showMainActivity() {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
-    }
-
     private void emailVerification(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         if (user.isEmailVerified()) {
-            progressBar.setVisibility(View.GONE);
             showMainActivity();
         } else {
-            user.sendEmailVerification();
             progressBar.setVisibility(View.GONE);
+            user.sendEmailVerification();
             Toast.makeText(LoginActivity.this,
                     "Verify your email address first",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void showMainActivity() {
+        progressBar.setVisibility(View.GONE);
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }
