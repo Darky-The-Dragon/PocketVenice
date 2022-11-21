@@ -2,21 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="@string/News"
-        android:icon="@drawable/ic_baseline_newspaper_24"
         android:id="@+id/news"
-        />
+        android:icon="@drawable/ic_baseline_newspaper_24"
+        android:title="@string/news" />
     <item
-        android:title="@string/Events"
-        android:icon="@drawable/ic_baseline_event_24"
         android:id="@+id/events"
-        />
-    <item android:title="@string/Place"
+        android:icon="@drawable/ic_baseline_event_24"
+        android:title="@string/events" />
+    <item
+        android:id="@+id/places"
         android:icon="@drawable/ic_baseline_place_24"
-        android:id="@+id/place"
-        />
-    <item android:title="@string/Map"
+        android:title="@string/place" />
+    <item
+        android:id="@+id/map"
         android:icon="@drawable/ic_baseline_map_24"
-        android:id="@+id/maps"
-        />
+        android:title="@string/map" />
 </menu>

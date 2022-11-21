@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/profile">
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/faq"
+        android:name="com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ"
+        android:label="FAQ"
+        tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/info"
+        android:name="com.progetto_ingegneria.pocketvenice.LateralNavbar.Info"
+        android:label="Info"
+        tools:layout="@layout/fragment_info" />
+</navigation>
