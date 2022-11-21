@@ -58,6 +58,11 @@
     <string name="app_info">App Info</string>
     <string name="test_fullname">Darky</string>
     <string name="verified">Verified</string>
-
+    <string name="news">News</string>
+    <string name="events">Events</string>
+    <string name="place">Places</string>
+    <string name="map">Map</string>
+    <string name="start">Start</string>
+    <string name="close">Close</string>
 
 </resources>

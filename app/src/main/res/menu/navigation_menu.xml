@@ -3,29 +3,29 @@
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/avatar"
+        android:icon="@drawable/profile"
         android:title="@string/profile" />
 
     <item
         android:id="@+id/login_sign_up"
-        android:icon="@drawable/avatar"
+        android:icon="@drawable/profile"
         android:title="@string/login_sign_up" />
 
     <item android:title="@string/help">
         <menu>
             <item
                 android:id="@+id/faq"
-                android:icon="@drawable/avatar"
+                android:icon="@drawable/profile"
                 android:title="@string/faq" />
 
             <item
                 android:id="@+id/guide"
-                android:icon="@drawable/avatar"
+                android:icon="@drawable/profile"
                 android:title="@string/guide" />
 
             <item
                 android:id="@+id/info"
-                android:icon="@drawable/avatar"
+                android:icon="@drawable/profile"
                 android:title="@string/app_info" />
 
         </menu>
@@ -33,7 +33,7 @@
 
     <item
         android:id="@+id/logout"
-        android:icon="@drawable/avatar"
+        android:icon="@drawable/profile"
         android:title="@string/logout" />
 
 </menu>

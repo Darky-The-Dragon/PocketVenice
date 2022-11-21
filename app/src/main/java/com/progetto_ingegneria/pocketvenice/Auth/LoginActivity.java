@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Check if the user is already authenticated:
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this, MainActivity.class));
+            showMainActivity();
             finish();
         }
 

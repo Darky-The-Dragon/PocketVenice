@@ -13,7 +13,7 @@
         android:src="@drawable/venezialogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:riv_oval="true"/>
+        app:riv_oval="true" />
 
     <View
         android:id="@+id/view_supporter"
@@ -22,8 +22,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/user_logo"
         app:layout_constraintEnd_toEndOf="@+id/user_logo"
         app:layout_constraintStart_toStartOf="@+id/user_logo"
-        app:layout_constraintTop_toTopOf="@+id/user_logo"/>
-    
+        app:layout_constraintTop_toTopOf="@+id/user_logo" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/view_supporter"
-        app:layout_constraintStart_toEndOf="@id/user_logo"/>
+        app:layout_constraintStart_toEndOf="@id/user_logo" />
 
     <TextView
         android:layout_width="0dp"
@@ -43,7 +43,7 @@
         android:textColor="@color/colorGreen"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/view_supporter"
-        app:layout_constraintStart_toEndOf="@id/user_logo"/>
+        app:layout_constraintStart_toEndOf="@id/user_logo"
+        app:layout_constraintTop_toBottomOf="@id/view_supporter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
