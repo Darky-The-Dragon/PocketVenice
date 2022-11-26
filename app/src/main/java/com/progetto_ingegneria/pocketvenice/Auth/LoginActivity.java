@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void emailVerification(){
+    private void emailVerification() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         if (user.isEmailVerified()) {
