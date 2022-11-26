@@ -15,7 +15,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="273dp"
-            android:background="@drawable/blue_bg">
+            android:background="@drawable/red_gold_bg">
 
             <ImageView
                 android:id="@+id/logo"
@@ -59,7 +59,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -99,7 +99,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -139,7 +139,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -197,7 +197,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -237,7 +237,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -277,7 +277,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -319,14 +319,14 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="65dp"
-                    android:background="#b31a34"
+                    android:background="@drawable/red_fill__rounded_color"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
                     android:paddingTop="14dp"
                     android:paddingBottom="14dp"
                     android:text="@string/register"
                     android:textColor="#c3b377"
-                    android:textSize="12sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </ScrollView>
