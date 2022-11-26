@@ -64,5 +64,8 @@
     <string name="map">Map</string>
     <string name="start">Start</string>
     <string name="close">Close</string>
+    <string name="access_as">Access as a</string>
+    <string name="guest">Guest User</string>
+    <string name="or">or</string>
 
 </resources>

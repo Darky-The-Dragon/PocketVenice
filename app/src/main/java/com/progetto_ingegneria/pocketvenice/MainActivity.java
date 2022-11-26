@@ -1,8 +1,10 @@
 package com.progetto_ingegneria.pocketvenice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import androidx.navigation.NavController;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Map;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.News;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private NavController bottomNavController;
     private DrawerLayout drawerLayout;
     private ActivityMainBinding binding;
+    private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
 
@@ -48,21 +52,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerLayout = findViewById(R.id.drawerLayout);
         replaceFragment(new News());
 
+        progressBar = findViewById(R.id.progress_bar);
+
+        textTitle = findViewById(R.id.menu_title);
+        textTitle.setText(News.class.getSimpleName());
+
+        imageMenu = findViewById(R.id.menu_nav);
+        imageMenu.setOnClickListener(this);
+
+        navigationView = findViewById(R.id.navigationView);
+        navigationView.setItemIconTintList(null);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
                 case R.id.news:
                     replaceFragment(new News());
+                    textTitle.setText(News.class.getSimpleName());
                     break;
                 case R.id.events:
                     replaceFragment(new Events());
+                    textTitle.setText(Events.class.getSimpleName());
                     break;
                 case R.id.places:
                     replaceFragment(new Places());
+                    textTitle.setText(Places.class.getSimpleName());
                     break;
                 case R.id.map:
                     replaceFragment(new Map());
+                    textTitle.setText(Map.class.getSimpleName());
                     break;
             }
             return true;
@@ -72,15 +90,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switch (item.getItemId()) {
                 case R.id.profile:
                     replaceFragment(new Profile());
+                    textTitle.setText(Profile.class.getSimpleName());
                     drawerLayout.closeDrawer(GravityCompat.START);
                     break;
                 case R.id.faq:
                     replaceFragment(new FAQ());
+                    textTitle.setText(FAQ.class.getSimpleName());
                     drawerLayout.closeDrawer(GravityCompat.START);
                     break;
                 case R.id.info:
                     replaceFragment(new Info());
+                    textTitle.setText(Info.class.getSimpleName());
                     drawerLayout.closeDrawer(GravityCompat.START);
+                    break;
+                case R.id.logout:
+                    logoutUser();
                     break;
             }
             return true;
@@ -92,23 +116,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
 
+    }
 
-        /*
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation_view_test);
-        bottomNavController = Navigation.findNavController(this, R.id.frame_layout);
-        NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);
-
-        navController = Navigation.findNavController(this, R.id.navHostFragmentTest);
-        NavigationUI.setupWithNavController(navigationView, navController);
-
-        textTitle = findViewById(R.id.menu_title);
-        navController.addOnDestinationChangedListener((navController, navDestination, bundle) ->
-                textTitle.setText(navDestination.getLabel()));
-
-        */
-
-
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.menu_nav:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -119,22 +135,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.menu_nav:
-                drawerLayout.openDrawer(GravityCompat.START);
-                break;
-        }
-
-        /*
-        if (v.getId() == R.id.login) {
-            progressBar.setVisibility(View.VISIBLE);
-            FirebaseAuth.getInstance().signOut();
-            progressBar.setVisibility(View.GONE);
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        }
-        */
+    private void logoutUser() {
+        progressBar.setVisibility(View.VISIBLE);
+        FirebaseAuth.getInstance().signOut();
+        progressBar.setVisibility(View.GONE);
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
 }
