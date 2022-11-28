@@ -16,7 +16,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="273dp"
-            android:background="@drawable/blue_bg">
+            android:background="@drawable/red_gold_bg">
 
             <ImageView
                 android:id="@+id/logo"
@@ -45,7 +45,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:autofillHints="*"
-                android:background="@drawable/blue_border_rounded_corner"
+                android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:hint="@string/asterisk"
@@ -63,7 +63,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:autofillHints="*"
-                android:background="@drawable/blue_border_rounded_corner"
+                android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:hint="@string/asterisk"
@@ -81,7 +81,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:autofillHints="*"
-                android:background="@drawable/blue_border_rounded_corner"
+                android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:hint="@string/asterisk"
@@ -99,7 +99,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:autofillHints="*"
-                android:background="@drawable/blue_border_rounded_corner"
+                android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:hint="@string/asterisk"
@@ -120,7 +120,7 @@
             android:layout_marginStart="65dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="65dp"
-            android:background="@drawable/blue_fill__rounded_color"
+            android:background="@drawable/red_fill__rounded_color"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:paddingTop="14dp"

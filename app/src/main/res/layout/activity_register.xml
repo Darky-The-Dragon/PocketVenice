@@ -15,7 +15,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="273dp"
-            android:background="@drawable/blue_bg">
+            android:background="@drawable/red_gold_bg">
 
             <ImageView
                 android:id="@+id/logo"
@@ -59,7 +59,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -76,7 +76,7 @@
                         android:paddingStart="17dp"
                         android:paddingTop="12dp"
                         android:paddingBottom="12dp"
-                        android:textColorHint="#1976D2"
+                        android:textColorHint="#b31a34"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="12sp"
                         tools:ignore="RtlSymmetry" />
@@ -99,7 +99,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -116,7 +116,7 @@
                         android:paddingStart="17dp"
                         android:paddingTop="12dp"
                         android:paddingBottom="12dp"
-                        android:textColorHint="#1976D2"
+                        android:textColorHint="#b31a34"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="12sp"
                         tools:ignore="RtlSymmetry" />
@@ -139,7 +139,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -156,7 +156,7 @@
                         android:paddingStart="17dp"
                         android:paddingTop="12dp"
                         android:paddingBottom="12dp"
-                        android:textColorHint="#1976D2"
+                        android:textColorHint="#b31a34"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="12sp"
                         tools:ignore="RtlSymmetry" />
@@ -197,7 +197,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -214,7 +214,7 @@
                         android:paddingStart="17dp"
                         android:paddingTop="12dp"
                         android:paddingBottom="12dp"
-                        android:textColorHint="#1976D2"
+                        android:textColorHint="#b31a34"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="12sp"
                         tools:ignore="RtlSymmetry" />
@@ -237,7 +237,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -254,7 +254,7 @@
                         android:paddingStart="17dp"
                         android:paddingTop="12dp"
                         android:paddingBottom="12dp"
-                        android:textColorHint="#1976D2"
+                        android:textColorHint="#b31a34"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="12sp"
                         tools:ignore="RtlSymmetry" />
@@ -277,7 +277,7 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_border_rounded_corner">
+                    android:background="@drawable/golden_border_rounded_corner">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -294,7 +294,7 @@
                         android:paddingStart="17dp"
                         android:paddingTop="12dp"
                         android:paddingBottom="12dp"
-                        android:textColorHint="#1976D2"
+                        android:textColorHint="#b31a34"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="12sp"
                         tools:ignore="RtlSymmetry" />
@@ -319,14 +319,14 @@
                     android:layout_marginStart="65dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="65dp"
-                    android:background="@drawable/blue_fill__rounded_color"
+                    android:background="@drawable/red_fill__rounded_color"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
                     android:paddingTop="14dp"
                     android:paddingBottom="14dp"
                     android:text="@string/register"
-                    android:textColor="#ffffff"
-                    android:textSize="12sp" />
+                    android:textColor="#c3b377"
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </ScrollView>
