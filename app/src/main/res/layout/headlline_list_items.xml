@@ -20,15 +20,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="2">
             <TextView
-                android:id="@+id/text_title"
+                android:id="@+id/text_titolo"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:maxLines="3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+                android:id="@+id/text_sestiere"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </TextView>
         </LinearLayout>
+
         <ImageView
             android:id="@+id/img_headline"
             android:layout_weight="1"
