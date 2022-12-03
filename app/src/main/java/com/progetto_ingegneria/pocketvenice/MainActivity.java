@@ -1,10 +1,16 @@
 package com.progetto_ingegneria.pocketvenice;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.news:
                     replaceFragment(new News());
                     textTitle.setText(News.class.getSimpleName());
+
                     break;
                 case R.id.events:
                     replaceFragment(new Events());
