@@ -2,19 +2,30 @@ package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -27,7 +38,7 @@ import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
 import com.progetto_ingegneria.pocketvenice.R;
 import com.progetto_ingegneria.pocketvenice.databinding.ActivityMapsBinding;
 
-public class MapsActivity extends AppCompatActivity implements View.OnClickListener {
+public class MapsActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
     private TextView textTitle;
     private ActivityMapsBinding binding;
@@ -40,11 +51,13 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
+    private GoogleMap mMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(binding.getRoot()); //nel video ha (R.layout.activity_maps)
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -113,6 +126,11 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
             }
             return true;
         });
+
+        // errore nullptr per this (forse perché usa FragmentActivity?)
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     public void onClick(View v) {
@@ -122,6 +140,8 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -136,5 +156,15 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         FirebaseAuth.getInstance().signOut();
         progressBar.setVisibility(View.GONE);
         startActivity(new Intent(MapsActivity.this, LoginActivity.class));
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        mMap = googleMap;
+
+        //Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker((new MarkerOptions().position(sydney).title("Marker in Sydney")));
+        mMap.moveCamera((CameraUpdateFactory.newLatLng(sydney)));
     }
 }
