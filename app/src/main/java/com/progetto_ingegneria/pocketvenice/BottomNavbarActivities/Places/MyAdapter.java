@@ -33,8 +33,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Place_Data posto = list.get(position);
-        holder.Titolo.setText(posto.Titolo);
-        holder.Sestiere.setText(posto.Sestiere);
+        holder.titolo.setText(posto.Titolo);
+        holder.sestiere.setText(posto.Sestiere);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView Titolo, Sestiere;
+        TextView titolo, sestiere;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            //Titolo = itemView.findViewById(R.id.text_titolo);
-            //Sestiere = itemView.findViewById(R.id.text_sestiere);
+            titolo = itemView.findViewById(R.id.text_titolo);
+            sestiere = itemView.findViewById(R.id.text_sestiere);
         }
     }
 

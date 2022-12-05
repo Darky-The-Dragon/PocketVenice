@@ -42,7 +42,7 @@ import java.util.ArrayList;
 
 public class PlacesActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ArrayList<Place_Data> list;
+    ArrayList<Place_Data> places_list;
     private TextView textTitle;
     private ActivityPlacesBinding binding;
     private BottomNavigationView bottomNavigationView;
@@ -80,8 +80,8 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         navigationView.setItemIconTintList(null);
 
         // RecyclerView
-        // recyclerView = findViewById(R.id.text_titolo);
-        database = FirebaseDatabase.getInstance().getReference("Place");
+        recyclerView = findViewById(R.id.recycler_places);
+        database = FirebaseDatabase.getInstance().getReference("Luoghi");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -91,8 +91,8 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         menuItem.setChecked(true);
 
         // List Recycle
-        list = new ArrayList<>();
-        myAdapter = new MyAdapter(this, list);
+        places_list = new ArrayList<>();
+        myAdapter = new MyAdapter(this, places_list);
         recyclerView.setAdapter(myAdapter);
 
         // Bottom navbar
@@ -152,8 +152,8 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    Place_Data user = dataSnapshot.getValue(Place_Data.class);
-                    list.add(user);
+                    Place_Data place = dataSnapshot.getValue(Place_Data.class);
+                    places_list.add(place);
 
 
                 }
