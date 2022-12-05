@@ -1,7 +1,9 @@
-package com.progetto_ingegneria.pocketvenice;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -13,77 +15,101 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.EventsActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
+import com.progetto_ingegneria.pocketvenice.CustomAdapter;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
-import com.progetto_ingegneria.pocketvenice.databinding.ActivityMainBinding;
+import com.progetto_ingegneria.pocketvenice.OnFetchDataListener;
+import com.progetto_ingegneria.pocketvenice.R;
+import com.progetto_ingegneria.pocketvenice.RequestManager;
+import com.progetto_ingegneria.pocketvenice.databinding.ActivityNewsBinding;
+import com.progetto_ingegneria.pocketvenice.models.NewsApiResponse;
+import com.progetto_ingegneria.pocketvenice.models.NewsHeadlines;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView textTitle;
     private ImageView imageMenu;
     private BottomNavigationView bottomNavigationView;
     private NavigationView navigationView;
-    private NavController navController;
-    private NavController bottomNavController;
     private DrawerLayout drawerLayout;
-    private ActivityMainBinding binding;
+    private ActivityNewsBinding binding;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    private RequestManager manager;
+    private RecyclerView recyclerView;
+    private CustomAdapter adapter;
+    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
+        @Override
+        public void onFetchData(List<NewsHeadlines> list, String message) {
+            showNews(list);
+        }
 
+        @Override
+        public void onError(String message) {
+
+        }
+    };
+    private List<NewsHeadlines> articles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        mAuth = FirebaseAuth.getInstance();
+        binding = ActivityNewsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        drawerLayout = findViewById(R.id.drawerLayout);
-        //replaceFragment(new News_Frag());
+
+        mAuth = FirebaseAuth.getInstance();
 
         progressBar = findViewById(R.id.progress_bar);
-
-        textTitle = findViewById(R.id.menu_title);
-        textTitle.setText(NewsActivity.class.getSimpleName());
 
         imageMenu = findViewById(R.id.menu_nav);
         imageMenu.setOnClickListener(this);
 
+        textTitle = findViewById(R.id.menu_title);
+        textTitle.setText(NewsActivity.class.getSimpleName());
+
+        manager = new RequestManager(this);
+        manager.getNewsHeadlines(listener, "general", null);
+
+        drawerLayout = findViewById(R.id.drawerLayout);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
         navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
+
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
                 case R.id.news:
-                    Intent intent = new Intent(MainActivity.this, NewsActivity.class);
-                    startActivity(intent);
-                    //textTitle.setText(News_Frag.class.getSimpleName());
                     break;
 
                 case R.id.events:
-                    Intent intent2 = new Intent(MainActivity.this, EventsActivity.class);
+                    Intent intent2 = new Intent(NewsActivity.this, EventsActivity.class);
                     startActivity(intent2);
                     break;
 
                 case R.id.places:
-                    Intent intent3 = new Intent(MainActivity.this, PlacesActivity.class);
+                    Intent intent3 = new Intent(NewsActivity.this, PlacesActivity.class);
                     startActivity(intent3);
                     break;
 
                 case R.id.map:
-                    Intent intent4 = new Intent(MainActivity.this, MapsActivity.class);
+                    Intent intent4 = new Intent(NewsActivity.this, MapsActivity.class);
                     startActivity(intent4);
                     break;
             }
@@ -116,13 +142,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.menu_nav:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
         }
+    }
+
+    private void showNews(List<NewsHeadlines> list) {
+        recyclerView = findViewById(R.id.recycler_news);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        adapter = new CustomAdapter(this, list);
+        recyclerView.setAdapter(adapter);
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -137,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressBar.setVisibility(View.VISIBLE);
         FirebaseAuth.getInstance().signOut();
         progressBar.setVisibility(View.GONE);
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        startActivity(new Intent(NewsActivity.this, LoginActivity.class));
     }
-
 }

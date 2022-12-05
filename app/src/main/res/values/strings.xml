@@ -67,5 +67,12 @@
     <string name="access_as">Access as a</string>
     <string name="guest">Guest User</string>
     <string name="or">or</string>
+    <string name="init">INIT</string>
+    <string name="author">Author</string>
+    <string name="default_date">01 January 2000</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="source">Source</string>
+    <string name="time">Time</string>
 
 </resources>
