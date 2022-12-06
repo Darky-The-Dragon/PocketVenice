@@ -154,7 +154,6 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
                     Place_Data place = dataSnapshot.getValue(Place_Data.class);
                     places_list.add(place);
 
-
                 }
                 myAdapter.notifyDataSetChanged();
 
