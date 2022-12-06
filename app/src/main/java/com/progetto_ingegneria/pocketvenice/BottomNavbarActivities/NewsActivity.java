@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,20 +25,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
 import com.progetto_ingegneria.pocketvenice.CustomAdapter;
+import com.progetto_ingegneria.pocketvenice.DetailsActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
+import com.progetto_ingegneria.pocketvenice.Models.NewsApiResponse;
+import com.progetto_ingegneria.pocketvenice.Models.NewsHeadlines;
 import com.progetto_ingegneria.pocketvenice.OnFetchDataListener;
 import com.progetto_ingegneria.pocketvenice.R;
 import com.progetto_ingegneria.pocketvenice.RequestManager;
+import com.progetto_ingegneria.pocketvenice.SelectListener;
 import com.progetto_ingegneria.pocketvenice.databinding.ActivityNewsBinding;
-import com.progetto_ingegneria.pocketvenice.models.NewsApiResponse;
-import com.progetto_ingegneria.pocketvenice.models.NewsHeadlines;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class NewsActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewsActivity extends AppCompatActivity implements View.OnClickListener, SelectListener {
 
     private TextView textTitle;
     private ImageView imageMenu;
@@ -50,18 +52,21 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     private RequestManager manager;
     private RecyclerView recyclerView;
     private CustomAdapter adapter;
+
     private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
             showNews(list);
+            progressBar.setVisibility(View.GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
 
         @Override
         public void onError(String message) {
-
+            progressBar.setVisibility(View.GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         }
     };
-    private List<NewsHeadlines> articles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +83,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         textTitle = findViewById(R.id.menu_title);
         textTitle.setText(NewsActivity.class.getSimpleName());
-
-        manager = new RequestManager(this);
-        manager.getNewsHeadlines(listener, "general", null);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -140,6 +142,13 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         });
 
+        progressBar.setVisibility(View.VISIBLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        manager = new RequestManager(this);
+        manager.getNewsHeadlines(listener, "it", "venice");
+
     }
 
     public void onClick(View v) {
@@ -150,11 +159,17 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public void OnNewsClicked(NewsHeadlines headlines) {
+        startActivity(new Intent(NewsActivity.this, DetailsActivity.class)
+                .putExtra("data", headlines));
+    }
+
     private void showNews(List<NewsHeadlines> list) {
         recyclerView = findViewById(R.id.recycler_news);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        adapter = new CustomAdapter(this, list);
+        adapter = new CustomAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
     }
 

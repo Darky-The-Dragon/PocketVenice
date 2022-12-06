@@ -14,6 +14,13 @@
         android:theme="@style/Theme.PocketVenice"
         tools:targetApi="33">
         <activity
+            android:name=".DetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".BottomNavbarActivities.MapsActivity"
             android:exported="false">
             <meta-data

@@ -3,7 +3,9 @@ package com.progetto_ingegneria.pocketvenice;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.progetto_ingegneria.pocketvenice.models.NewsApiResponse;
+import androidx.annotation.NonNull;
+
+import com.progetto_ingegneria.pocketvenice.Models.NewsApiResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,19 +27,22 @@ public class RequestManager {
         this.context = context;
     }
 
-    public void getNewsHeadlines(OnFetchDataListener listener, String category, String query) {
+    public void getNewsHeadlines(OnFetchDataListener listener, String language, String query) {
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
-        Call<NewsApiResponse> call = callNewsApi.callHeadlines("it", category, query, "1dd430c786bb4fd38e650493cb32755c");
+        Call<NewsApiResponse> call = callNewsApi.callHeadlines(language, query, context.getString(R.string.api_key));
 
         try {
             call.enqueue(new Callback<NewsApiResponse>() {
                 @Override
-                public void onResponse(Call<NewsApiResponse> call, Response<NewsApiResponse> response) {
+                public void onResponse(Call<NewsApiResponse> call, @NonNull Response<NewsApiResponse> response) {
+
                     if (!response.isSuccessful()) {
                         Toast.makeText(context, "An error occured while loading the news!", Toast.LENGTH_SHORT).show();
                     }
 
-                    listener.onFetchData(response.body().getArticle(), response.message());
+                    assert response.body() != null;
+                    listener.onFetchData(response.body().getArticles(), response.message());
+
                 }
 
                 @Override
@@ -51,10 +56,9 @@ public class RequestManager {
     }
 
     public interface CallNewsApi {
-        @GET("top-headlines")
+        @GET("everything")
         Call<NewsApiResponse> callHeadlines(
-                @Query("country") String country,
-                @Query("category") String category,
+                @Query("language") String language,
                 @Query("q") String query,
                 @Query("apiKey") String api_key
         );

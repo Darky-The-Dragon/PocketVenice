@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/no_result"
             android:transitionName="img"
             tools:ignore="ContentDescription,UnusedAttribute" />
 
@@ -37,7 +38,7 @@
             style="@android:style/Widget.ProgressBar.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp" />
+            android:layout_marginTop="85dp" />
 
         <TextView
             android:id="@+id/text_author"

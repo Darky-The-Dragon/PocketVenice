@@ -1,14 +1,17 @@
-package com.progetto_ingegneria.pocketvenice.models;
+package com.progetto_ingegneria.pocketvenice.Models;
 
-public class NewsHeadlines {
+import java.io.Serializable;
+
+public class NewsHeadlines implements Serializable {
 
     private Source source = null;
     private String author = "";
     private String title = "";
     private String description = "";
     private String url = "";
-    private String ulrToImage = "";
+    private String urlToImage = "";
     private String publishedAt = "";
+    private String content = "";
 
     public Source getSource() {
         return source;
@@ -51,11 +54,11 @@ public class NewsHeadlines {
     }
 
     public String getUlrToImage() {
-        return ulrToImage;
+        return urlToImage;
     }
 
     public void setUlrToImage(String ulrToImage) {
-        this.ulrToImage = ulrToImage;
+        this.urlToImage = ulrToImage;
     }
 
     public String getPublishedAt() {
@@ -64,5 +67,13 @@ public class NewsHeadlines {
 
     public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

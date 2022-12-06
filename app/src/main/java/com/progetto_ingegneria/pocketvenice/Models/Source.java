@@ -1,6 +1,8 @@
-package com.progetto_ingegneria.pocketvenice.models;
+package com.progetto_ingegneria.pocketvenice.Models;
 
-public class Source {
+import java.io.Serializable;
+
+public class Source implements Serializable {
 
 
     private String id = "";
