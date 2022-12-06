@@ -145,7 +145,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         manager = new RequestManager(this);
-        manager.getNewsHeadlines(listener, "it", "venice");
+        manager.getNewsHeadlines(listener, "it", "venezia", "title", "veneziatoday.it,ansa.it", "publishedAt");
 
     }
 
@@ -158,7 +158,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void OnNewsClicked(NewsHeadlines headlines) {
-        startActivity(new Intent(NewsActivity.this, DetailsActivity.class)
+        startActivity(new Intent(NewsActivity.this, NewsDetailActivity.class)
                 .putExtra("data", headlines));
     }
 

@@ -1,5 +1,7 @@
 package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Adapter;
 
+import static com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Utility.DateTimeFormatting.*;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -38,10 +40,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
         holder.text_title.setText(headlines.get(position).getTitle());
         holder.text_source.setText(headlines.get(position).getSource().getName());
         holder.text_desc.setText(headlines.get(position).getDescription());
-        holder.text_published_at.setText(headlines.get(position).getPublishedAt());
+        holder.text_published_at.setText(DateFormat(headlines.get(position).getPublishedAt()));
+        holder.text_time.setText(DateToTimeFormat(headlines.get(position).getPublishedAt()));
         holder.text_author.setText(headlines.get(position).getAuthor());
 
         if (headlines.get(position).getUlrToImage() != null) {
+            holder.progressBar.setVisibility(View.GONE);
             Picasso.get().load(headlines.get(position).getUlrToImage()).into(holder.img_headline);
         }
 

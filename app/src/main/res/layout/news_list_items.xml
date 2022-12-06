@@ -14,7 +14,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/img_headline"
@@ -117,7 +118,7 @@
             android:layout_below="@+id/text_desc"
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:drawablePadding="10dp"
             android:ellipsize="end"
             android:fontFamily="sans-serif-light"
@@ -126,6 +127,21 @@
             android:text="@string/source"
             android:textColor="@color/colorPrimaryText"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/text_desc"
+            android:layout_toEndOf="@+id/text_source"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:drawablePadding="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/time" />
 
     </RelativeLayout>
 

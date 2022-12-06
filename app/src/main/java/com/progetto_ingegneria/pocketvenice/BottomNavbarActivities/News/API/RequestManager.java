@@ -29,9 +29,9 @@ public class RequestManager {
         this.context = context;
     }
 
-    public void getNewsHeadlines(OnFetchDataListener<NewsApiResponse> listener, String language, String query) {
+    public void getNewsHeadlines(OnFetchDataListener<NewsApiResponse> listener, String language, String query, String searchIn, String domains, String sortBy) {
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
-        Call<NewsApiResponse> call = callNewsApi.callHeadlines(language, query, context.getString(R.string.api_key));
+        Call<NewsApiResponse> call = callNewsApi.callHeadlines(language, query, searchIn, domains, sortBy, context.getString(R.string.api_key));
 
         try {
             call.enqueue(new Callback<NewsApiResponse>() {
@@ -62,6 +62,9 @@ public class RequestManager {
         Call<NewsApiResponse> callHeadlines(
                 @Query("language") String language,
                 @Query("q") String query,
+                @Query("searchIn") String searchIn,
+                @Query("domains") String domains,
+                @Query("sortBy") String sortBy,
                 @Query("apiKey") String api_key
         );
     }

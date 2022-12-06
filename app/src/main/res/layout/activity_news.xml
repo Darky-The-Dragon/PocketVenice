@@ -59,8 +59,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/init"
-                android:textSize="17sp"
+                android:text="@string/recent_news"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView

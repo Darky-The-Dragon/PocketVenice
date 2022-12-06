@@ -13,7 +13,7 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-    TextView text_title, text_source, text_desc, text_author, text_published_at;
+    TextView text_title, text_source, text_desc, text_author, text_published_at, text_time;
     ImageView img_headline;
     ProgressBar progressBar;
     CardView cardView;
@@ -26,6 +26,7 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
         text_desc = itemView.findViewById(R.id.text_desc);
         text_author = itemView.findViewById(R.id.text_author);
         text_published_at = itemView.findViewById(R.id.text_publishedAt);
+        text_time = itemView.findViewById(R.id.text_time);
         img_headline = itemView.findViewById(R.id.img_headline);
         progressBar = itemView.findViewById(R.id.progressbar_load_photo);
         cardView = itemView.findViewById(R.id.main_container);
