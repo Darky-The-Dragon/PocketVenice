@@ -52,7 +52,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        
+
         if(v.getId() == R.id.menu_details_back){
             finish();
         }
