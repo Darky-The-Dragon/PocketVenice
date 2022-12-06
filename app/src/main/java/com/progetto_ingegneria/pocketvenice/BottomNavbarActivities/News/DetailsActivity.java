@@ -1,4 +1,4 @@
-package com.progetto_ingegneria.pocketvenice;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,9 +7,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 
-import com.progetto_ingegneria.pocketvenice.Models.NewsHeadlines;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsHeadlines;
+import com.progetto_ingegneria.pocketvenice.R;
 import com.squareup.picasso.Picasso;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -52,10 +52,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.menu_details_back:
-                finish();
-                break;
+        
+        if(v.getId() == R.id.menu_details_back){
+            finish();
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.progetto_ingegneria.pocketvenice;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Adapter;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.progetto_ingegneria.pocketvenice.R;
 
 public class CustomViewHolder extends RecyclerView.ViewHolder {
 

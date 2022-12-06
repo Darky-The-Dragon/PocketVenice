@@ -24,12 +24,13 @@
              Once you have your API key (it starts with "AIza"), define a new property in your
              project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
-        -->
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
+            -->
         <activity
-            android:name=".DetailsActivity"
+            android:name=".BottomNavbarActivities.News.DetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -57,7 +58,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".BottomNavbarActivities.NewsActivity"
+            android:name=".BottomNavbarActivities.News.NewsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -101,13 +102,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
     </application>
 
 </manifest>

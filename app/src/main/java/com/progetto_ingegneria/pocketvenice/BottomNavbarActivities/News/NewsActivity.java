@@ -1,4 +1,4 @@
-package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,18 +23,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.EventsActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.API.RequestManager;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Adapter.CustomAdapter;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listeners.OnFetchDataListener;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listeners.SelectListener;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsApiResponse;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsHeadlines;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
-import com.progetto_ingegneria.pocketvenice.CustomAdapter;
-import com.progetto_ingegneria.pocketvenice.DetailsActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
-import com.progetto_ingegneria.pocketvenice.Models.NewsApiResponse;
-import com.progetto_ingegneria.pocketvenice.Models.NewsHeadlines;
-import com.progetto_ingegneria.pocketvenice.OnFetchDataListener;
 import com.progetto_ingegneria.pocketvenice.R;
-import com.progetto_ingegneria.pocketvenice.RequestManager;
-import com.progetto_ingegneria.pocketvenice.SelectListener;
 import com.progetto_ingegneria.pocketvenice.databinding.ActivityNewsBinding;
 
 import java.util.List;
@@ -96,49 +97,46 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            switch (item.getItemId()) {
-                case R.id.news:
-                    break;
-
-                case R.id.events:
-                    Intent intent2 = new Intent(NewsActivity.this, EventsActivity.class);
-                    startActivity(intent2);
-                    break;
-
-                case R.id.places:
-                    Intent intent3 = new Intent(NewsActivity.this, PlacesActivity.class);
-                    startActivity(intent3);
-                    break;
-
-                case R.id.map:
-                    Intent intent4 = new Intent(NewsActivity.this, MapsActivity.class);
-                    startActivity(intent4);
-                    break;
+            if(item.getItemId() == R.id.news){
+                return true;
             }
+            else if(item.getItemId() == R.id.events){
+                Intent intent2 = new Intent(NewsActivity.this, EventsActivity.class);
+                startActivity(intent2);
+            }
+            else if(item.getItemId() == R.id.places){
+                Intent intent3 = new Intent(NewsActivity.this, PlacesActivity.class);
+                startActivity(intent3);
+            }
+            else if(item.getItemId() == R.id.map){
+                Intent intent4 = new Intent(NewsActivity.this, MapsActivity.class);
+                startActivity(intent4);
+            }
+
             return true;
         });
 
         binding.navigationView.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.profile:
-                    replaceFragment(new Profile());
-                    textTitle.setText(Profile.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.faq:
-                    replaceFragment(new FAQ());
-                    textTitle.setText(FAQ.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.info:
-                    replaceFragment(new Info());
-                    textTitle.setText(Info.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.logout:
-                    logoutUser();
-                    break;
+
+            if(item.getItemId() == R.id.profile){
+                replaceFragment(new Profile());
+                textTitle.setText(Profile.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
             }
+            else if(item.getItemId() == R.id.faq){
+                replaceFragment(new FAQ());
+                textTitle.setText(FAQ.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+            else if(item.getItemId() == R.id.info){
+                replaceFragment(new Info());
+                textTitle.setText(Info.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+            else if(item.getItemId() == R.id.logout){
+                logoutUser();
+            }
+
             return true;
         });
 
@@ -152,10 +150,9 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.menu_nav:
-                drawerLayout.openDrawer(GravityCompat.START);
-                break;
+
+        if(v.getId() == R.id.menu_nav){
+            drawerLayout.openDrawer(GravityCompat.START);
         }
     }
 

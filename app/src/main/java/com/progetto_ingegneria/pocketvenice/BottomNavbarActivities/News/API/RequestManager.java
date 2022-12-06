@@ -1,11 +1,13 @@
-package com.progetto_ingegneria.pocketvenice;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.API;
 
 import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.progetto_ingegneria.pocketvenice.Models.NewsApiResponse;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listeners.OnFetchDataListener;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsApiResponse;
+import com.progetto_ingegneria.pocketvenice.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,14 +29,14 @@ public class RequestManager {
         this.context = context;
     }
 
-    public void getNewsHeadlines(OnFetchDataListener listener, String language, String query) {
+    public void getNewsHeadlines(OnFetchDataListener<NewsApiResponse> listener, String language, String query) {
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
         Call<NewsApiResponse> call = callNewsApi.callHeadlines(language, query, context.getString(R.string.api_key));
 
         try {
             call.enqueue(new Callback<NewsApiResponse>() {
                 @Override
-                public void onResponse(Call<NewsApiResponse> call, @NonNull Response<NewsApiResponse> response) {
+                public void onResponse(@NonNull Call<NewsApiResponse> call, @NonNull Response<NewsApiResponse> response) {
 
                     if (!response.isSuccessful()) {
                         Toast.makeText(context, "An error occured while loading the news!", Toast.LENGTH_SHORT).show();
@@ -46,7 +48,7 @@ public class RequestManager {
                 }
 
                 @Override
-                public void onFailure(Call<NewsApiResponse> call, Throwable t) {
+                public void onFailure(@NonNull Call<NewsApiResponse> call, @NonNull Throwable t) {
                     listener.onError("Request Failed!");
                 }
             });

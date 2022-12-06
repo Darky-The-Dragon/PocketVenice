@@ -1,4 +1,4 @@
-package com.progetto_ingegneria.pocketvenice.Models;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.progetto_ingegneria.pocketvenice;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.progetto_ingegneria.pocketvenice.Models.NewsHeadlines;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listeners.SelectListener;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsHeadlines;
+import com.progetto_ingegneria.pocketvenice.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -43,12 +45,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
             Picasso.get().load(headlines.get(position).getUlrToImage()).into(holder.img_headline);
         }
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.OnNewsClicked(headlines.get(position));
-            }
-        });
+        holder.cardView.setOnClickListener(v -> listener.OnNewsClicked(headlines.get(position)));
     }
 
     @Override

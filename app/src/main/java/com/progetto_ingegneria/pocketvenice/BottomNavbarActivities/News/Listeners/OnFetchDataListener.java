@@ -1,6 +1,6 @@
-package com.progetto_ingegneria.pocketvenice;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listeners;
 
-import com.progetto_ingegneria.pocketvenice.Models.NewsHeadlines;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsHeadlines;
 
 import java.util.List;
 
