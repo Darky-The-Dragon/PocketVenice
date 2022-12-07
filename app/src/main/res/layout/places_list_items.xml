@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="8dp"
     android:layout_margin="8dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:cardElevation="8dp">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -13,6 +13,7 @@
         android:weightSum="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_margin="8dp"
@@ -40,11 +41,11 @@
         <ImageView
             android:id="@+id/img_place"
             android:layout_weight="1"
+            android:layout_height="match_parent"
             android:layout_width="0dp"
-            android:src="@drawable/not_available"
             android:scaleType="centerCrop"
-            android:layout_height="match_parent">
-        </ImageView>
+            android:src="@drawable/not_available"
+            tools:ignore="ContentDescription"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

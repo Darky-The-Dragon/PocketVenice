@@ -74,5 +74,8 @@
     <string name="description">Description</string>
     <string name="source">Source</string>
     <string name="time">Time</string>
+    <string name="api_key">1dd430c786bb4fd38e650493cb32755c</string>
+    <string name="subtitle">Subtitle</string>
+    <string name="recent_news">Recent News</string>
 
 </resources>

@@ -1,12 +1,13 @@
-package com.progetto_ingegneria.pocketvenice.models;
+package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NewsApiResponse {
+public class NewsApiResponse implements Serializable {
 
     private String status;
     private int totalResult;
-    private List<NewsHeadlines> article;
+    private List<NewsHeadlines> articles;
 
     public String getStatus() {
         return status;
@@ -24,11 +25,11 @@ public class NewsApiResponse {
         this.totalResult = totalResult;
     }
 
-    public List<NewsHeadlines> getArticle() {
-        return article;
+    public List<NewsHeadlines> getArticles() {
+        return articles;
     }
 
-    public void setArticle(List<NewsHeadlines> article) {
-        this.article = article;
+    public void setArticles(List<NewsHeadlines> articles) {
+        this.articles = articles;
     }
 }

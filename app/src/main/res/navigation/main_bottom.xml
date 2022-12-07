@@ -7,7 +7,7 @@
 
     <activity
         android:id="@+id/news"
-        android:name="com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.NewsActivity"
+        android:name="com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity"
         android:label="News"
         tools:layout="@layout/activity_news" />
     <activity

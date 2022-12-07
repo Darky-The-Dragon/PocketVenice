@@ -1,5 +1,6 @@
 package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.NewsActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
@@ -98,55 +99,53 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         // Bottom navbar
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            switch (item.getItemId()) {
-                case R.id.news:
-                    Intent intent = new Intent(PlacesActivity.this, NewsActivity.class);
-                    startActivity(intent);
-                    break;
-
-                case R.id.events:
-                    Intent intent2 = new Intent(PlacesActivity.this, EventsActivity.class);
-                    startActivity(intent2);
-                    break;
-
-                case R.id.places:
-                    break;
-
-                case R.id.map:
-                    Intent intent4 = new Intent(PlacesActivity.this, MapsActivity.class);
-                    startActivity(intent4);
-                    break;
+            if(item.getItemId() == R.id.news){
+                Intent intent = new Intent(PlacesActivity.this, NewsActivity.class);
+                startActivity(intent);
             }
+            else if(item.getItemId() == R.id.events){
+                Intent intent2 = new Intent(PlacesActivity.this, EventsActivity.class);
+                startActivity(intent2);
+            }
+            else if(item.getItemId() == R.id.places){
+                return true;
+            }
+            else if(item.getItemId() == R.id.map){
+                Intent intent4 = new Intent(PlacesActivity.this, MapsActivity.class);
+                startActivity(intent4);
+            }
+
             return true;
         });
 
         // Sidebar
         binding.navigationView.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.profile:
-                    replaceFragment(new Profile());
-                    textTitle.setText(Profile.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.faq:
-                    replaceFragment(new FAQ());
-                    textTitle.setText(FAQ.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.info:
-                    replaceFragment(new Info());
-                    textTitle.setText(Info.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.logout:
-                    logoutUser();
-                    break;
+
+            if(item.getItemId() == R.id.profile){
+                replaceFragment(new Profile());
+                textTitle.setText(Profile.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
             }
+            else if(item.getItemId() == R.id.faq){
+                replaceFragment(new FAQ());
+                textTitle.setText(FAQ.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+            else if(item.getItemId() == R.id.info){
+                replaceFragment(new Info());
+                textTitle.setText(Info.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+            else if(item.getItemId() == R.id.logout){
+                logoutUser();
+            }
+
             return true;
         });
 
         // Database handler
         database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -154,7 +153,6 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
 
                     Place_Data place = dataSnapshot.getValue(Place_Data.class);
                     places_list.add(place);
-
 
                 }
                 myAdapter.notifyDataSetChanged();
@@ -177,10 +175,9 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
 
     // Sidebar button
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.menu_nav:
-                drawerLayout.openDrawer(GravityCompat.START);
-                break;
+
+        if(v.getId() == R.id.menu_nav){
+            drawerLayout.openDrawer(GravityCompat.START);
         }
     }
 

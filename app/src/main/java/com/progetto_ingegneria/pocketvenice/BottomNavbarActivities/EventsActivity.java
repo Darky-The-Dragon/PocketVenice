@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
@@ -68,58 +69,54 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            switch (item.getItemId()) {
-                case R.id.news:
-                    Intent intent = new Intent(EventsActivity.this, NewsActivity.class);
-                    startActivity(intent);
-                    break;
-
-                case R.id.events:
-                    break;
-
-                case R.id.places:
-                    Intent intent3 = new Intent(EventsActivity.this, PlacesActivity.class);
-                    startActivity(intent3);
-                    break;
-
-                case R.id.map:
-                    Intent intent4 = new Intent(EventsActivity.this, MapsActivity.class);
-                    startActivity(intent4);
-                    break;
+            if(item.getItemId() == R.id.news){
+                Intent intent = new Intent(EventsActivity.this, NewsActivity.class);
+                startActivity(intent);
             }
+            else if(item.getItemId() == R.id.events){
+                return true;
+            }
+            else if(item.getItemId() == R.id.places){
+                Intent intent3 = new Intent(EventsActivity.this, PlacesActivity.class);
+                startActivity(intent3);
+            }
+            else if(item.getItemId() == R.id.map){
+                Intent intent4 = new Intent(EventsActivity.this, MapsActivity.class);
+                startActivity(intent4);
+            }
+
             return true;
         });
 
         binding.navigationView.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.profile:
-                    replaceFragment(new Profile());
-                    textTitle.setText(Profile.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.faq:
-                    replaceFragment(new FAQ());
-                    textTitle.setText(FAQ.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.info:
-                    replaceFragment(new Info());
-                    textTitle.setText(Info.class.getSimpleName());
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    break;
-                case R.id.logout:
-                    logoutUser();
-                    break;
+
+            if(item.getItemId() == R.id.profile){
+                replaceFragment(new Profile());
+                textTitle.setText(Profile.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
             }
+            else if(item.getItemId() == R.id.faq){
+                replaceFragment(new FAQ());
+                textTitle.setText(FAQ.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+            else if(item.getItemId() == R.id.info){
+                replaceFragment(new Info());
+                textTitle.setText(Info.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+            else if(item.getItemId() == R.id.logout){
+                logoutUser();
+            }
+
             return true;
         });
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.menu_nav:
-                drawerLayout.openDrawer(GravityCompat.START);
-                break;
+
+        if(v.getId() == R.id.menu_nav){
+            drawerLayout.openDrawer(GravityCompat.START);
         }
     }
 

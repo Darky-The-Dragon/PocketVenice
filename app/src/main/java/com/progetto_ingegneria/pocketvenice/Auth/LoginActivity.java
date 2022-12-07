@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.progetto_ingegneria.pocketvenice.MainActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -51,16 +51,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.login:
-                authenticateUser();
-                break;
-            case R.id.register:
-                startActivity(new Intent(this, RegisterActivity.class));
-                break;
-            case R.id.forgotPassword:
-                startActivity(new Intent(this, ResetPasswordActivity.class));
-                break;
+
+        if(v.getId() == R.id.login){
+            authenticateUser();
+        }
+        else if(v.getId() == R.id.register){
+            startActivity(new Intent(this, RegisterActivity.class));
+        }
+        else if(v.getId() == R.id.forgotPassword){
+            startActivity(new Intent(this, ResetPasswordActivity.class));
         }
     }
 
@@ -112,7 +111,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void showMainActivity() {
         progressBar.setVisibility(View.GONE);
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, NewsActivity.class));
         finish();
     }
 }

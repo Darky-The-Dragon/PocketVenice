@@ -5,7 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomNavbarActivities.NewsActivity">
+    tools:context=".BottomNavbarActivities.News.NewsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -59,15 +59,17 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/init"
-                android:textSize="17sp"
+                android:text="@string/recent_news"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/news_list_items" />
 
         </LinearLayout>
 
