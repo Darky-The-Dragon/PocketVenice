@@ -78,19 +78,16 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            if(item.getItemId() == R.id.news){
+            if (item.getItemId() == R.id.news) {
                 Intent intent = new Intent(MapsActivity.this, NewsActivity.class);
                 startActivity(intent);
-            }
-            else if(item.getItemId() == R.id.events){
+            } else if (item.getItemId() == R.id.events) {
                 Intent intent2 = new Intent(MapsActivity.this, EventsActivity.class);
                 startActivity(intent2);
-            }
-            else if(item.getItemId() == R.id.places){
+            } else if (item.getItemId() == R.id.places) {
                 Intent intent3 = new Intent(MapsActivity.this, PlacesActivity.class);
                 startActivity(intent3);
-            }
-            else if(item.getItemId() == R.id.map){
+            } else if (item.getItemId() == R.id.map) {
                 return true;
             }
 
@@ -99,22 +96,19 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
 
         binding.navigationView.setNavigationItemSelectedListener(item -> {
 
-            if(item.getItemId() == R.id.profile){
+            if (item.getItemId() == R.id.profile) {
                 replaceFragment(new Profile());
                 textTitle.setText(Profile.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }
-            else if(item.getItemId() == R.id.faq){
+            } else if (item.getItemId() == R.id.faq) {
                 replaceFragment(new FAQ());
                 textTitle.setText(FAQ.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }
-            else if(item.getItemId() == R.id.info){
+            } else if (item.getItemId() == R.id.info) {
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }
-            else if(item.getItemId() == R.id.logout){
+            } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
             }
 
@@ -129,7 +123,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v) {
 
-        if(v.getId() == R.id.menu_nav){
+        if (v.getId() == R.id.menu_nav) {
             drawerLayout.openDrawer(GravityCompat.START);
         }
     }

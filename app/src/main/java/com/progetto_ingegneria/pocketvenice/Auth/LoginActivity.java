@@ -52,13 +52,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == R.id.login){
+        if (v.getId() == R.id.login) {
             authenticateUser();
-        }
-        else if(v.getId() == R.id.register){
+        } else if (v.getId() == R.id.register) {
             startActivity(new Intent(this, RegisterActivity.class));
-        }
-        else if(v.getId() == R.id.forgotPassword){
+        } else if (v.getId() == R.id.forgotPassword) {
             startActivity(new Intent(this, ResetPasswordActivity.class));
         }
     }

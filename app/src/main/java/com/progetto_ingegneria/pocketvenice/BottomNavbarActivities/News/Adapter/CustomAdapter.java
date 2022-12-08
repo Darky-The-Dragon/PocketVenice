@@ -1,6 +1,7 @@
 package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Adapter;
 
-import static com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Utility.DateTimeFormatting.*;
+import static com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Utility.DateTimeFormatting.DateFormat;
+import static com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Utility.DateTimeFormatting.DateToTimeFormat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

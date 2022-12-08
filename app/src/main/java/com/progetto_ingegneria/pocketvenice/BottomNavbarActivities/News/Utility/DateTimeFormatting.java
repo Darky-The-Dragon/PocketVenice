@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DateTimeFormatting {
-    public static String DateToTimeFormat(String oldStringDate){
+    public static String DateToTimeFormat(String oldStringDate) {
         PrettyTime p = new PrettyTime(new Locale(getCountry()));
         String isTime = null;
         try {
@@ -25,7 +25,7 @@ public class DateTimeFormatting {
         return isTime;
     }
 
-    public static String DateFormat(String oldstringDate){
+    public static String DateFormat(String oldstringDate) {
         String newDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("E, d MMM yyyy", new Locale(getCountry()));
         try {
@@ -40,7 +40,7 @@ public class DateTimeFormatting {
         return newDate;
     }
 
-    public static String getCountry(){
+    public static String getCountry() {
         Locale locale = Locale.getDefault();
         String country = locale.getCountry();
         return country.toLowerCase();

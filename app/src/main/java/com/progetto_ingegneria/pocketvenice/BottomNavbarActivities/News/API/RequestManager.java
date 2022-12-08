@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listeners.OnFetchDataListener;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsApiResponse;
@@ -29,7 +30,8 @@ public class RequestManager {
         this.context = context;
     }
 
-    public void getNewsHeadlines(OnFetchDataListener<NewsApiResponse> listener, String language, String query, String searchIn, String domains, String sortBy) {
+    public void getNewsHeadlines(OnFetchDataListener<NewsApiResponse> listener, SwipeRefreshLayout swipeRefreshLayout, String language, String query, String searchIn, String domains, String sortBy) {
+
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
         Call<NewsApiResponse> call = callNewsApi.callHeadlines(language, query, searchIn, domains, sortBy, context.getString(R.string.api_key));
 
@@ -40,16 +42,20 @@ public class RequestManager {
 
                     if (!response.isSuccessful()) {
                         Toast.makeText(context, "An error occured while loading the news!", Toast.LENGTH_SHORT).show();
+                        listener.onError(response.code());
                     }
 
                     assert response.body() != null;
                     listener.onFetchData(response.body().getArticles(), response.message());
 
+                    swipeRefreshLayout.setRefreshing(false);
+
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<NewsApiResponse> call, @NonNull Throwable t) {
-                    listener.onError("Request Failed!");
+                    listener.onError(502);
+                    swipeRefreshLayout.setRefreshing(false);
                 }
             });
         } catch (Exception e) {

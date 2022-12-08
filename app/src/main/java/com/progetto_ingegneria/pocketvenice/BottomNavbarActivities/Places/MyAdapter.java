@@ -20,24 +20,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private OnRecyclerViewClickListener listener;
 
-    public interface OnRecyclerViewClickListener{
-        void OnItemClick(int position);
-    }
-
-    public void OnRecyclerViewClickListener (OnRecyclerViewClickListener listener){
-        this.listener = listener;
-    }
-
     public MyAdapter(Context context, ArrayList<Place_Data> list) {
         this.context = context;
         this.list = list;
+    }
+
+    public void OnRecyclerViewClickListener(OnRecyclerViewClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.places_list_items, parent, false);
-        return new MyViewHolder(v, listener);
+        //return new MyViewHolder(v, listener);
+        return null;
     }
 
     @Override
@@ -50,6 +47,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public interface OnRecyclerViewClickListener {
+        void OnItemClick(int position);
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

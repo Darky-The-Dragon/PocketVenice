@@ -8,44 +8,44 @@
     app:cardElevation="8dp">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_margin="6dp"
-        android:weightSum="3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_margin="8dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_margin="8dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/text_titolo"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/text_sestiere"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/img_place"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:scaleType="centerCrop"
             android:src="@drawable/not_available"
-            tools:ignore="ContentDescription"/>
+            tools:ignore="ContentDescription" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
