@@ -42,7 +42,7 @@ import com.progetto_ingegneria.pocketvenice.databinding.ActivityPlacesBinding;
 
 import java.util.ArrayList;
 
-public class PlacesActivity extends AppCompatActivity implements View.OnClickListener {
+public class PlaceInDepthActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<Place_Data> places_list;
     private TextView textTitle;
@@ -107,15 +107,18 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         // Bottom navbar
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            if (item.getItemId() == R.id.news) {
+            if(item.getItemId() == R.id.news){
                 Intent intent = new Intent(PlacesActivity.this, NewsActivity.class);
                 startActivity(intent);
-            } else if (item.getItemId() == R.id.events) {
+            }
+            else if(item.getItemId() == R.id.events){
                 Intent intent2 = new Intent(PlacesActivity.this, EventsActivity.class);
                 startActivity(intent2);
-            } else if (item.getItemId() == R.id.places) {
+            }
+            else if(item.getItemId() == R.id.places){
                 return true;
-            } else if (item.getItemId() == R.id.map) {
+            }
+            else if(item.getItemId() == R.id.map){
                 Intent intent4 = new Intent(PlacesActivity.this, MapsActivity.class);
                 startActivity(intent4);
             }
@@ -126,19 +129,22 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         // Sidebar
         binding.navigationView.setNavigationItemSelectedListener(item -> {
 
-            if (item.getItemId() == R.id.profile) {
+            if(item.getItemId() == R.id.profile){
                 replaceFragment(new Profile());
                 textTitle.setText(Profile.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            } else if (item.getItemId() == R.id.faq) {
+            }
+            else if(item.getItemId() == R.id.faq){
                 replaceFragment(new FAQ());
                 textTitle.setText(FAQ.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            } else if (item.getItemId() == R.id.info) {
+            }
+            else if(item.getItemId() == R.id.info){
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            } else if (item.getItemId() == R.id.logout) {
+            }
+            else if(item.getItemId() == R.id.logout){
                 logoutUser();
             }
 
@@ -178,7 +184,7 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
     // Sidebar button
     public void onClick(View v) {
 
-        if (v.getId() == R.id.menu_nav) {
+        if(v.getId() == R.id.menu_nav){
             drawerLayout.openDrawer(GravityCompat.START);
         }
     }
