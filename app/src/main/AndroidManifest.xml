@@ -13,7 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PocketVenice"
         tools:targetApi="33">
-
+        <activity
+            android:name=".place_in_depth_activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

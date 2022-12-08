@@ -42,7 +42,7 @@ import com.progetto_ingegneria.pocketvenice.databinding.ActivityPlacesBinding;
 
 import java.util.ArrayList;
 
-public class PlacesActivity extends AppCompatActivity implements View.OnClickListener {
+public class PlaceInDepthActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<Place_Data> places_list;
     private TextView textTitle;

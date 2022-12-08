@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Place_Data posto = list.get(position);
         holder.titolo.setText(posto.Titolo);
         holder.sestiere.setText(posto.Sestiere);
+        holder.foto.setText(posto.FotoSrc);
     }
 
     @Override
@@ -55,12 +57,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView titolo, sestiere, foto;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnRecyclerViewClickListener listener) {
             super(itemView);
             titolo = itemView.findViewById(R.id.text_titolo);
             sestiere = itemView.findViewById(R.id.text_sestiere);
             foto = itemView.findViewById(R.id.img_place);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION)
+                        listener.OnItemClick(getAdapterPosition());
+                }
+            });
         }
+
+
     }
 
 }
