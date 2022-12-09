@@ -62,6 +62,7 @@ public class PlaceInDepthActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityPlacesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -100,7 +101,7 @@ public class PlaceInDepthActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void OnItemClick(int position) {
                 // avviso mostrato a schermo al momento del click per aprire un posto
-                Toast.makeText(PlacesActivity.this, "Posiscion" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlaceInDepthActivity.this, "Posiscion" + position, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -108,18 +109,18 @@ public class PlaceInDepthActivity extends AppCompatActivity implements View.OnCl
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if(item.getItemId() == R.id.news){
-                Intent intent = new Intent(PlacesActivity.this, NewsActivity.class);
+                Intent intent = new Intent(PlaceInDepthActivity.this, NewsActivity.class);
                 startActivity(intent);
             }
             else if(item.getItemId() == R.id.events){
-                Intent intent2 = new Intent(PlacesActivity.this, EventsActivity.class);
+                Intent intent2 = new Intent(PlaceInDepthActivity.this, EventsActivity.class);
                 startActivity(intent2);
             }
             else if(item.getItemId() == R.id.places){
                 return true;
             }
             else if(item.getItemId() == R.id.map){
-                Intent intent4 = new Intent(PlacesActivity.this, MapsActivity.class);
+                Intent intent4 = new Intent(PlaceInDepthActivity.this, MapsActivity.class);
                 startActivity(intent4);
             }
 
@@ -203,6 +204,6 @@ public class PlaceInDepthActivity extends AppCompatActivity implements View.OnCl
         progressBar.setVisibility(View.VISIBLE);
         FirebaseAuth.getInstance().signOut();
         progressBar.setVisibility(View.GONE);
-        startActivity(new Intent(PlacesActivity.this, LoginActivity.class));
+        startActivity(new Intent(PlaceInDepthActivity.this, LoginActivity.class));
     }
 }

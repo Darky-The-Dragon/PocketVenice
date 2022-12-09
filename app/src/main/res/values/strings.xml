@@ -82,5 +82,6 @@
     <string name="error_title">Error Title</string>
     <string name="error_message">Error Message</string>
     <string name="retry">Retry</string>
+    <string name="google_maps_key">AIzaSyBRTccEhjzTfOBUTzNvIrKJcZU63jUhf1g</string>
 
 </resources>

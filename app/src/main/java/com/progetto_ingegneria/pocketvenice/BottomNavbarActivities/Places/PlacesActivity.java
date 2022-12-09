@@ -199,4 +199,16 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         progressBar.setVisibility(View.GONE);
         startActivity(new Intent(PlacesActivity.this, LoginActivity.class));
     }
+    @Override
+    public void onBackPressed(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_layout);
+        if(fragment != null){
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
+        }else {
+            super.onBackPressed();
+        }
+    }
 }

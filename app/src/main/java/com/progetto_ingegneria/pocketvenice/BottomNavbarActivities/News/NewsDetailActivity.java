@@ -122,7 +122,7 @@ public class NewsDetailActivity extends AppCompatActivity implements AppBarLayou
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed(){
         super.onBackPressed();
         supportFinishAfterTransition();
     }

@@ -24,7 +24,7 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActi
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
-import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
+import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;;
 import com.progetto_ingegneria.pocketvenice.R;
 import com.progetto_ingegneria.pocketvenice.databinding.ActivityEventsBinding;
 
@@ -128,4 +128,17 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         progressBar.setVisibility(View.GONE);
         startActivity(new Intent(EventsActivity.this, LoginActivity.class));
     }
+    @Override
+    public void onBackPressed(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_layout);
+        if(fragment != null){
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
+        }else {
+            super.onBackPressed();
+        }
+    }
+
 }
