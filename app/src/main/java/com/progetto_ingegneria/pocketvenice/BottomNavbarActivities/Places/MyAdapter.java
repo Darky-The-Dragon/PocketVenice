@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.progetto_ingegneria.pocketvenice.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Place_Data posto = list.get(position);
         holder.titolo.setText(posto.Titolo);
         holder.sestiere.setText(posto.Sestiere);
-        holder.foto.setText(posto.FotoSrc);
+        Picasso.get().load(posto.FotoSrc).into(holder.foto);
     }
 
     @Override
@@ -55,7 +56,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView titolo, sestiere, foto;
+        TextView titolo, sestiere;
+        ImageView foto;
 
         public MyViewHolder(@NonNull View itemView, OnRecyclerViewClickListener listener) {
             super(itemView);
