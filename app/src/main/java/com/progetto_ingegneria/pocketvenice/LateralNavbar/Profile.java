@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,15 +50,16 @@ public class Profile extends Fragment {
 
 
         //manca guest profile setting
-        if(firebaseUser == null){
+        if (firebaseUser == null) {
             Toast.makeText(inflater.getContext(), "You are not logged", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     User user = snapshot.getValue(User.class);
+                    assert user != null;
                     fullName.setText(user.getFullName());
-                    titleWelcome.setText("Welcome "+ user.getFullName());
+                    titleWelcome.setText("Welcome " + user.getFullName());
                     email.setText(user.getEmail());
                     phone.setText(user.getMobile());
                     age.setText(user.getAge());
@@ -75,7 +75,6 @@ public class Profile extends Fragment {
         //Inflate the layout for this fragment*/
         return view;
     }
-
 
 
 }

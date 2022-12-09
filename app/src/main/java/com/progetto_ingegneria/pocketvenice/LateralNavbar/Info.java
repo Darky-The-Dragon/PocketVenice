@@ -40,7 +40,6 @@ public class Info extends Fragment {
         member5.setText("Zotea Dumitru");
 
 
-
         // Inflate the layout for this fragment
         return view;
     }

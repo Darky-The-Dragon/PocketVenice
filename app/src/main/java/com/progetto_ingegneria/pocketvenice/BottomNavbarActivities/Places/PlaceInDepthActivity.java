@@ -97,29 +97,23 @@ public class PlaceInDepthActivity extends AppCompatActivity implements View.OnCl
         places_list = new ArrayList<>();
         myAdapter = new MyAdapter(this, places_list);
         recyclerView.setAdapter(myAdapter);
-        myAdapter.OnRecyclerViewClickListener(new MyAdapter.OnRecyclerViewClickListener() {
-            @Override
-            public void OnItemClick(int position) {
-                // avviso mostrato a schermo al momento del click per aprire un posto
-                Toast.makeText(PlaceInDepthActivity.this, "Posiscion" + position, Toast.LENGTH_SHORT).show();
-            }
+        myAdapter.OnRecyclerViewClickListener(position -> {
+            // avviso mostrato a schermo al momento del click per aprire un posto
+            Toast.makeText(PlaceInDepthActivity.this, "Posiscion" + position, Toast.LENGTH_SHORT).show();
         });
 
         // Bottom navbar
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            if(item.getItemId() == R.id.news){
+            if (item.getItemId() == R.id.news) {
                 Intent intent = new Intent(PlaceInDepthActivity.this, NewsActivity.class);
                 startActivity(intent);
-            }
-            else if(item.getItemId() == R.id.events){
+            } else if (item.getItemId() == R.id.events) {
                 Intent intent2 = new Intent(PlaceInDepthActivity.this, EventsActivity.class);
                 startActivity(intent2);
-            }
-            else if(item.getItemId() == R.id.places){
+            } else if (item.getItemId() == R.id.places) {
                 return true;
-            }
-            else if(item.getItemId() == R.id.map){
+            } else if (item.getItemId() == R.id.map) {
                 Intent intent4 = new Intent(PlaceInDepthActivity.this, MapsActivity.class);
                 startActivity(intent4);
             }
@@ -130,22 +124,19 @@ public class PlaceInDepthActivity extends AppCompatActivity implements View.OnCl
         // Sidebar
         binding.navigationView.setNavigationItemSelectedListener(item -> {
 
-            if(item.getItemId() == R.id.profile){
+            if (item.getItemId() == R.id.profile) {
                 replaceFragment(new Profile());
                 textTitle.setText(Profile.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }
-            else if(item.getItemId() == R.id.faq){
+            } else if (item.getItemId() == R.id.faq) {
                 replaceFragment(new FAQ());
                 textTitle.setText(FAQ.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }
-            else if(item.getItemId() == R.id.info){
+            } else if (item.getItemId() == R.id.info) {
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }
-            else if(item.getItemId() == R.id.logout){
+            } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
             }
 
@@ -185,7 +176,7 @@ public class PlaceInDepthActivity extends AppCompatActivity implements View.OnCl
     // Sidebar button
     public void onClick(View v) {
 
-        if(v.getId() == R.id.menu_nav){
+        if (v.getId() == R.id.menu_nav) {
             drawerLayout.openDrawer(GravityCompat.START);
         }
     }

@@ -96,12 +96,9 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         places_list = new ArrayList<>();
         myAdapter = new MyAdapter(this, places_list);
         recyclerView.setAdapter(myAdapter);
-        myAdapter.OnRecyclerViewClickListener(new MyAdapter.OnRecyclerViewClickListener() {
-            @Override
-            public void OnItemClick(int position) {
-                // avviso mostrato a schermo al momento del click per aprire un posto
-                Toast.makeText(PlacesActivity.this, "Posiscion" + position, Toast.LENGTH_SHORT).show();
-            }
+        myAdapter.OnRecyclerViewClickListener(position -> {
+            // avviso mostrato a schermo al momento del click per aprire un posto
+            Toast.makeText(PlacesActivity.this, "Posiscion" + position, Toast.LENGTH_SHORT).show();
         });
 
         // Bottom navbar
@@ -199,15 +196,16 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         progressBar.setVisibility(View.GONE);
         startActivity(new Intent(PlacesActivity.this, LoginActivity.class));
     }
+
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentById(R.id.frame_layout);
-        if(fragment != null){
+        if (fragment != null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(fragment);
             fragmentTransaction.commit();
-        }else {
+        } else {
             super.onBackPressed();
         }
     }

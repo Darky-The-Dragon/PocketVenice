@@ -4,7 +4,7 @@ public class User {
 
     private String fullName, age, email, mobile;
 
-    public User(){
+    public User() {
         //MUST BE EMPTY
     }
 

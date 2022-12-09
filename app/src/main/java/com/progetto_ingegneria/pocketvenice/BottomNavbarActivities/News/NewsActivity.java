@@ -55,7 +55,8 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     private RequestManager manager;
     private RecyclerView recyclerView;
     private CustomAdapter adapter;
-    private SwipeRefreshLayout swipeRefreshLayout;    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RelativeLayout errorLayout;    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
             showNews(list);
@@ -92,7 +93,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     };
-    private RelativeLayout errorLayout;
     private ImageView errorImage;
     private TextView errorTitle, errorMessage, btnRetry;
 
@@ -235,6 +235,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         progressBar.setVisibility(View.GONE);
         startActivity(new Intent(NewsActivity.this, LoginActivity.class));
     }
+
 
 
 

@@ -15,13 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PocketVenice"
         tools:targetApi="33">
-        <activity
-            android:name=".MainActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".BottomNavbarActivities.Places.PlaceInDepthActivity"
             android:exported="false">
