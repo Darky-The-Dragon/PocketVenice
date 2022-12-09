@@ -46,7 +46,6 @@ public class Profile extends Fragment {
         phone = view.findViewById(R.id.show_phone);
         age = view.findViewById(R.id.show_age);
 
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
 
