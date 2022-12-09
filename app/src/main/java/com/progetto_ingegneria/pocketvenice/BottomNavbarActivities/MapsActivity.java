@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -55,7 +54,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(binding.getRoot()); //nel video ha (R.layout.activity_maps)
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -122,10 +121,10 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         });
 
+        // errore nullptr per this (forse perché usa FragmentActivity?)
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        // mapFragment.getMapAsync(this);
-
+        mapFragment.getMapAsync(this);
     }
 
     public void onClick(View v) {
@@ -144,14 +143,6 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
     }
 
-    @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
-        mMap = googleMap;
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
     private void logoutUser() {
         progressBar.setVisibility(View.VISIBLE);
         FirebaseAuth.getInstance().signOut();
@@ -159,5 +150,13 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(MapsActivity.this, LoginActivity.class));
     }
 
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        mMap = googleMap;
 
+        //Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker((new MarkerOptions().position(sydney).title("Marker in Sydney")));
+        mMap.moveCamera((CameraUpdateFactory.newLatLng(sydney)));
+    }
 }

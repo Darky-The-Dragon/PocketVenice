@@ -184,4 +184,17 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         progressBar.setVisibility(View.GONE);
         startActivity(new Intent(NewsActivity.this, LoginActivity.class));
     }
+
+    @Override
+    public void onBackPressed(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_layout);
+        if(fragment != null){
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
+        }else {
+            super.onBackPressed();
+        }
+    }
 }
