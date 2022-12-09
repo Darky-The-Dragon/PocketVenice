@@ -1,6 +1,9 @@
 package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,18 +14,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +57,8 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
 
     private GoogleMap mMap;
+    FusedLocationProviderClient client;
+    SupportMapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,10 +125,56 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         });
 
-        // errore nullptr per this (forse perché usa FragmentActivity?)
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        client = LocationServices.getFusedLocationProviderClient(this);
+        getCurrentLocation();
+    }
+
+    private void getCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Task<Location> task = client.getLastLocation();
+            task.addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location!=null){
+                        //sync map
+                        mapFragment.getMapAsync(new OnMapReadyCallback() {
+                            @Override
+                            public void onMapReady(@NonNull GoogleMap googleMap) {
+                                //inizializza latlng
+                                LatLng latLng = new LatLng(location.getLatitude()
+                                        , location.getLongitude());
+                                //creare marker option
+                                MarkerOptions options = new MarkerOptions().position(latLng)
+                                        .title("Sei qui");
+                                //Zoom map
+                                googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng)); // lui ha anche 10 dentro a new latlng
+
+                                //Aggiungi marker
+                                googleMap.addMarker(options);
+                            }
+                        });
+                    }
+                }
+            });
+        } else {
+            // se non si ha permesso, richiedi permesso
+            ActivityCompat.requestPermissions(MapsActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
+
+    }
+
+
+
+
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        mMap = googleMap;
+
+
     }
 
     public void onClick(View v) {
@@ -144,13 +200,5 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(MapsActivity.this, LoginActivity.class));
     }
 
-    @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
-        mMap = googleMap;
 
-        //Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker((new MarkerOptions().position(sydney).title("Marker in Sydney")));
-        mMap.moveCamera((CameraUpdateFactory.newLatLng(sydney)));
-    }
 }
