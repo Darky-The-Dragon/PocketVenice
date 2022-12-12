@@ -157,10 +157,10 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         // Retrieve location and camera position from saved instance state.
-        if (savedInstanceState != null) {
+        /* if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
-        }
+        } */
 
         // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -173,6 +173,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         this.map = map;
 
         // Prompt the user for permission.
+
         getLocationPermission();
 
         // Turn on the My Location layer and the related control on the map.
@@ -263,19 +264,21 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
+                                           @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         locationPermissionGranted = false;
-        if (requestCode
-                == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {// If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                locationPermissionGranted = true;
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    locationPermissionGranted = true;
+                    updateLocationUI();
+                }
             }
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        updateLocationUI();
+
     }
 
     @Override
@@ -311,5 +314,17 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(MapsActivity.this, LoginActivity.class));
     }
 
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_layout);
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
+        } else {
+            super.onBackPressed();
+        }
+    }
 
 }

@@ -4,7 +4,8 @@
     android:id="@+id/profile_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LateralNavbar.Info">
+    tools:context=".LateralNavbar.Info"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="#5cc09f">
+            android:background="#b31a34">
 
             <ImageView
                 android:id="@+id/imageView_profile"
