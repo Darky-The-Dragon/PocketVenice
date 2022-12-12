@@ -50,7 +50,6 @@ import java.util.List;
 
 public class PlacesActivity extends AppCompatActivity implements View.OnClickListener, PlaceCallback {
 
-    ArrayList<Place_Data> places_list;
     protected TextView textTitle;
     protected ActivityPlacesBinding binding;
     protected BottomNavigationView bottomNavigationView;
@@ -63,7 +62,6 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
     protected FirebaseAuth mAuth;
     protected RecyclerView recyclerView;
     protected DatabaseReference database;
-    protected MyAdapter myAdapter;
     protected PlaceAdapter placeAdapter;
     protected List<Place> placesData;
 

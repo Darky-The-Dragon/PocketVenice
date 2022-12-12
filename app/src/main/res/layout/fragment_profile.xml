@@ -4,8 +4,8 @@
     android:id="@+id/profile_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LateralNavbar.Info"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".LateralNavbar.Info">
 
     <LinearLayout
         android:layout_width="match_parent"

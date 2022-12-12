@@ -56,10 +56,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.logo){
+        if (v.getId() == R.id.logo) {
             startActivity(new Intent(this, LoginActivity.class));
-        }
-        else if (v.getId() == R.id.register){
+        } else if (v.getId() == R.id.register) {
             registerUser();
         }
     }

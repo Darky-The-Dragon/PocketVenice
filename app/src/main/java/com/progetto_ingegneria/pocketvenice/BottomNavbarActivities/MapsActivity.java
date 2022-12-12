@@ -36,6 +36,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
@@ -46,41 +47,33 @@ import com.progetto_ingegneria.pocketvenice.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
-    private TextView textTitle;
-    private ActivityMapsBinding binding;
-    private BottomNavigationView bottomNavigationView;
-
-    private ImageView imageMenu;
-    private NavigationView navigationView;
-    private DrawerLayout drawerLayout;
-
-    private ProgressBar progressBar;
-    private FirebaseAuth mAuth;
-
-    private GoogleMap map;
-    FusedLocationProviderClient client;
-    SupportMapFragment mapFragment;
-    private CameraPosition cameraPosition;
-
-    private static final String TAG = MapsActivity.class.getSimpleName();
-
-    // The entry point to the Fused Location Provider.
-    private FusedLocationProviderClient fusedLocationProviderClient;
-
+    protected static final String TAG = MapsActivity.class.getSimpleName();
+    protected static final int DEFAULT_ZOOM = 15;
+    protected static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    // Keys for storing activity state.
+    protected static final String KEY_CAMERA_POSITION = "camera_position";
+    protected static final String KEY_LOCATION = "location";
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
-    private final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
-    private static final int DEFAULT_ZOOM = 15;
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private boolean locationPermissionGranted;
-
+    protected final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
+    protected FusedLocationProviderClient client;
+    protected SupportMapFragment mapFragment;
+    protected TextView textTitle;
+    protected ActivityMapsBinding binding;
+    protected BottomNavigationView bottomNavigationView;
+    protected ImageView imageMenu;
+    protected NavigationView navigationView;
+    protected DrawerLayout drawerLayout;
+    protected ProgressBar progressBar;
+    protected FirebaseAuth mAuth;
+    protected GoogleMap map;
+    protected CameraPosition cameraPosition;
+    // The entry point to the Fused Location Provider.
+    protected FusedLocationProviderClient fusedLocationProviderClient;
+    protected boolean locationPermissionGranted;
     // The geographical location where the device is currently located. That is, the last-known
     // location retrieved by the Fused Location Provider.
-    private Location lastKnownLocation;
-
-    // Keys for storing activity state.
-    private static final String KEY_CAMERA_POSITION = "camera_position";
-    private static final String KEY_LOCATION = "location";
+    protected Location lastKnownLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,11 +158,12 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
 
     @Override
-    public void onMapReady(GoogleMap map) {
+    public void onMapReady(@NonNull GoogleMap map) {
         this.map = map;
 
         // Prompt the user for permission.
@@ -197,7 +191,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                 lastKnownLocation = null;
                 getLocationPermission();
             }
-        } catch (SecurityException e)  {
+        } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
     }
@@ -213,28 +207,25 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         try {
             if (locationPermissionGranted) {
                 Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
-                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        if (task.isSuccessful()) {
-                            // Set the map's camera position to the current location of the device.
-                            lastKnownLocation = task.getResult();
-                            if (lastKnownLocation != null) {
-                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                        new LatLng(lastKnownLocation.getLatitude(),
-                                                lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-                            }
-                        } else {
-                            Log.d(TAG, "Current location is null. Using defaults.");
-                            Log.e(TAG, "Exception: %s", task.getException());
-                            map.moveCamera(CameraUpdateFactory
-                                    .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-                            map.getUiSettings().setMyLocationButtonEnabled(false);
+                locationResult.addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Set the map's camera position to the current location of the device.
+                        lastKnownLocation = task.getResult();
+                        if (lastKnownLocation != null) {
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                    new LatLng(lastKnownLocation.getLatitude(),
+                                            lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
                         }
+                    } else {
+                        Log.d(TAG, "Current location is null. Using defaults.");
+                        Log.e(TAG, "Exception: %s", task.getException());
+                        map.moveCamera(CameraUpdateFactory
+                                .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
+                        map.getUiSettings().setMyLocationButtonEnabled(false);
                     }
                 });
             }
-        } catch (SecurityException e)  {
+        } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage(), e);
         }
     }
@@ -264,7 +255,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
+                                           @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         locationPermissionGranted = false;
@@ -282,7 +273,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         if (map != null) {
             outState.putParcelable(KEY_CAMERA_POSITION, map.getCameraPosition());
             outState.putParcelable(KEY_LOCATION, lastKnownLocation);

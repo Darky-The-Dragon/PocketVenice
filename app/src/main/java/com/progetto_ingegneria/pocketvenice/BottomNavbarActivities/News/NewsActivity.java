@@ -60,44 +60,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     protected ImageView errorImage;
     protected TextView errorTitle, errorMessage, btnRetry;
 
-    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
-        @Override
-        public void onFetchData(List<NewsHeadlines> list, String message) {
-            showNews(list);
-            progressBar.setVisibility(View.GONE);
-            errorLayout.setVisibility(View.GONE);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        }
-
-        @Override
-        public void onError(int errorCode) {
-            String errorText;
-
-            progressBar.setVisibility(View.GONE);
-            textHeader.setVisibility(View.GONE);
-            errorLayout.setVisibility(View.GONE);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-
-            switch (errorCode) {
-                case 404:
-                    errorText = "Please try again! \n404 Not Found";
-                    break;
-                case 500:
-                    errorText = "Please try again! \n500 Server Broken";
-                    break;
-                case 502:
-                    errorText = "Network failure, Please Try Again";
-                    break;
-                default:
-                    errorText = "Unknown error";
-                    break;
-            }
-
-            showErrorMessage(R.drawable.no_result, "Oops.. No Results!", errorText);
-
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,7 +142,43 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         manager = new RequestManager(this);
         manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it", "publishedAt");
-    }
+    }    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
+        @Override
+        public void onFetchData(List<NewsHeadlines> list, String message) {
+            showNews(list);
+            progressBar.setVisibility(View.GONE);
+            errorLayout.setVisibility(View.GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }
+
+        @Override
+        public void onError(int errorCode) {
+            String errorText;
+
+            progressBar.setVisibility(View.GONE);
+            textHeader.setVisibility(View.GONE);
+            errorLayout.setVisibility(View.GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+            switch (errorCode) {
+                case 404:
+                    errorText = "Please try again! \n404 Not Found";
+                    break;
+                case 500:
+                    errorText = "Please try again! \n500 Server Broken";
+                    break;
+                case 502:
+                    errorText = "Network failure, Please Try Again";
+                    break;
+                default:
+                    errorText = "Unknown error";
+                    break;
+            }
+
+            showErrorMessage(R.drawable.no_result, "Oops.. No Results!", errorText);
+
+        }
+    };
 
     public void onClick(View v) {
 

@@ -42,10 +42,9 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == R.id.submit){
+        if (v.getId() == R.id.submit) {
             resetPassword();
-        }
-        else if (v.getId() == R.id.login){
+        } else if (v.getId() == R.id.login) {
             startActivity(new Intent(this, LoginActivity.class));
         }
     }

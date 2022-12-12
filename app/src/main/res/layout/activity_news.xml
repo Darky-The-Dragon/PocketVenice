@@ -88,7 +88,7 @@
                             android:layout_height="wrap_content"
                             android:scrollbars="vertical"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            tools:listitem="@layout/news_list_items" />
+                            tools:listitem="@layout/item_news" />
 
                     </LinearLayout>
 

@@ -46,7 +46,7 @@ public class NewsDetailsActivity extends AppCompatActivity implements AppBarLayo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_detail);
+        setContentView(R.layout.activity_news_details);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
