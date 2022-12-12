@@ -99,6 +99,10 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         myAdapter.OnRecyclerViewClickListener(position -> {
             // avviso mostrato a schermo al momento del click per aprire un posto
             Toast.makeText(PlacesActivity.this, "Posiscion" + position, Toast.LENGTH_SHORT).show();
+
+            // passiamo alla nuova activity del posto cliccato in dettaglio
+            Intent intent = new Intent(PlacesActivity.this, PlaceInDepthActivity.class);
+            startActivity(intent);
         });
 
         // Bottom navbar
