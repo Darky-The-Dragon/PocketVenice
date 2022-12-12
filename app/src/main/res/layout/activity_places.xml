@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@id/layoutToolBar" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_places"
+            android:id="@+id/rv_places"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -112,3 +112,4 @@
         app:menu="@menu/navigation_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
+

@@ -30,17 +30,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class NewsDetailActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
+public class NewsDetailsActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
-    NewsHeadlines headlines;
-    private ImageView imageView;
-    private TextView appbar_title, appbar_subtitle, date, time, title;
-    private boolean isHideToolbarView = false;
-    private FrameLayout date_behaviour;
-    private LinearLayout titleAppbar;
-    private AppBarLayout appBarLayout;
-    private Toolbar toolbar;
-    private String mUrl, mImg, mTitle, mDate, mSource, mAuthor;
+    protected NewsHeadlines headlines;
+    protected ImageView imageView;
+    protected TextView appbar_title, appbar_subtitle, date, time, title;
+    protected boolean isHideToolbarView = false;
+    protected FrameLayout date_behaviour;
+    protected LinearLayout titleAppbar;
+    protected AppBarLayout appBarLayout;
+    protected Toolbar toolbar;
+    protected String mUrl, mImg, mTitle, mDate, mSource, mAuthor;
 
     @SuppressLint("SetTextI18n")
     @Override

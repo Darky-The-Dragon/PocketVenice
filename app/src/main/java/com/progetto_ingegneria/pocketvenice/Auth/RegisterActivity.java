@@ -16,15 +16,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.progetto_ingegneria.pocketvenice.R;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView imageViewLogo;
-    private TextView textViewRegister;
-    private EditText editTextFullName, editTextAge, editTextEmail, editTextMobile, editTextPassword,
+    protected ImageView imageViewLogo;
+    protected TextView textViewRegister;
+    protected EditText editTextFullName, editTextAge, editTextEmail, editTextMobile, editTextPassword,
             editTextConfirmPassword;
-    private ProgressBar progressBar;
+    protected ProgressBar progressBar;
 
-    private FirebaseAuth mAuth;
+    protected FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +55,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.logo:
-                startActivity(new Intent(this, LoginActivity.class));
-                break;
-            case R.id.register:
-                registerUser();
-                break;
+
+        if (v.getId() == R.id.logo){
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+        else if (v.getId() == R.id.register){
+            registerUser();
         }
     }
 
@@ -115,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             User user = new User(fullName, age, email, mobile);
 
                             FirebaseDatabase.getInstance().getReference("users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                                     .setValue(user).addOnCompleteListener(task1 -> {
 
                                         if (task1.isSuccessful()) {

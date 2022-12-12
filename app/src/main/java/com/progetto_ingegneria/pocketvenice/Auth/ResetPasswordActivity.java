@@ -16,10 +16,10 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 public class ResetPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
-    FirebaseAuth mAuth;
-    private TextView textViewSubmit, textViewLogin;
-    private EditText editTextEmail;
-    private ProgressBar progressBar;
+    protected FirebaseAuth mAuth;
+    protected TextView textViewSubmit, textViewLogin;
+    protected EditText editTextEmail;
+    protected ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +41,12 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.submit:
-                resetPassword();
-                break;
-            case R.id.login:
-                startActivity(new Intent(this, LoginActivity.class));
-                break;
+
+        if(v.getId() == R.id.submit){
+            resetPassword();
+        }
+        else if (v.getId() == R.id.login){
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 

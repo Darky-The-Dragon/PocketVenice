@@ -21,7 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.EventsActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
@@ -31,16 +31,17 @@ import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
 import com.progetto_ingegneria.pocketvenice.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView textTitle;
-    private ImageView imageMenu;
-    private BottomNavigationView bottomNavigationView;
-    private NavigationView navigationView;
-    private NavController navController;
-    private NavController bottomNavController;
-    private DrawerLayout drawerLayout;
-    private ActivityMainBinding binding;
-    private ProgressBar progressBar;
-    private FirebaseAuth mAuth;
+
+    protected TextView textTitle;
+    protected ImageView imageMenu;
+    protected BottomNavigationView bottomNavigationView;
+    protected NavigationView navigationView;
+    protected NavController navController;
+    protected NavController bottomNavController;
+    protected DrawerLayout drawerLayout;
+    protected ActivityMainBinding binding;
+    protected ProgressBar progressBar;
+    protected FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

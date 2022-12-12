@@ -25,7 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.EventsActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.API.RequestManager;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Adapter.CustomAdapter;
@@ -44,19 +44,23 @@ import java.util.List;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener, SelectListener, SwipeRefreshLayout.OnRefreshListener {
 
-    private TextView textTitle, textHeader;
-    private ImageView imageMenu;
-    private BottomNavigationView bottomNavigationView;
-    private NavigationView navigationView;
-    private DrawerLayout drawerLayout;
-    private ActivityNewsBinding binding;
-    private ProgressBar progressBar;
-    private FirebaseAuth mAuth;
-    private RequestManager manager;
-    private RecyclerView recyclerView;
-    private CustomAdapter adapter;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private RelativeLayout errorLayout;    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
+    protected TextView textTitle, textHeader;
+    protected ImageView imageMenu;
+    protected BottomNavigationView bottomNavigationView;
+    protected NavigationView navigationView;
+    protected DrawerLayout drawerLayout;
+    protected ActivityNewsBinding binding;
+    protected ProgressBar progressBar;
+    protected FirebaseAuth mAuth;
+    protected RequestManager manager;
+    protected RecyclerView recyclerView;
+    protected CustomAdapter adapter;
+    protected SwipeRefreshLayout swipeRefreshLayout;
+    protected RelativeLayout errorLayout;
+    protected ImageView errorImage;
+    protected TextView errorTitle, errorMessage, btnRetry;
+
+    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
             showNews(list);
@@ -93,8 +97,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     };
-    private ImageView errorImage;
-    private TextView errorTitle, errorMessage, btnRetry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,7 +191,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void OnNewsClicked(NewsHeadlines headlines) {
-        startActivity(new Intent(NewsActivity.this, NewsDetailActivity.class)
+        startActivity(new Intent(NewsActivity.this, NewsDetailsActivity.class)
                 .putExtra("data", headlines));
     }
 
