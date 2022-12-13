@@ -44,19 +44,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
         Place place = placesData.get(position);
 
-
         holder.title.setText(place.getTitle());
         holder.address.setText(place.getAddress());
-        holder.district.setText(place.getDistrict());
-        //holder.description.setText(place.getDescription());
-
+        holder.ratingBar.setRating(place.getRating());
 
         Glide.with(holder.itemView.getContext())
                 .load(placesData.get(position).getPhotoSrc())
                 .transform(new CenterCrop(), new RoundedCorners(16))
                 .into(holder.imgPlace);
-
-        //holder.cardView.setOnClickListener(v -> callback.onPlaceItemClick(position, holder.));
     }
 
     @Override
@@ -76,20 +71,16 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             imgPlace = itemView.findViewById(R.id.item_place_img);
             title = itemView.findViewById(R.id.item_place_title);
             address = itemView.findViewById(R.id.item_place_address);
-            district = itemView.findViewById(R.id.item_place_district);
-            //description = itemView.findViewById(R.id.details_places_description);
-            score = itemView.findViewById(R.id.item_place_ratingbar);
-            ratingBar = itemView.findViewById(R.id.ratingBar);
+            score = itemView.findViewById(R.id.item_place_rating);
+            ratingBar = itemView.findViewById(R.id.item_place_ratingbar);
 
             itemView.setOnClickListener(v -> callback.onPlaceItemClick(getAdapterPosition(),
                     imgContainer,
                     imgPlace,
                     title,
                     address,
-                    district,
                     score,
                     ratingBar));
         }
-
     }
 }

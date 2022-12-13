@@ -11,7 +11,6 @@ public interface PlaceCallback {
                           ImageView imgPlace,
                           TextView title,
                           TextView address,
-                          TextView district,
                           TextView score,
                           RatingBar ratingBar);
 }

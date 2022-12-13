@@ -33,64 +33,54 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/item_place_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/title"
-        android:textStyle="bold"
-        android:transitionName="placeTitleTN"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toTopOf="@+id/item_place_img" />
-
-    <TextView
         android:id="@+id/item_place_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/address"
         android:transitionName="placeAddressTN"
         app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_title" />
+        app:layout_constraintStart_toEndOf="@+id/item_place_address_name"
+        app:layout_constraintTop_toTopOf="@+id/item_place_address_name" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/item_place_ratingbar"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:transitionName="placeRateTN"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_container_img" />
+        app:layout_constraintBottom_toBottomOf="@+id/item_place_rating"
+        app:layout_constraintStart_toEndOf="@+id/item_place_rating"
+        app:layout_constraintTop_toTopOf="@+id/item_place_rating"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/item_place_ratingbar"
+        android:id="@+id/item_place_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/score"
+        android:textStyle="bold"
+
         android:transitionName="placeScoreTN"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintStart_toEndOf="@+id/ratingBar"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+        app:layout_constraintStart_toEndOf="@+id/item_place_img"
+        app:layout_constraintTop_toBottomOf="@+id/item_place_district_name" />
 
     <TextView
         android:id="@+id/item_place_district"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/district"
         android:transitionName="placeDistrictTN"
+        app:layout_constraintBottom_toBottomOf="@+id/item_place_district_name"
         app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_address" />
+        app:layout_constraintStart_toEndOf="@+id/item_place_district_name"
+        app:layout_constraintTop_toTopOf="@+id/item_place_district_name" />
 
     <ImageView
         android:id="@+id/item_place_favicon"
@@ -104,17 +94,65 @@
         app:tint="#C3C0C0"
         tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/details_places_description"
-        android:layout_width="0dp"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:lineSpacingExtra="8sp"
-        android:text="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_img" />
+        app:layout_constraintTop_toBottomOf="@+id/item_place_img" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp">
+
+        <TextView
+            android:id="@+id/item_place_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/title"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:transitionName="placeTitleTN" />
+
+        <TextView
+            android:id="@+id/details_places_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/description" />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/item_place_address_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/address"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toEndOf="@+id/item_place_img"
+        app:layout_constraintTop_toTopOf="@+id/item_place_img" />
+
+    <TextView
+        android:id="@+id/item_place_district_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/district"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/item_place_img"
+        app:layout_constraintTop_toBottomOf="@+id/item_place_address" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

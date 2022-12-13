@@ -6,9 +6,9 @@
     android:layout_height="180dp">
 
     <ImageView
-        android:id="@+id/item_place_container_img"
+        android:id="@+id/item_event_container_img"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="170dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/container_bg"
@@ -19,21 +19,21 @@
         tools:ignore="ContentDescription" />
 
     <ImageView
-        android:id="@+id/item_place_img"
+        android:id="@+id/item_event_img"
         android:layout_width="100dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="150dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/item_place_container_img"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/item_place_container_img"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/not_available"
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/item_place_title"
+        android:id="@+id/item_event_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -42,50 +42,64 @@
         android:fontFamily="@font/poppins_medium"
         android:text="@string/title"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toTopOf="@+id/item_place_container_img" />
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
+        app:layout_constraintStart_toEndOf="@+id/item_event_img"
+        app:layout_constraintTop_toTopOf="@+id/item_event_container_img" />
 
     <TextView
-        android:id="@+id/item_place_address"
+        android:id="@+id/item_event_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
         android:text="@string/address"
-        app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_title" />
-
-    <RatingBar
-        android:id="@+id/item_place_ratingbar"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/item_place_rating"
-        app:layout_constraintStart_toEndOf="@+id/item_place_rating"
-        app:layout_constraintTop_toTopOf="@+id/item_place_rating" />
+        app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
+        app:layout_constraintStart_toEndOf="@+id/item_event_img"
+        app:layout_constraintTop_toBottomOf="@+id/item_event_title" />
 
     <TextView
-        android:id="@+id/item_place_rating"
-        android:layout_width="wrap_content"
+        android:id="@+id/item_event_fromDate"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/score"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_address" />
+        android:text="@string/from_date"
+        app:layout_constraintStart_toEndOf="@+id/item_event_img"
+        app:layout_constraintTop_toBottomOf="@+id/item_event_address" />
+
+    <TextView
+        android:id="@+id/hyphen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/hyphen"
+        app:layout_constraintBottom_toBottomOf="@+id/item_event_fromDate"
+        app:layout_constraintStart_toEndOf="@+id/item_event_fromDate"
+        app:layout_constraintTop_toTopOf="@+id/item_event_fromDate" />
+
+    <TextView
+        android:id="@+id/item_event_toDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/to_date"
+        app:layout_constraintBottom_toBottomOf="@+id/hyphen"
+        app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
+        app:layout_constraintStart_toEndOf="@+id/hyphen"
+        app:layout_constraintTop_toTopOf="@+id/hyphen" />
 
     <ImageView
-        android:id="@+id/item_place_favicon"
+        android:id="@+id/item_event_favicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
-        app:layout_constraintTop_toTopOf="@+id/item_place_container_img"
+        app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
+        app:layout_constraintTop_toTopOf="@+id/item_event_container_img"
         app:srcCompat="@drawable/ic_baseline_favorite_border_24"
         app:tint="#C3C0C0"
         tools:ignore="ContentDescription" />

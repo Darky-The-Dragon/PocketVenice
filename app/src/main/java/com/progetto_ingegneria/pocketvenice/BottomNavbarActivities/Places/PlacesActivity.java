@@ -71,6 +71,43 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         binding = ActivityPlacesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initViews();
+        initDataPlaces();
+        setupPlacesAdapter();
+    }
+
+    private void setupPlacesAdapter() {
+        placeAdapter = new PlaceAdapter(this, placesData, this);
+        recyclerView.setAdapter(placeAdapter);
+    }
+
+    private void initDataPlaces() {
+        database = FirebaseDatabase.getInstance().getReference("Luoghi");
+
+        // Database handler
+        database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    Place place = dataSnapshot.getValue(Place.class);
+                    placesData.add(place);
+
+                }
+                placeAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initViews() {
+
         mAuth = FirebaseAuth.getInstance();
 
         progressBar = findViewById(R.id.progress_bar);
@@ -133,45 +170,6 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         });
 
-        initViews();
-        initDataPlaces();
-        setupPlacesAdapter();
-
-    }
-
-    private void setupPlacesAdapter() {
-        placeAdapter = new PlaceAdapter(this, placesData, this);
-        recyclerView.setAdapter(placeAdapter);
-    }
-
-    private void initDataPlaces() {
-        database = FirebaseDatabase.getInstance().getReference("Luoghi");
-
-        // Database handler
-        database.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                    Place place = dataSnapshot.getValue(Place.class);
-                    placesData.add(place);
-
-                }
-                placeAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-        });
-
-    }
-
-    private void initViews() {
         recyclerView = findViewById(R.id.rv_places);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -222,7 +220,6 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
                                  ImageView imgPlace,
                                  TextView title,
                                  TextView address,
-                                 TextView district,
                                  TextView score,
                                  RatingBar ratingBar) {
         Intent intent = new Intent(this, PlaceDetailsActivity.class);
@@ -232,12 +229,11 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         Pair<View, String> p2 = Pair.create((View) imgPlace, "placeTN");
         Pair<View, String> p3 = Pair.create((View) title, "placeTitleTN");
         Pair<View, String> p4 = Pair.create((View) address, "placeAddressTN");
-        Pair<View, String> p5 = Pair.create((View) district, "placeDistrictTN");
-        Pair<View, String> p6 = Pair.create((View) score, "placeScoreTN");
-        Pair<View, String> p7 = Pair.create((View) ratingBar, "placeRateTN");
+        Pair<View, String> p5 = Pair.create((View) score, "placeScoreTN");
+        Pair<View, String> p6 = Pair.create((View) ratingBar, "placeRateTN");
 
         ActivityOptionsCompat optionsCompat =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(this, p1, p2, p3, p4, p5, p6, p7);
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this, p1, p2, p3, p4, p5, p6);
 
         startActivity(intent, optionsCompat.toBundle());
     }

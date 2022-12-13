@@ -10,12 +10,13 @@ public class Place implements Serializable {
     public Place() {
     }
 
-    public Place(String title, String district, String street, String photoSrc, String description) {
+    public Place(String title, String district, String street, String photoSrc, String description, float rating) {
         this.title = title;
         this.district = district;
         this.address = street;
         this.photoSrc = photoSrc;
-        //this.description = description;
+        this.description = description;
+        this.rating = rating;
     }
 
     public String getTitle() {

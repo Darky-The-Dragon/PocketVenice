@@ -87,5 +87,12 @@
     <string name="district">District</string>
     <string name="address">Address</string>
     <string name="score">Reviews</string>
+    <string name="from_date">From Date</string>
+    <string name="to_date">To Date</string>
+    <string name="hyphen">-</string>
+    <string name="from_hour">From Hour</string>
+    <string name="to_hour">To Hour</string>
+    <string name="date">Date</string>
+    <string name="time_name">Time</string>
 
 </resources>

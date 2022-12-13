@@ -31,7 +31,7 @@ public class PlaceDetailsActivity extends AppCompatActivity {
         address = findViewById(R.id.item_place_address);
         district = findViewById(R.id.item_place_district);
         description = findViewById(R.id.details_places_description);
-        ratingBar = findViewById(R.id.ratingBar);
+        ratingBar = findViewById(R.id.item_place_ratingbar);
 
         Place item = (Place) getIntent().getExtras().getSerializable("placeObject");
 
