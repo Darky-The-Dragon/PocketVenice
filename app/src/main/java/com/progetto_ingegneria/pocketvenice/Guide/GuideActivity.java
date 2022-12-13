@@ -1,8 +1,5 @@
 package com.progetto_ingegneria.pocketvenice.Guide;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
@@ -20,11 +20,11 @@ import java.util.List;
 
 public class GuideActivity extends AppCompatActivity {
 
-    private ViewPager screenPager;
-    private GuideViewPagerAdapter guideViewPagerAdapter;
-    private TabLayout tabIndicator;
-    private Button btnNext, btnGetStarted;
-    private int position;
+    protected ViewPager screenPager;
+    protected GuideViewPagerAdapter guideViewPagerAdapter;
+    protected TabLayout tabIndicator;
+    protected Button btnNext, btnGetStarted;
+    protected int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,6 @@ public class GuideActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guide);
 
 
-
         //init
         btnNext = findViewById(R.id.next_button);
         btnGetStarted = findViewById(R.id.get_started_button);
@@ -54,10 +53,10 @@ public class GuideActivity extends AppCompatActivity {
         //List screen
         List<ScreenItem> screenItemList = new ArrayList<>();
         //da rivedere per descrizioni & img
-        screenItemList.add(new ScreenItem("News","Descrizione di News", R.drawable.ic_baseline_newspaper_24));
-        screenItemList.add(new ScreenItem("Events","Descrizione di Events", R.drawable.ic_baseline_event_24));
-        screenItemList.add(new ScreenItem("Places","Descrizione di Places", R.drawable.ic_baseline_place_24));
-        screenItemList.add(new ScreenItem("Maps","Descrizione di Mews", R.drawable.ic_baseline_map_24));
+        screenItemList.add(new ScreenItem("News", "Descrizione di News", R.drawable.ic_baseline_newspaper_24));
+        screenItemList.add(new ScreenItem("Events", "Descrizione di Events", R.drawable.ic_baseline_event_24));
+        screenItemList.add(new ScreenItem("Places", "Descrizione di Places", R.drawable.ic_baseline_place_24));
+        screenItemList.add(new ScreenItem("Maps", "Descrizione di Mews", R.drawable.ic_baseline_map_24));
 
         //setup view page adapter
         screenPager = findViewById(R.id.screen_pager);
@@ -70,11 +69,11 @@ public class GuideActivity extends AppCompatActivity {
         //next button click Listener
         btnNext.setOnClickListener(v -> {
             position = screenPager.getCurrentItem();
-            if(position < screenItemList.size()){
+            if (position < screenItemList.size()) {
                 position++;
                 screenPager.setCurrentItem(position);
             }
-            if(position == screenItemList.size()-1){
+            if (position == screenItemList.size() - 1) {
                 loadLastScreen();
             }
         });
@@ -82,7 +81,7 @@ public class GuideActivity extends AppCompatActivity {
         tabIndicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if(position == screenItemList.size()-1){
+                if (position == screenItemList.size() - 1) {
                     loadLastScreen();
                 }
             }
@@ -98,7 +97,7 @@ public class GuideActivity extends AppCompatActivity {
             }
         });
         //get started button click listener
-        btnGetStarted.setOnClickListener(v->{
+        btnGetStarted.setOnClickListener(v -> {
             Intent news = new Intent(GuideActivity.this, NewsActivity.class);
             startActivity(news);
             //savePefesData();

@@ -133,9 +133,9 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }else if (item.getItemId() == R.id.logout) {
+            } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
-            }else if (item.getItemId() == R.id.guide) {
+            } else if (item.getItemId() == R.id.guide) {
                 Intent guide = new Intent(MapsActivity.this, GuideActivity.class);
                 startActivity(guide);
             }

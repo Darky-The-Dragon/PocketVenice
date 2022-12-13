@@ -164,9 +164,9 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }else if (item.getItemId() == R.id.logout) {
+            } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
-            }else if (item.getItemId() == R.id.guide) {
+            } else if (item.getItemId() == R.id.guide) {
                 Intent guide = new Intent(PlacesActivity.this, GuideActivity.class);
                 startActivity(guide);
             }

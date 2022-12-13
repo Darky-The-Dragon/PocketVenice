@@ -2,11 +2,10 @@ package com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Model
 
 import java.io.Serializable;
 
-public class Event implements Serializable
-{
+public class Event implements Serializable {
     private String title, address, photoSrc, description, fromDate, toDate, fromHour, toHour, link;
 
-    public Event(){
+    public Event() {
 
     }
 

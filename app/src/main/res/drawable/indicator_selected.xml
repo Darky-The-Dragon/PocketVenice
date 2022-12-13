@@ -2,14 +2,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape
-            android:shape="ring"
             android:innerRadius="3dp"
+            android:shape="ring"
             android:thickness="2dp"
             android:useLevel="false">
 
-            <solid android:color="@color/Graident_start"/>
+            <solid android:color="@color/Graident_start" />
         </shape>
-
 
 
     </item>

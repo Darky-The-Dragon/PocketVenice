@@ -25,18 +25,24 @@ public class GuideViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public int getCount() {return this.screenItemList.size();}
+    public int getCount() {
+        return this.screenItemList.size();
+    }
+
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {return view == object;}
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view == object;
+    }
+
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LayoutInflater layoutInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View viewScreen = layoutInflater.inflate(R.layout.screen_guide, null);
 
         ImageView imageSlide = viewScreen.findViewById(R.id.intro_img);

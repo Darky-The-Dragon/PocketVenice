@@ -138,14 +138,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_event_img" >
+        app:layout_constraintTop_toBottomOf="@+id/item_event_img">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp">
+            android:layout_marginEnd="32dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/item_event_title"
@@ -154,8 +154,8 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/title"
-                android:textStyle="bold"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:transitionName="eventTitleTN">
 
             </TextView>

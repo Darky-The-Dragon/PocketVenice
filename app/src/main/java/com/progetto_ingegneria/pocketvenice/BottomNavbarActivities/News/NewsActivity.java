@@ -69,7 +69,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(binding.getRoot());
 
 
-
         mAuth = FirebaseAuth.getInstance();
 
         progressBar = findViewById(R.id.progress_bar);
@@ -133,9 +132,9 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            }else if (item.getItemId() == R.id.logout) {
+            } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
-            }else if (item.getItemId() == R.id.guide) {
+            } else if (item.getItemId() == R.id.guide) {
                 Intent guide = new Intent(NewsActivity.this, GuideActivity.class);
                 startActivity(guide);
             }
@@ -149,6 +148,13 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         manager = new RequestManager(this);
         manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it", "publishedAt");
+    }
+
+    public void onClick(View v) {
+
+        if (v.getId() == R.id.menu_nav) {
+            drawerLayout.openDrawer(GravityCompat.START);
+        }
     }    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
@@ -186,13 +192,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     };
-
-    public void onClick(View v) {
-
-        if (v.getId() == R.id.menu_nav) {
-            drawerLayout.openDrawer(GravityCompat.START);
-        }
-    }
 
     @Override
     public void OnNewsClicked(NewsHeadlines headlines) {

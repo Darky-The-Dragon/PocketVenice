@@ -11,10 +11,27 @@ public class ScreenItem {
         this.screenImg = screenImg;
     }
 
-    public String getTitle() {return title;}
-    public String getDescription() {return description;}
-    public int getScreenImg() {return screenImg;}
-    public void setTitle(String title) {this.title = title;}
-    public void setDescription(String description) {this.description = description;}
-    public void setScreenImg(int screenImg) {this.screenImg = screenImg;}
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getScreenImg() {
+        return screenImg;
+    }
+
+    public void setScreenImg(int screenImg) {
+        this.screenImg = screenImg;
+    }
 }

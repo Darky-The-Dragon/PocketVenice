@@ -94,5 +94,7 @@
     <string name="to_hour">To Hour</string>
     <string name="date">Date</string>
     <string name="time_name">Time</string>
+    <string name="get_started">Get Started</string>
+    <string name="next">Next</string>
 
 </resources>

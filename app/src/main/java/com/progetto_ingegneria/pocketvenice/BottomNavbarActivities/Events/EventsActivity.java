@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,9 +36,6 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Listen
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Model.Event;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.Adapter.PlaceAdapter;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.Model.Place;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlaceDetailsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
 import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
@@ -164,7 +160,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
                 drawerLayout.closeDrawer(GravityCompat.START);
             } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
-            }else if (item.getItemId() == R.id.guide) {
+            } else if (item.getItemId() == R.id.guide) {
                 Intent guide = new Intent(EventsActivity.this, GuideActivity.class);
                 startActivity(guide);
             }
