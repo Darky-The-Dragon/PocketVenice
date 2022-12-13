@@ -30,7 +30,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -39,6 +38,7 @@ import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
+import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
@@ -133,8 +133,11 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            } else if (item.getItemId() == R.id.logout) {
+            }else if (item.getItemId() == R.id.logout) {
                 logoutUser();
+            }else if (item.getItemId() == R.id.guide) {
+                Intent guide = new Intent(MapsActivity.this, GuideActivity.class);
+                startActivity(guide);
             }
 
             return true;

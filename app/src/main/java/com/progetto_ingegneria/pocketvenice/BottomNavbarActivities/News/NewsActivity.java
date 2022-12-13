@@ -34,6 +34,7 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listener
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsApiResponse;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsHeadlines;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
+import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
@@ -64,7 +65,10 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityNewsBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
+
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -129,8 +133,11 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
-            } else if (item.getItemId() == R.id.logout) {
+            }else if (item.getItemId() == R.id.logout) {
                 logoutUser();
+            }else if (item.getItemId() == R.id.guide) {
+                Intent guide = new Intent(NewsActivity.this, GuideActivity.class);
+                startActivity(guide);
             }
 
             return true;
