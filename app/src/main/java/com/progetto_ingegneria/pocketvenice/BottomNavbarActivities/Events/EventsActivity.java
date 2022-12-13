@@ -23,6 +23,7 @@ import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
+import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
@@ -102,6 +103,9 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
                 drawerLayout.closeDrawer(GravityCompat.START);
             } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
+            }else if (item.getItemId() == R.id.guide) {
+                Intent guide = new Intent(EventsActivity.this, GuideActivity.class);
+                startActivity(guide);
             }
 
             return true;
