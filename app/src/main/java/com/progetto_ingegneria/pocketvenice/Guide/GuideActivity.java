@@ -53,10 +53,15 @@ public class GuideActivity extends AppCompatActivity {
         //List screen
         List<ScreenItem> screenItemList = new ArrayList<>();
         //da rivedere per descrizioni & img
-        screenItemList.add(new ScreenItem("News", "Descrizione di News", R.drawable.ic_baseline_newspaper_24));
-        screenItemList.add(new ScreenItem("Events", "Descrizione di Events", R.drawable.ic_baseline_event_24));
-        screenItemList.add(new ScreenItem("Places", "Descrizione di Places", R.drawable.ic_baseline_place_24));
-        screenItemList.add(new ScreenItem("Maps", "Descrizione di Mews", R.drawable.ic_baseline_map_24));
+        screenItemList.add(new ScreenItem("News", "Le news ti permettono di rimanere aggiornato su quello che accade a Venezia e provincia.",
+                R.drawable.news_icon));
+        screenItemList.add(new ScreenItem("Events", "Quando non ricordi che appuntamenti importanti ci sono in città puoi visualizzare qeusta pagina " +
+                "per rimanere aggiornato sugli eventi importanti che si svolgono in città.",
+                R.drawable.event_icon));
+        screenItemList.add(new ScreenItem("Places", "Se vuoi girare per la città e non sai cosa quali posti visitare puoi usare questo elenco di luoghi per scegliere cosa visitare con anche qualche accenno storico per il luogo scelto.",
+                R.drawable.marker_icon));
+        screenItemList.add(new ScreenItem("Maps", "Se non sai come arrivare dalla tua posizione ad un evento o luogo di visita puoi utilizzare la mappa integrata per conoscere il percorso che devi effettuare.",
+                R.drawable.maps_icon));
 
         //setup view page adapter
         screenPager = findViewById(R.id.screen_pager);
@@ -105,7 +110,7 @@ public class GuideActivity extends AppCompatActivity {
         });
 
     }
-
+/*
     private boolean restorePrefData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
         return pref.getBoolean("isIntroOpened", false);
@@ -118,7 +123,7 @@ public class GuideActivity extends AppCompatActivity {
         editor.putBoolean("isIntroOpened", true);
         editor.apply();
     }
-
+*/
     private void loadLastScreen() {
         btnNext.setVisibility(View.INVISIBLE);
         btnGetStarted.setVisibility(View.VISIBLE);
