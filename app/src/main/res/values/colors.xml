@@ -8,8 +8,8 @@
     <color name="golden_venice">#B19B4A</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="colorPrimary">#673AB7</color>
-    <color name="colorPrimaryDark">#512DAB</color>
+    <color name="colorPrimary">#b31a34</color>
+    <color name="colorPrimaryDark">#c3b377</color>
     <color name="colorAccent">#FF5252</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorWhite">#FFFFFFFF</color>

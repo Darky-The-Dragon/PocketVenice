@@ -32,17 +32,6 @@
         app:srcCompat="@drawable/not_available"
         tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/item_place_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/address"
-        android:transitionName="placeAddressTN"
-        app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
-        app:layout_constraintStart_toEndOf="@+id/item_place_address_name"
-        app:layout_constraintTop_toTopOf="@+id/item_place_address_name" />
 
     <RatingBar
         android:id="@+id/item_place_ratingbar"
@@ -60,13 +49,14 @@
         android:id="@+id/item_place_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:text="@string/score"
         android:textStyle="bold"
 
         android:transitionName="placeScoreTN"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
+        app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
+        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintStart_toStartOf="@+id/item_place_img"
         app:layout_constraintTop_toBottomOf="@+id/item_place_district_name" />
 
     <TextView
@@ -94,12 +84,15 @@
         app:tint="#C3C0C0"
         tools:ignore="ContentDescription" />
 
+
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2"
+        android:layout_width="409dp"
+        android:layout_height="584dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_img">
+        app:layout_constraintTop_toBottomOf="@+id/item_place_img"
+        tools:layout_editor_absoluteX="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,31 +121,41 @@
                 android:lineSpacingExtra="8sp"
                 android:text="@string/description" />
 
+            <TextView
+                android:id="@+id/item_place_address_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/address"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_place_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/address"
+                android:transitionName="placeAddressTN"
+                app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
+                app:layout_constraintStart_toEndOf="@+id/item_place_address_name"
+                app:layout_constraintTop_toTopOf="@+id/item_place_address_name" />
+
         </LinearLayout>
 
     </ScrollView>
 
     <TextView
-        android:id="@+id/item_place_address_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/address"
-        android:textStyle="bold"
-
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toTopOf="@+id/item_place_img" />
-
-    <TextView
         android:id="@+id/item_place_district_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text="@string/district"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/item_place_img"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_address" />
+        app:layout_constraintBottom_toBottomOf="@+id/item_place_container_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.383"
+        app:layout_constraintStart_toStartOf="@+id/item_place_img"
+        app:layout_constraintTop_toTopOf="@+id/item_place_container_img"
+        app:layout_constraintVertical_bias="0.496" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
