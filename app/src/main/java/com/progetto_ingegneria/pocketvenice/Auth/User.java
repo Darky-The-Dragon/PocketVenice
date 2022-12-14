@@ -2,7 +2,7 @@ package com.progetto_ingegneria.pocketvenice.Auth;
 
 public class User {
 
-    private String fullName, age, email, mobile;
+    protected String fullName, age, email, mobile;
 
     public User() {
         //MUST BE EMPTY

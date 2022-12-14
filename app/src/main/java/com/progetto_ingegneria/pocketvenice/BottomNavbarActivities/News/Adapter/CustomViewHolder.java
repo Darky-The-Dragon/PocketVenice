@@ -29,6 +29,6 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
         text_time = itemView.findViewById(R.id.text_time);
         img_headline = itemView.findViewById(R.id.img_headline);
         progressBar = itemView.findViewById(R.id.progressbar_load_photo);
-        cardView = itemView.findViewById(R.id.main_container);
+        cardView = itemView.findViewById(R.id.item_news_container);
     }
 }

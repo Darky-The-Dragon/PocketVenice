@@ -25,7 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.EventsActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.API.RequestManager;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Adapter.CustomAdapter;
@@ -34,6 +34,7 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listener
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsApiResponse;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsHeadlines;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
+import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
@@ -44,63 +45,29 @@ import java.util.List;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener, SelectListener, SwipeRefreshLayout.OnRefreshListener {
 
-    private TextView textTitle, textHeader;
-    private ImageView imageMenu;
-    private BottomNavigationView bottomNavigationView;
-    private NavigationView navigationView;
-    private DrawerLayout drawerLayout;
-    private ActivityNewsBinding binding;
-    private ProgressBar progressBar;
-    private FirebaseAuth mAuth;
-    private RequestManager manager;
-    private RecyclerView recyclerView;
-    private CustomAdapter adapter;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private RelativeLayout errorLayout;    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
-        @Override
-        public void onFetchData(List<NewsHeadlines> list, String message) {
-            showNews(list);
-            progressBar.setVisibility(View.GONE);
-            errorLayout.setVisibility(View.GONE);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        }
-
-        @Override
-        public void onError(int errorCode) {
-            String errorText;
-
-            progressBar.setVisibility(View.GONE);
-            textHeader.setVisibility(View.GONE);
-            errorLayout.setVisibility(View.GONE);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-
-            switch (errorCode) {
-                case 404:
-                    errorText = "Please try again! \n404 Not Found";
-                    break;
-                case 500:
-                    errorText = "Please try again! \n500 Server Broken";
-                    break;
-                case 502:
-                    errorText = "Network failure, Please Try Again";
-                    break;
-                default:
-                    errorText = "Unknown error";
-                    break;
-            }
-
-            showErrorMessage(R.drawable.no_result, "Oops.. No Results!", errorText);
-
-        }
-    };
-    private ImageView errorImage;
-    private TextView errorTitle, errorMessage, btnRetry;
+    protected TextView textTitle, textHeader;
+    protected ImageView imageMenu;
+    protected BottomNavigationView bottomNavigationView;
+    protected NavigationView navigationView;
+    protected DrawerLayout drawerLayout;
+    protected ActivityNewsBinding binding;
+    protected ProgressBar progressBar;
+    protected FirebaseAuth mAuth;
+    protected RequestManager manager;
+    protected RecyclerView recyclerView;
+    protected CustomAdapter adapter;
+    protected SwipeRefreshLayout swipeRefreshLayout;
+    protected RelativeLayout errorLayout;
+    protected ImageView errorImage;
+    protected TextView errorTitle, errorMessage, btnRetry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityNewsBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -167,6 +134,9 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
                 drawerLayout.closeDrawer(GravityCompat.START);
             } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
+            } else if (item.getItemId() == R.id.guide) {
+                Intent guide = new Intent(NewsActivity.this, GuideActivity.class);
+                startActivity(guide);
             }
 
             return true;
@@ -185,11 +155,47 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.menu_nav) {
             drawerLayout.openDrawer(GravityCompat.START);
         }
-    }
+    }    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
+        @Override
+        public void onFetchData(List<NewsHeadlines> list, String message) {
+            showNews(list);
+            progressBar.setVisibility(View.GONE);
+            errorLayout.setVisibility(View.GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }
+
+        @Override
+        public void onError(int errorCode) {
+            String errorText;
+
+            progressBar.setVisibility(View.GONE);
+            textHeader.setVisibility(View.GONE);
+            errorLayout.setVisibility(View.GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+            switch (errorCode) {
+                case 404:
+                    errorText = "Please try again! \n404 Not Found";
+                    break;
+                case 500:
+                    errorText = "Please try again! \n500 Server Broken";
+                    break;
+                case 502:
+                    errorText = "Network failure, Please Try Again";
+                    break;
+                default:
+                    errorText = "Unknown error";
+                    break;
+            }
+
+            showErrorMessage(R.drawable.no_result, "Oops.. No Results!", errorText);
+
+        }
+    };
 
     @Override
     public void OnNewsClicked(NewsHeadlines headlines) {
-        startActivity(new Intent(NewsActivity.this, NewsDetailActivity.class)
+        startActivity(new Intent(NewsActivity.this, NewsDetailsActivity.class)
                 .putExtra("data", headlines));
     }
 

@@ -15,4 +15,15 @@
     <color name="colorWhite">#FFFFFFFF</color>
     <color name="colorGreen">#32CD32</color>
     <color name="red">#B31A34</color>
+    <color name="lightMediumGray">#f3f3f3</color>
+
+
+    <!-- color for intro -->
+    <color name="Graident_start">#4c84ff</color>
+    <color name="Gradient_end">#18a3fe</color>
+    <color name="Tab_indicator">#c0c0c0</color>
+    <color name="Intro_title">#000</color>
+    <color name="Intro_text">#656565</color>
+
+
 </resources>

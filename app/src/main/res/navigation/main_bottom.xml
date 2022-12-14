@@ -12,7 +12,7 @@
         tools:layout="@layout/activity_news" />
     <activity
         android:id="@+id/events"
-        android:name="com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.EventsActivity"
+        android:name="com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity"
         android:label="Events"
         tools:layout="@layout/activity_events" />
     <activity

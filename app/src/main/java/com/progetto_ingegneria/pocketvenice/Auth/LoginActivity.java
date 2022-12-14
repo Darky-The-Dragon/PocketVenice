@@ -18,9 +18,9 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView textViewLogin, textViewRegister, textViewForgotPassword;
-    private EditText editTextUsername, editTextPassword;
-    private ProgressBar progressBar;
+    protected TextView textViewLogin, textViewRegister, textViewForgotPassword;
+    protected EditText editTextUsername, editTextPassword;
+    protected ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
 

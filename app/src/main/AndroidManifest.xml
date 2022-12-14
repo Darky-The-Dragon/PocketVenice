@@ -15,9 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PocketVenice"
         tools:targetApi="33">
-
         <activity
-            android:name=".BottomNavbarActivities.Places.PlaceInDepthActivity"
+            android:name=".Guide.GuideActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BottomNavbarActivities.Events.EventDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BottomNavbarActivities.Places.PlaceDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -29,7 +42,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".BottomNavbarActivities.News.NewsDetailActivity"
+            android:name=".BottomNavbarActivities.News.NewsDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -50,7 +63,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".BottomNavbarActivities.EventsActivity"
+            android:name=".BottomNavbarActivities.Events.EventsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
