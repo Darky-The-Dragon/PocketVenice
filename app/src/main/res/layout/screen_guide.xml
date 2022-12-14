@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    style="@style/ShapeAppearanceOverlay.MaterialComponents.MaterialCalendar.Window.Fullscreen">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -20,7 +20,7 @@
         android:gravity="center"
         android:text="@string/title"
         android:textAlignment="center"
-        android:textColor="@color/Intro_title"
+        android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/guideline"
@@ -44,7 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/intro_title"
-        app:layout_constraintVertical_bias="0.100000024" />
+        app:layout_constraintVertical_bias="0.100000024"
+        android:textColor="@color/white"/>
 
     <ImageView
         android:id="@+id/intro_img"
