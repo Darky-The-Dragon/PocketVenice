@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -24,7 +26,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.Auth.User;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.API.RequestManager;
@@ -45,7 +54,7 @@ import java.util.List;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener, SelectListener, SwipeRefreshLayout.OnRefreshListener {
 
-    protected TextView textTitle, textHeader;
+    protected TextView textTitle, textHeader, header_username;
     protected ImageView imageMenu;
     protected BottomNavigationView bottomNavigationView;
     protected NavigationView navigationView;
@@ -71,6 +80,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         mAuth = FirebaseAuth.getInstance();
 
+        //setHeader_username();
         progressBar = findViewById(R.id.progress_bar);
 
         imageMenu = findViewById(R.id.menu_nav);
@@ -243,6 +253,25 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    private void setHeader_username() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+        header_username = findViewById(R.id.header_fullname);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if(user == null)
+                    header_username.setText(user.getFullName());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
 }

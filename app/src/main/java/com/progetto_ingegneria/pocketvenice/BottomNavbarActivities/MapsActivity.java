@@ -34,7 +34,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.Auth.User;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
@@ -56,9 +63,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     protected final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
-    protected FusedLocationProviderClient client;
-    protected SupportMapFragment mapFragment;
-    protected TextView textTitle;
+    protected TextView textTitle, header_username;
     protected ActivityMapsBinding binding;
     protected BottomNavigationView bottomNavigationView;
     protected ImageView imageMenu;
@@ -66,7 +71,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     protected DrawerLayout drawerLayout;
     protected ProgressBar progressBar;
     protected FirebaseAuth mAuth;
-    protected GoogleMap map;
+    protected GoogleMap mMap;
     protected CameraPosition cameraPosition;
     // The entry point to the Fused Location Provider.
     protected FusedLocationProviderClient fusedLocationProviderClient;
@@ -88,6 +93,9 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         imageMenu = findViewById(R.id.menu_nav);
         imageMenu.setOnClickListener(this);
 
+
+        //setHeader_username();
+
         textTitle = findViewById(R.id.menu_title);
         textTitle.setText(MapsActivity.class.getSimpleName());
 
@@ -96,6 +104,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
 
         navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
+
 
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(3);
@@ -153,10 +162,10 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         // Retrieve location and camera position from saved instance state.
-        /* if (savedInstanceState != null) {
+        if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
-        } */
+        }
 
         // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -165,12 +174,31 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         mapFragment.getMapAsync(this);
     }
 
+    private void setHeader_username() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+        header_username = findViewById(R.id.header_fullname);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if(user == null)
+                    header_username.setText(user.getFullName());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     @Override
     public void onMapReady(@NonNull GoogleMap map) {
-        this.map = map;
+        this.mMap = map;
 
         // Prompt the user for permission.
-
         getLocationPermission();
 
         // Turn on the My Location layer and the related control on the map.
@@ -181,16 +209,16 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateLocationUI() {
-        if (map == null) {
+        if (mMap == null) {
             return;
         }
         try {
             if (locationPermissionGranted) {
-                map.setMyLocationEnabled(true);
-                map.getUiSettings().setMyLocationButtonEnabled(true);
+                mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setMyLocationButtonEnabled(true);
             } else {
-                map.setMyLocationEnabled(false);
-                map.getUiSettings().setMyLocationButtonEnabled(false);
+                mMap.setMyLocationEnabled(false);
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
                 lastKnownLocation = null;
                 getLocationPermission();
             }
@@ -215,16 +243,16 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                         // Set the map's camera position to the current location of the device.
                         lastKnownLocation = task.getResult();
                         if (lastKnownLocation != null) {
-                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(lastKnownLocation.getLatitude(),
                                             lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
                         }
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.");
                         Log.e(TAG, "Exception: %s", task.getException());
-                        map.moveCamera(CameraUpdateFactory
+                        mMap.moveCamera(CameraUpdateFactory
                                 .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-                        map.getUiSettings().setMyLocationButtonEnabled(false);
+                        mMap.getUiSettings().setMyLocationButtonEnabled(false);
                     }
                 });
             }
@@ -262,23 +290,20 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         locationPermissionGranted = false;
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    locationPermissionGranted = true;
-                    updateLocationUI();
-                }
+        if ( requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                locationPermissionGranted = true;
+                updateLocationUI();
             }
         }
-
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        if (map != null) {
-            outState.putParcelable(KEY_CAMERA_POSITION, map.getCameraPosition());
+        if (mMap != null) {
+            outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
             outState.putParcelable(KEY_LOCATION, lastKnownLocation);
         }
         super.onSaveInstanceState(outState);

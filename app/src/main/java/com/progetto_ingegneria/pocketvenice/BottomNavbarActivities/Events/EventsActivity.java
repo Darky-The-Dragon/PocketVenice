@@ -25,12 +25,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.Auth.User;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Adapter.EventAdapter;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Listeners.EventCallback;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Model.Event;
@@ -49,7 +51,7 @@ import java.util.List;
 
 public class EventsActivity extends AppCompatActivity implements View.OnClickListener, EventCallback {
 
-    protected TextView textTitle;
+    protected TextView textTitle, header_username;
     protected ActivityEventsBinding binding;
     protected BottomNavigationView bottomNavigationView;
 
@@ -68,6 +70,8 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         binding = ActivityEventsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        mAuth = FirebaseAuth.getInstance();
+        //setHeader_username();
 
         initViews();
         initDataPlaces();
@@ -106,7 +110,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
 
     private void initViews() {
 
-        mAuth = FirebaseAuth.getInstance();
+
 
         progressBar = findViewById(R.id.progress_bar);
 
@@ -232,5 +236,24 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
                 ActivityOptionsCompat.makeSceneTransitionAnimation(this, p1, p2, p3, p4, p5, p6, p7);
 
         startActivity(intent, optionsCompat.toBundle());
+    }
+    private void setHeader_username() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+        header_username = findViewById(R.id.header_fullname);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if(user == null)
+                    header_username.setText(user.getFullName());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
