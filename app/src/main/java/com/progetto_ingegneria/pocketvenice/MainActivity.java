@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressBar = findViewById(R.id.progress_bar);
 
         textTitle = findViewById(R.id.menu_title);
-        textTitle.setText(NewsActivity.class.getSimpleName());
+        textTitle.setText(R.string.maps);
 
         imageMenu = findViewById(R.id.menu_nav);
         imageMenu.setOnClickListener(this);

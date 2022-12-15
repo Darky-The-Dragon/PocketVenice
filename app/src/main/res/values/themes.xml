@@ -22,4 +22,6 @@
     <style name="Theme.PocketVenice.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.PocketVenice.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

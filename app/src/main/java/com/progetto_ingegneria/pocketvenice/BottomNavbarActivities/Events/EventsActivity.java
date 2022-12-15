@@ -114,7 +114,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         imageMenu.setOnClickListener(this);
 
         textTitle = findViewById(R.id.menu_title);
-        textTitle.setText(EventsActivity.class.getSimpleName());
+        textTitle.setText(R.string.events);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);

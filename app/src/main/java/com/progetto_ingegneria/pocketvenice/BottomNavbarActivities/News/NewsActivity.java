@@ -77,7 +77,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         imageMenu.setOnClickListener(this);
 
         textTitle = findViewById(R.id.menu_title);
-        textTitle.setText(NewsActivity.class.getSimpleName());
+        textTitle.setText(R.string.news);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -155,6 +155,12 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.menu_nav) {
             drawerLayout.openDrawer(GravityCompat.START);
         }
+    }
+
+    @Override
+    public void OnNewsClicked(NewsHeadlines headlines) {
+        startActivity(new Intent(NewsActivity.this, NewsDetailsActivity.class)
+                .putExtra("data", headlines));
     }    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
@@ -192,12 +198,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     };
-
-    @Override
-    public void OnNewsClicked(NewsHeadlines headlines) {
-        startActivity(new Intent(NewsActivity.this, NewsDetailsActivity.class)
-                .putExtra("data", headlines));
-    }
 
     @Override
     public void onRefresh() {
