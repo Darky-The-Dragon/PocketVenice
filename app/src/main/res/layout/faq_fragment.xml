@@ -7,40 +7,37 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="409dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="24dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#fff">
+            android:background="#fff"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="65dp"
-                android:background="@color/red"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
                 android:text="A cosa serve l'app?"
-                android:textColor="#fff"
+                android:textColor="@color/red"
                 android:textSize="18sp" />
 
             <TextView
-                android:layout_width="372dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="23dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="23dp"
+                android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Questa app ti aiuta ad esplorare e visitare Venezia: ti tiene aggiornato
-    su notizie ed eventi di Venezia e ti illustra i principali luoghi da visitare, permettendo di visualizzare
-    la mappa."
+                android:text="Questa app ti aiuta ad esplorare e visitare Venezia: ti tiene aggiornato su notizie ed eventi di Venezia e ti illustra i principali luoghi da visitare, permettendo di visualizzare la mappa."
                 android:textColor="#000"
                 android:textSize="15sp" />
 
@@ -53,15 +50,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="65dp"
-                android:background="@color/red"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
                 android:text="Su quali dispositivi mobili è possibile utilizzare l'app?"
-                android:textColor="#fff"
+                android:textColor="@color/red"
                 android:textSize="18sp" />
 
             <TextView
@@ -83,17 +80,17 @@
 
 
             <TextView
-                android:layout_width="363dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="65dp"
-                android:background="@color/red"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="Non ricevo e-mail dopo la registrazione oppure selezionando 'Password dimenticata'. Qual è il motivo?"
-                android:textColor="#fff"
+                android:textColor="@color/red"
                 android:textSize="18sp" />
 
             <TextView
@@ -115,17 +112,17 @@
 
 
             <TextView
-                android:layout_width="346dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="65dp"
-                android:background="@color/red"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="Per quale scopo è necessaria l'autorizzazione della posizione?"
-                android:textColor="#fff"
+                android:textColor="@color/red"
                 android:textSize="18sp" />
 
             <TextView
@@ -139,13 +136,6 @@
     "
                 android:textColor="#000"
                 android:textSize="15sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="20dp"
-                android:background="#c3b377" />
-
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
