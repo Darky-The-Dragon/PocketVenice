@@ -56,8 +56,6 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     protected final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
-    protected FusedLocationProviderClient client;
-    protected SupportMapFragment mapFragment;
     protected TextView textTitle;
     protected ActivityMapsBinding binding;
     protected BottomNavigationView bottomNavigationView;
@@ -262,14 +260,12 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         locationPermissionGranted = false;
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    locationPermissionGranted = true;
-                    updateLocationUI();
-                }
+        if ( requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                locationPermissionGranted = true;
+                updateLocationUI();
             }
         }
 
