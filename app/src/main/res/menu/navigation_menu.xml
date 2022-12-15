@@ -10,8 +10,7 @@
         android:id="@+id/login_sign_up"
         android:visible="false"
         android:icon="@drawable/profile"
-        android:title="@string/login_sign_up"
-        android:visible="false"/>
+        android:title="@string/login_sign_up" />
 
     <item android:title="@string/help">
         <menu>
