@@ -14,7 +14,7 @@
         android:id="@+id/faq"
         android:name="com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ"
         android:label="@string/faq"
-        tools:layout="@layout/fragment_faq" />
+        tools:layout="@layout/faq_fragment" />
     <fragment
         android:id="@+id/info"
         android:name="com.progetto_ingegneria.pocketvenice.LateralNavbar.Info"
