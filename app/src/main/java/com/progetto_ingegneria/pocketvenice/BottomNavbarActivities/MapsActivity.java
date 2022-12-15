@@ -71,7 +71,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     protected DrawerLayout drawerLayout;
     protected ProgressBar progressBar;
     protected FirebaseAuth mAuth;
-    protected GoogleMap map;
+    protected GoogleMap mMap;
     protected CameraPosition cameraPosition;
     // The entry point to the Fused Location Provider.
     protected FusedLocationProviderClient fusedLocationProviderClient;
@@ -162,10 +162,10 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         // Retrieve location and camera position from saved instance state.
-        /* if (savedInstanceState != null) {
+        if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
-        } */
+        }
 
         // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -196,10 +196,9 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onMapReady(@NonNull GoogleMap map) {
-        this.map = map;
+        this.mMap = map;
 
         // Prompt the user for permission.
-
         getLocationPermission();
 
         // Turn on the My Location layer and the related control on the map.
@@ -210,16 +209,16 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateLocationUI() {
-        if (map == null) {
+        if (mMap == null) {
             return;
         }
         try {
             if (locationPermissionGranted) {
-                map.setMyLocationEnabled(true);
-                map.getUiSettings().setMyLocationButtonEnabled(true);
+                mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setMyLocationButtonEnabled(true);
             } else {
-                map.setMyLocationEnabled(false);
-                map.getUiSettings().setMyLocationButtonEnabled(false);
+                mMap.setMyLocationEnabled(false);
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
                 lastKnownLocation = null;
                 getLocationPermission();
             }
@@ -244,16 +243,16 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                         // Set the map's camera position to the current location of the device.
                         lastKnownLocation = task.getResult();
                         if (lastKnownLocation != null) {
-                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(lastKnownLocation.getLatitude(),
                                             lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
                         }
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.");
                         Log.e(TAG, "Exception: %s", task.getException());
-                        map.moveCamera(CameraUpdateFactory
+                        mMap.moveCamera(CameraUpdateFactory
                                 .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-                        map.getUiSettings().setMyLocationButtonEnabled(false);
+                        mMap.getUiSettings().setMyLocationButtonEnabled(false);
                     }
                 });
             }
@@ -299,13 +298,12 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                 updateLocationUI();
             }
         }
-
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        if (map != null) {
-            outState.putParcelable(KEY_CAMERA_POSITION, map.getCameraPosition());
+        if (mMap != null) {
+            outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
             outState.putParcelable(KEY_LOCATION, lastKnownLocation);
         }
         super.onSaveInstanceState(outState);
