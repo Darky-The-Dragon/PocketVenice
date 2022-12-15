@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -77,8 +79,8 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
 
         mAuth = FirebaseAuth.getInstance();
-        header_username = findViewById(R.id.header_fullname);
-        setHeader_username(header_username);
+
+        //setHeader_username();
         progressBar = findViewById(R.id.progress_bar);
 
         imageMenu = findViewById(R.id.menu_nav);
@@ -251,15 +253,17 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void setHeader_username(TextView header_username) {
-
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(mAuth.getUid());
+    private void setHeader_username() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+        header_username = findViewById(R.id.header_fullname);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                assert user != null;
-                header_username.setText(user.getFullName());
+                if(user == null)
+                    header_username.setText(user.getFullName());
+
             }
 
             @Override
@@ -267,7 +271,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-
     }
+
 
 }
