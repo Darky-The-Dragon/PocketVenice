@@ -168,6 +168,23 @@
                 android:layout_marginBottom="16dp"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/description" />
+
+            <TextView
+                android:id="@+id/details_event_addEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="65dp"
+                android:background="@drawable/red_fill__rounded_color"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="@string/add_event"
+                android:textColor="#c3b377"
+                android:textSize="15sp" />
         </LinearLayout>
 
     </ScrollView>

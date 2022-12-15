@@ -161,6 +161,21 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     public void OnNewsClicked(NewsHeadlines headlines) {
         startActivity(new Intent(NewsActivity.this, NewsDetailsActivity.class)
                 .putExtra("data", headlines));
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
+        textHeader.setVisibility(View.VISIBLE);
+        manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it", "publishedAt");
+    }
+
+    private void showNews(List<NewsHeadlines> list) {
+        recyclerView = findViewById(R.id.recycler_news);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        adapter = new CustomAdapter(this, list, this);
+        recyclerView.setAdapter(adapter);
     }    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
@@ -198,21 +213,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     };
-
-    @Override
-    public void onRefresh() {
-        swipeRefreshLayout.setRefreshing(true);
-        textHeader.setVisibility(View.VISIBLE);
-        manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it", "publishedAt");
-    }
-
-    private void showNews(List<NewsHeadlines> list) {
-        recyclerView = findViewById(R.id.recycler_news);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        adapter = new CustomAdapter(this, list, this);
-        recyclerView.setAdapter(adapter);
-    }
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

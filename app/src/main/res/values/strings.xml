@@ -97,5 +97,6 @@
     <string name="get_started">Get Started</string>
     <string name="next">Next</string>
     <string name="maps">Maps</string>
+    <string name="add_event">Add Event</string>
 
 </resources>

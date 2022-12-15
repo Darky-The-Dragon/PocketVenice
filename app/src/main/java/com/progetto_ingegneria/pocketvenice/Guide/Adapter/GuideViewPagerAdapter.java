@@ -1,4 +1,4 @@
-package com.progetto_ingegneria.pocketvenice.Guide;
+package com.progetto_ingegneria.pocketvenice.Guide.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.progetto_ingegneria.pocketvenice.Guide.ScreenItem;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.List;
