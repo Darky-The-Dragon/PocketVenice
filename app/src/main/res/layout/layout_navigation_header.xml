@@ -26,6 +26,7 @@
 
     <TextView
         android:layout_width="0dp"
+        android:id="@+id/header_fullname"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="@string/test_fullname"

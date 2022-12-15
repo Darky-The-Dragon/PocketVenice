@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.Auth.User;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
@@ -51,7 +52,7 @@ import java.util.List;
 
 public class PlacesActivity extends AppCompatActivity implements View.OnClickListener, PlaceCallback {
 
-    protected TextView textTitle;
+    protected TextView textTitle, header_username;
     protected ActivityPlacesBinding binding;
     protected BottomNavigationView bottomNavigationView;
     protected ImageView imageMenu;
@@ -71,6 +72,9 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         binding = ActivityPlacesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        mAuth = FirebaseAuth.getInstance();
+        header_username = findViewById(R.id.header_fullname);
+        setHeader_username(header_username);
 
         initViews();
         initDataPlaces();
@@ -109,7 +113,7 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
 
     private void initViews() {
 
-        mAuth = FirebaseAuth.getInstance();
+
 
         progressBar = findViewById(R.id.progress_bar);
 
@@ -240,5 +244,25 @@ public class PlacesActivity extends AppCompatActivity implements View.OnClickLis
                 ActivityOptionsCompat.makeSceneTransitionAnimation(this, p1, p2, p3, p4, p5, p6);
 
         startActivity(intent, optionsCompat.toBundle());
+    }
+
+
+    private void setHeader_username(TextView header_username) {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(mAuth.getUid());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                assert user != null;
+                header_username.setText(user.getFullName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }
