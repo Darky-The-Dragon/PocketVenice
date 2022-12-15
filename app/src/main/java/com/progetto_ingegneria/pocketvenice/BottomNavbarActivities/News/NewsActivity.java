@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,6 +58,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     protected BottomNavigationView bottomNavigationView;
     protected NavigationView navigationView;
     protected DrawerLayout drawerLayout;
+    protected View headerView;
     protected ActivityNewsBinding binding;
     protected ProgressBar progressBar;
     protected FirebaseAuth mAuth;
@@ -77,10 +77,8 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(binding.getRoot());
 
-
         mAuth = FirebaseAuth.getInstance();
 
-        //setHeader_username();
         progressBar = findViewById(R.id.progress_bar);
 
         imageMenu = findViewById(R.id.menu_nav);
@@ -94,6 +92,9 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
         navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
+
+        headerView = navigationView.getHeaderView(0);
+        setHeader_username();
 
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -186,6 +187,27 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         adapter = new CustomAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void showErrorMessage(int imageView, String title, String message) {
+        if (errorLayout.getVisibility() == View.GONE) {
+            errorLayout.setVisibility(View.VISIBLE);
+        }
+        errorImage.setImageResource(imageView);
+        errorTitle.setText(title);
+        errorMessage.setText(message);
+
+        btnRetry.setOnClickListener(v -> {
+            progressBar.setVisibility(View.VISIBLE);
+            onRefresh();
+        });
     }    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
@@ -224,27 +246,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
-    }
-
-    public void showErrorMessage(int imageView, String title, String message) {
-        if (errorLayout.getVisibility() == View.GONE) {
-            errorLayout.setVisibility(View.VISIBLE);
-        }
-        errorImage.setImageResource(imageView);
-        errorTitle.setText(title);
-        errorMessage.setText(message);
-
-        btnRetry.setOnClickListener(v -> {
-            progressBar.setVisibility(View.VISIBLE);
-            onRefresh();
-        });
-    }
-
     private void logoutUser() {
         progressBar.setVisibility(View.VISIBLE);
         FirebaseAuth.getInstance().signOut();
@@ -252,18 +253,17 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(NewsActivity.this, LoginActivity.class));
     }
 
-
     private void setHeader_username() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        assert firebaseUser != null;
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
-        header_username = findViewById(R.id.header_fullname);
+        header_username = headerView.findViewById(R.id.header_fullname);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                if(user == null)
+                if (user != null)
                     header_username.setText(user.getFullName());
-
             }
 
             @Override
@@ -272,6 +272,8 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
+
 
 
 }

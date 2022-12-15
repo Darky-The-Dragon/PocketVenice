@@ -58,6 +58,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
     protected ImageView imageMenu;
     protected NavigationView navigationView;
     protected DrawerLayout drawerLayout;
+    protected View headerView;
     protected ProgressBar progressBar;
     protected FirebaseAuth mAuth;
     protected RecyclerView recyclerView;
@@ -71,9 +72,9 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         binding = ActivityEventsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
-        //setHeader_username();
 
         initViews();
+        setHeader_username();
         initDataPlaces();
         setupEventsAdapter();
     }
@@ -111,7 +112,6 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
     private void initViews() {
 
 
-
         progressBar = findViewById(R.id.progress_bar);
 
         imageMenu = findViewById(R.id.menu_nav);
@@ -125,6 +125,8 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
 
         navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
+
+        headerView = navigationView.getHeaderView(0);
 
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(1);
@@ -237,17 +239,18 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
 
         startActivity(intent, optionsCompat.toBundle());
     }
+
     private void setHeader_username() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        assert firebaseUser != null;
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
-        header_username = findViewById(R.id.header_fullname);
+        header_username = headerView.findViewById(R.id.header_fullname);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                if(user == null)
+                if (user != null)
                     header_username.setText(user.getFullName());
-
             }
 
             @Override

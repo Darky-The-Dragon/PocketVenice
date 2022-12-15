@@ -15,7 +15,7 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 public class PlaceDetailsActivity extends AppCompatActivity {
 
-    protected TextView title, district, address, score, description;
+    protected TextView title, district, address, description;
     protected ImageView imgPlace;
     protected RatingBar ratingBar;
     protected String mTitle, mAddress, mDistrict, mDescription;

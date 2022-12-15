@@ -8,6 +8,7 @@ import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -26,7 +27,7 @@ import java.time.format.DateTimeFormatter;
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected TextView title, address, fromDate, toDate, fromHour, toHour, description, addEventBtn;
-    protected ImageView imgEvent;
+    protected ImageView imgEvent, shareBtn;
     protected String mTitle, mAddress, mFromDate, mToDate, mFromHour, mToHour, mDescription;
 
     @Override
@@ -47,6 +48,8 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         fromHour = findViewById(R.id.item_event_fromHour);
         toHour = findViewById(R.id.item_event_toHour);
         description = findViewById(R.id.details_event_description);
+        shareBtn = findViewById(R.id.item_event_share);
+        shareBtn.setOnClickListener(this);
         addEventBtn = findViewById(R.id.details_event_addEvent);
         addEventBtn.setOnClickListener(this);
     }
@@ -103,6 +106,17 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
             intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "Europe/Rome");
 
             startActivity(intent);
+        } else if (v.getId() == R.id.item_event_share) {
+            try {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plan");
+                i.putExtra(Intent.EXTRA_SUBJECT, mTitle);
+                String body = mTitle + "\n" + mAddress + "\n" + mFromDate + " " + mToDate + "\n" + "\n" + "Shared from PocketVenice App" + "\n";
+                i.putExtra(Intent.EXTRA_TEXT, body);
+                startActivity(Intent.createChooser(i, "Share with: "));
+            } catch (Exception e) {
+                Toast.makeText(this, "Something went wrong. Cannot share at this moment. Try again", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

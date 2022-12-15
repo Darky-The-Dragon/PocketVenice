@@ -69,6 +69,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     protected ImageView imageMenu;
     protected NavigationView navigationView;
     protected DrawerLayout drawerLayout;
+    protected View headerView;
     protected ProgressBar progressBar;
     protected FirebaseAuth mAuth;
     protected GoogleMap mMap;
@@ -93,9 +94,6 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         imageMenu = findViewById(R.id.menu_nav);
         imageMenu.setOnClickListener(this);
 
-
-        //setHeader_username();
-
         textTitle = findViewById(R.id.menu_title);
         textTitle.setText(MapsActivity.class.getSimpleName());
 
@@ -105,6 +103,8 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
 
+        headerView = navigationView.getHeaderView(0);
+        setHeader_username();
 
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(3);
@@ -176,15 +176,15 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setHeader_username() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        assert firebaseUser != null;
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
-        header_username = findViewById(R.id.header_fullname);
+        header_username = headerView.findViewById(R.id.header_fullname);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                if(user == null)
+                if (user != null)
                     header_username.setText(user.getFullName());
-
             }
 
             @Override
@@ -290,7 +290,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         locationPermissionGranted = false;
-        if ( requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+        if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
             // If request is cancelled, the result arrays are empty.
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

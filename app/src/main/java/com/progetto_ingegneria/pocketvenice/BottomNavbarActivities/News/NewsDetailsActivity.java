@@ -48,25 +48,23 @@ public class NewsDetailsActivity extends AppCompatActivity implements AppBarLayo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_details);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbarSetup();
+        initView();
+        loadData();
+        setData();
+        initWebView(mUrl);
 
-        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("");
+    }
 
-        appBarLayout = findViewById(R.id.appbar);
-        appBarLayout.addOnOffsetChangedListener(this);
-        //date_behaviour = findViewById(R.id.date_behavior);
-        titleAppbar = findViewById(R.id.title_appbar);
-        imageView = findViewById(R.id.backdrop);
-        appbar_title = findViewById(R.id.title_on_appbar);
-        appbar_subtitle = findViewById(R.id.subtitle_on_appbar);
-        //date = findViewById(R.id.date);
-        time = findViewById(R.id.time);
-        title = findViewById(R.id.title);
+    private void setData() {
+        Picasso.get().load(mImg).into(imageView);
+        appbar_title.setText(mTitle);
+        appbar_subtitle.setText(mUrl);
+        title.setText(mTitle);
+        time.setText(DateTimeFormatting.DateToTimeFormat(mDate));
+    }
 
+    private void loadData() {
         headlines = (NewsHeadlines) getIntent().getSerializableExtra("data");
         mUrl = headlines.getUrl();
         mImg = headlines.getUlrToImage();
@@ -74,16 +72,27 @@ public class NewsDetailsActivity extends AppCompatActivity implements AppBarLayo
         mDate = headlines.getPublishedAt();
         mSource = String.valueOf(headlines.getSource());
         mAuthor = headlines.getAuthor();
+    }
 
-        Picasso.get().load(mImg).into(imageView);
-        appbar_title.setText(mTitle);
-        appbar_subtitle.setText(mUrl);
-        //date.setText(DateTimeFormatting.DateFormat(mDate));
-        title.setText(mTitle);
-        time.setText(DateTimeFormatting.DateToTimeFormat(mDate));
+    private void initView() {
+        appBarLayout = findViewById(R.id.appbar);
+        appBarLayout.addOnOffsetChangedListener(this);
+        titleAppbar = findViewById(R.id.title_appbar);
+        imageView = findViewById(R.id.backdrop);
+        appbar_title = findViewById(R.id.title_on_appbar);
+        appbar_subtitle = findViewById(R.id.subtitle_on_appbar);
+        time = findViewById(R.id.time);
+        title = findViewById(R.id.title);
+    }
 
-        initWebView(mUrl);
+    private void toolbarSetup() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle("");
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -106,17 +115,6 @@ public class NewsDetailsActivity extends AppCompatActivity implements AppBarLayo
 
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptThirdPartyCookies(webView, true);
-
-        /*webView.setWebViewClient(new WebViewClient() {
-
-            @Override
-            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-                //Required functionality here
-                return super.onJsAlert(view, url, message, result);
-            }
-        });
-
-         */
 
         webView.loadUrl(url);
     }
