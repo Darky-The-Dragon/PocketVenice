@@ -77,7 +77,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         imageMenu.setOnClickListener(this);
 
         textTitle = findViewById(R.id.menu_title);
-        textTitle.setText(NewsActivity.class.getSimpleName());
+        textTitle.setText(R.string.news);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
