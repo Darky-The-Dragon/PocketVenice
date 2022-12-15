@@ -1,7 +1,6 @@
 package com.progetto_ingegneria.pocketvenice.Guide;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -110,20 +109,21 @@ public class GuideActivity extends AppCompatActivity {
         });
 
     }
-/*
-    private boolean restorePrefData() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
-        return pref.getBoolean("isIntroOpened", false);
 
-    }
+    /*
+        private boolean restorePrefData() {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
+            return pref.getBoolean("isIntroOpened", false);
 
-    private void savePefesData() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("isIntroOpened", true);
-        editor.apply();
-    }
-*/
+        }
+
+        private void savePefesData() {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("isIntroOpened", true);
+            editor.apply();
+        }
+    */
     private void loadLastScreen() {
         btnNext.setVisibility(View.INVISIBLE);
         btnGetStarted.setVisibility(View.VISIBLE);

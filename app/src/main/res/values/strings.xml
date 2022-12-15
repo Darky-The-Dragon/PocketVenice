@@ -70,8 +70,8 @@
     <string name="init">INIT</string>
     <string name="author">Author</string>
     <string name="default_date">01 January 2000</string>
-    <string name="title">Title</string>
-    <string name="description">Description</string>
+    <string name="title">Titolo</string>
+    <string name="description">Descrizione</string>
     <string name="source">Source</string>
     <string name="time">Time</string>
     <string name="api_key">1dd430c786bb4fd38e650493cb32755c</string>
