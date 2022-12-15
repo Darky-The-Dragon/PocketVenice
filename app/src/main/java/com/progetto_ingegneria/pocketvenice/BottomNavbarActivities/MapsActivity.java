@@ -34,7 +34,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.Auth.User;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
@@ -56,9 +62,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     protected final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
-    protected FusedLocationProviderClient client;
-    protected SupportMapFragment mapFragment;
-    protected TextView textTitle;
+    protected TextView textTitle, header_username;
     protected ActivityMapsBinding binding;
     protected BottomNavigationView bottomNavigationView;
     protected ImageView imageMenu;
@@ -88,6 +92,9 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
         imageMenu = findViewById(R.id.menu_nav);
         imageMenu.setOnClickListener(this);
 
+        header_username = findViewById(R.id.header_fullname);
+        setHeader_username(header_username);
+
         textTitle = findViewById(R.id.menu_title);
         textTitle.setText(MapsActivity.class.getSimpleName());
 
@@ -96,6 +103,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
 
         navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
+
 
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(3);
@@ -163,6 +171,25 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                 .findFragmentById(R.id.map);
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
+    }
+
+    private void setHeader_username(TextView header_username) {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(mAuth.getUid());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                assert user != null;
+                header_username.setText(user.getFullName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
@@ -262,14 +289,12 @@ public class MapsActivity extends AppCompatActivity implements View.OnClickListe
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         locationPermissionGranted = false;
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    locationPermissionGranted = true;
-                    updateLocationUI();
-                }
+        if ( requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                locationPermissionGranted = true;
+                updateLocationUI();
             }
         }
 

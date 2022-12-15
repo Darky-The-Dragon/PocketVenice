@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/item_place_container_img"
         android:layout_width="0dp"
-        android:layout_height="170dp"
+        android:layout_height="200dp"
         android:background="@drawable/container_bg"
         android:transitionName="placeContainerTN"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,10 +51,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/score"
+        android:layout_marginBottom="16dp"
 
+        android:text="@string/score"
         android:textStyle="bold"
         android:transitionName="placeScoreTN"
+        app:layout_constraintBottom_toBottomOf="@+id/item_place_container_img"
         app:layout_constraintStart_toEndOf="@+id/item_place_img"
         app:layout_constraintTop_toBottomOf="@+id/item_place_district_name" />
 
@@ -88,10 +90,11 @@
         android:id="@+id/scrollView2"
         android:layout_width="409dp"
         android:layout_height="584dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_img"
-        tools:layout_editor_absoluteX="2dp">
+        app:layout_constraintTop_toBottomOf="@+id/item_place_container_img">
 
         <LinearLayout
             android:layout_width="match_parent"

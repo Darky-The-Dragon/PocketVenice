@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -24,7 +25,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.Auth.User;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.API.RequestManager;
@@ -45,7 +52,7 @@ import java.util.List;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener, SelectListener, SwipeRefreshLayout.OnRefreshListener {
 
-    protected TextView textTitle, textHeader;
+    protected TextView textTitle, textHeader, header_username;
     protected ImageView imageMenu;
     protected BottomNavigationView bottomNavigationView;
     protected NavigationView navigationView;
@@ -70,7 +77,8 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
 
         mAuth = FirebaseAuth.getInstance();
-
+        header_username = findViewById(R.id.header_fullname);
+        setHeader_username(header_username);
         progressBar = findViewById(R.id.progress_bar);
 
         imageMenu = findViewById(R.id.menu_nav);
@@ -243,6 +251,23 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    private void setHeader_username(TextView header_username) {
 
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(mAuth.getUid());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                assert user != null;
+                header_username.setText(user.getFullName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
 }
