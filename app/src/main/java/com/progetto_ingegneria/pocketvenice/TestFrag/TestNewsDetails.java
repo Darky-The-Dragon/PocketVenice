@@ -18,9 +18,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
+
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -52,7 +54,7 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
 
     public static TestNewsDetails newInstance(NewsHeadlines headlines) {
         TestNewsDetails fragment = new TestNewsDetails();
-        Bundle args = new Bundle();
+        Bundle args = new Bundle(1);
         args.putSerializable(HEADLINES, headlines);
         fragment.setArguments(args);
         return fragment;
@@ -61,6 +63,7 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mHeadlines = (NewsHeadlines) getArguments().getSerializable(HEADLINES);
         }
@@ -72,8 +75,10 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_test_news_details, container, false);
 
+        //La chiamata a questo metodo provoca NullPointerException
+        //toolbarSetup();
 
-        toolbarSetup();
+
         initView();
         loadData();
         setData();
@@ -134,13 +139,18 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
     }
 
     private void toolbarSetup() {
-        toolbar = view.findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        toolbar =view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)requireActivity()).setSupportActionBar(toolbar);
+
+        //problemi da qui
+        ((AppCompatActivity)requireActivity()).getActionBar().setTitle("");
+        ((AppCompatActivity)requireActivity()).getActionBar().setDisplayHomeAsUpEnabled(true);
 
         final CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("");
+
+
     }
 
     @Override
@@ -163,38 +173,6 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_news, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.view_web) {
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(mUrl));
-            startActivity(i);
-            return true;
-        } else if (id == R.id.share_button) {
-            try {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("text/plan");
-                i.putExtra(Intent.EXTRA_SUBJECT, mSource);
-                String body = mTitle + "\n" + mUrl + "\n" + "\n" + "Shared from PocketVenice App" + "\n";
-                i.putExtra(Intent.EXTRA_TEXT, body);
-                startActivity(Intent.createChooser(i, "Share with: "));
-            } catch (Exception e) {
-                Toast.makeText(getContext(), "Something went wrong. Cannot share at this moment. Try again", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater); }
 }

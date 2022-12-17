@@ -1,6 +1,5 @@
 package com.progetto_ingegneria.pocketvenice.TestFrag;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -25,7 +26,6 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listener
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listeners.SelectListener;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsApiResponse;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsHeadlines;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsDetailsActivity;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.List;
@@ -153,9 +153,14 @@ public class TestNews extends Fragment implements View.OnClickListener, SelectLi
 
     @Override
     public void OnNewsClicked(NewsHeadlines headlines) {
-        startActivity(new Intent(getContext(), NewsDetailsActivity.class)
-                .putExtra("data", headlines));
+        Fragment fragment = TestNewsDetails.newInstance(headlines);
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.replace(R.id.main_frame_layout, fragment);
+        ft.commit();
+
     }
+
+
 
     @Override
     public void onClick(View v) {
