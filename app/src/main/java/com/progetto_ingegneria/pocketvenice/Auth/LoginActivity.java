@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
+import com.progetto_ingegneria.pocketvenice.MainActivity;
 import com.progetto_ingegneria.pocketvenice.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void showMainActivity() {
         progressBar.setVisibility(View.GONE);
-        startActivity(new Intent(this, NewsActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

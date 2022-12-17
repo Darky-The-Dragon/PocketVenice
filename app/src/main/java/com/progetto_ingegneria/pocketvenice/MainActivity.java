@@ -2,8 +2,6 @@ package com.progetto_ingegneria.pocketvenice;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,13 +19,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventsActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.MapsActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlacesActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
+import com.progetto_ingegneria.pocketvenice.TestFrag.TestEvents;
+import com.progetto_ingegneria.pocketvenice.TestFrag.TestMaps;
+import com.progetto_ingegneria.pocketvenice.TestFrag.TestNews;
+import com.progetto_ingegneria.pocketvenice.TestFrag.TestPlaces;
 import com.progetto_ingegneria.pocketvenice.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -48,10 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-
         setContentView(binding.getRoot());
         drawerLayout = findViewById(R.id.drawerLayout);
-        //replaceFragment(new NewsActivity());
+        replaceFragment(new TestNews());
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -63,31 +60,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageMenu = findViewById(R.id.menu_nav);
         imageMenu.setOnClickListener(this);
 
-        //drawerLayout = findViewById(R.id.drawerLayout);
+        drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
 
-
-        Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(1);
-        menuItem.setChecked(true);
-
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.news) {
-                //replaceFragment(new NewsActivity());
-                textTitle.setText(NewsActivity.class.getSimpleName());
+                replaceFragment(new TestNews());
+                textTitle.setText(R.string.news);
             } else if (item.getItemId() == R.id.events) {
-                //replaceFragment(new EventsActivity());
-                textTitle.setText(EventsActivity.class.getSimpleName());
+                replaceFragment(new TestEvents());
+                textTitle.setText(R.string.events);
             } else if (item.getItemId() == R.id.places) {
-                //replaceFragment(new PlacesActivity());
-                textTitle.setText(PlacesActivity.class.getSimpleName());
+                replaceFragment(new TestPlaces());
+                textTitle.setText(R.string.place);
             } else if (item.getItemId() == R.id.map) {
-                //replaceFragment(new MapsActivity());
-                textTitle.setText(MapsActivity.class.getSimpleName());
+                replaceFragment(new TestMaps());
+                textTitle.setText(R.string.map);
             }
 
             return true;

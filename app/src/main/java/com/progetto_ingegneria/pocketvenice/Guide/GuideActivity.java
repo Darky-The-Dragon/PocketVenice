@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.NewsActivity;
 import com.progetto_ingegneria.pocketvenice.Guide.Adapter.GuideViewPagerAdapter;
+import com.progetto_ingegneria.pocketvenice.MainActivity;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
 
         /*check if guide is opened before or not
         if(restorePrefData()){
-            Intent news = new Intent(IntroActivity.this, NewsActivity.class);
+            Intent news = new Intent(IntroActivity.this, MainActivity.class);
             startActivity(news);
             finish();
         }*/
@@ -136,7 +136,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 loadLastScreen();
             }
         } else if (v.getId() == R.id.get_started_button) {
-            Intent news = new Intent(GuideActivity.this, NewsActivity.class);
+            Intent news = new Intent(GuideActivity.this, MainActivity.class);
             startActivity(news);
             //savePefesData();
             finish();
