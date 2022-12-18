@@ -120,8 +120,7 @@ public class TestPlaces extends Fragment implements PlaceCallback {
         ActivityOptionsCompat optionsCompat =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), p1, p2, p3, p4, p5, p6);
 
-        ft.replace(R.id.main_frame_layout, testPlacesDeatails);
-        ft.commit();
+        ft.replace(R.id.main_frame_layout, testPlacesDeatails).addToBackStack(null).commit();
 
     }
 }

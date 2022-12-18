@@ -32,10 +32,7 @@ import java.util.List;
 
 public class TestNews extends Fragment implements View.OnClickListener, SelectListener, SwipeRefreshLayout.OnRefreshListener {
 
-    protected TextView textTitle, textHeader;
-    protected BottomNavigationView bottomNavigationView;
-    protected NavigationView navigationView;
-    protected DrawerLayout drawerLayout;
+    protected TextView textHeader;
     protected ProgressBar progressBar;
     protected RequestManager manager;
     protected RecyclerView recyclerView;
@@ -45,6 +42,8 @@ public class TestNews extends Fragment implements View.OnClickListener, SelectLi
     protected ImageView errorImage;
     protected TextView errorTitle, errorMessage, btnRetry;
     protected View view;
+
+
     private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
@@ -155,8 +154,7 @@ public class TestNews extends Fragment implements View.OnClickListener, SelectLi
     public void OnNewsClicked(NewsHeadlines headlines) {
         Fragment fragment = TestNewsDetails.newInstance(headlines);
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        ft.replace(R.id.main_frame_layout, fragment);
-        ft.commit();
+        ft.replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit();;
 
     }
 

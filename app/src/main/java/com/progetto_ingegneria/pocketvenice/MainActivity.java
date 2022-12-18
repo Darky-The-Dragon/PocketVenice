@@ -19,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
@@ -27,6 +28,10 @@ import com.progetto_ingegneria.pocketvenice.TestFrag.TestMaps;
 import com.progetto_ingegneria.pocketvenice.TestFrag.TestNews;
 import com.progetto_ingegneria.pocketvenice.TestFrag.TestPlaces;
 import com.progetto_ingegneria.pocketvenice.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,26 +50,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
         setContentView(binding.getRoot());
-        drawerLayout = findViewById(R.id.drawerLayout);
-        replaceFragment(new TestNews());
 
+        initview();
+        setup();
         mAuth = FirebaseAuth.getInstance();
-
-        progressBar = findViewById(R.id.progress_bar);
-
-        textTitle = findViewById(R.id.menu_title);
-        textTitle.setText(R.string.maps);
-
-        imageMenu = findViewById(R.id.menu_nav);
-        imageMenu.setOnClickListener(this);
-
-        drawerLayout = findViewById(R.id.drawerLayout);
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
-        navigationView = findViewById(R.id.navigationView);
-        navigationView.setItemIconTintList(null);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -99,12 +89,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 replaceFragment(new Info());
                 textTitle.setText(Info.class.getSimpleName());
                 drawerLayout.closeDrawer(GravityCompat.START);
+            }else if (item.getItemId() == R.id.guide) {
+                startActivity(new Intent(this, GuideActivity.class));
             } else if (item.getItemId() == R.id.logout) {
                 logoutUser();
             }
 
             return true;
         });
+    }
+
+    private void setup() {
+
+        replaceFragment(new TestNews());
+        textTitle.setText(R.string.news);
+        imageMenu.setOnClickListener(this);
+        navigationView.setItemIconTintList(null);
+    }
+
+    private void initview() {
+
+        drawerLayout = findViewById(R.id.drawerLayout);
+        progressBar = findViewById(R.id.progress_bar);
+        textTitle = findViewById(R.id.menu_title);
+        imageMenu = findViewById(R.id.menu_nav);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        navigationView = findViewById(R.id.navigationView);
     }
 
     @Override
@@ -117,8 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_frame_layout, fragment);
-        fragmentTransaction.commit();
+        fragmentTransaction.replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit();
     }
 
     @Override
@@ -127,8 +137,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Fragment fragment = fragmentManager.findFragmentById(R.id.frame_layout);
         if (fragment != null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.remove(fragment);
-            fragmentTransaction.commit();
+            fragmentTransaction.remove(fragment).commit();
+
+            //manca risettaggio texttile in base al fragment
+            //da cambiare la riga sotto quando si torna indietro
+            //bottomNavigationView.setSelectedItemId(R.id.news);
+
         } else {
             super.onBackPressed();
         }

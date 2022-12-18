@@ -140,7 +140,7 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
 
     private void toolbarSetup() {
         
-        toolbar =view.findViewById(R.id.toolbar);
+        toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)requireActivity()).setSupportActionBar(toolbar);
 
         //problemi da qui

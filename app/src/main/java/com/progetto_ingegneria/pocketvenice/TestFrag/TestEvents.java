@@ -123,7 +123,7 @@ public class TestEvents extends Fragment implements EventCallback {
                 ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), p1, p2, p3, p4, p5, p6, p7);
 
 
-        ft.replace(R.id.main_frame_layout, testEventsDeatails);
-        ft.commit();
+        ft.replace(R.id.main_frame_layout, testEventsDeatails).addToBackStack(null).commit();;
+
     }
 }
