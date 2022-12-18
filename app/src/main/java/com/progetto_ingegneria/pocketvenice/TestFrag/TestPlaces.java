@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -106,8 +107,8 @@ public class TestPlaces extends Fragment implements PlaceCallback {
                                  TextView score,
                                  RatingBar ratingBar) {
 
-        Intent intent = new Intent(getContext(), PlaceDetailsActivity.class);
-        intent.putExtra("placeObject", placesData.get(pos));
+        Fragment testPlacesDeatails = TestPlacesDetails.newInstance(placesData.get(pos));
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
 
         Pair<View, String> p1 = Pair.create((View) imgContainer, "placeContainerTN");
         Pair<View, String> p2 = Pair.create((View) imgPlace, "placeTN");
@@ -119,7 +120,8 @@ public class TestPlaces extends Fragment implements PlaceCallback {
         ActivityOptionsCompat optionsCompat =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), p1, p2, p3, p4, p5, p6);
 
-        startActivity(intent, optionsCompat.toBundle());
+        ft.replace(R.id.main_frame_layout, testPlacesDeatails);
+        ft.commit();
 
     }
 }
