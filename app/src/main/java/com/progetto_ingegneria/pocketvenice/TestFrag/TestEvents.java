@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -106,8 +107,9 @@ public class TestEvents extends Fragment implements EventCallback {
                                  TextView hyphen,
                                  TextView toDate) {
 
-        Intent intent = new Intent(getContext(), EventDetailsActivity.class);
-        intent.putExtra("eventObject", eventsData.get(pos));
+        Fragment testEventsDeatails = TestEventsDeatails.newInstance(eventsData.get(pos));
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+
 
         Pair<View, String> p1 = Pair.create((View) imgContainer, "eventContainerTN");
         Pair<View, String> p2 = Pair.create((View) imgEvent, "eventTN");
@@ -120,6 +122,8 @@ public class TestEvents extends Fragment implements EventCallback {
         ActivityOptionsCompat optionsCompat =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), p1, p2, p3, p4, p5, p6, p7);
 
-        startActivity(intent, optionsCompat.toBundle());
+
+        ft.replace(R.id.main_frame_layout, testEventsDeatails);
+        ft.commit();
     }
 }
