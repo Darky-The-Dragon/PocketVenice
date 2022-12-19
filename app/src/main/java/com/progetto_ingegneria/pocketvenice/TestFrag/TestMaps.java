@@ -53,7 +53,7 @@ public class TestMaps extends Fragment implements View.OnClickListener, OnMapRea
         view = inflater.inflate(R.layout.fragment_test_maps, container, false);
 
         initView();
-        initMaps(savedInstanceState);
+        getLocationPermission(savedInstanceState);
 
         return view;
     }
@@ -94,9 +94,6 @@ public class TestMaps extends Fragment implements View.OnClickListener, OnMapRea
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.mMap = googleMap;
-
-        // Prompt the user for permission.
-        getLocationPermission();
 
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
@@ -148,14 +145,13 @@ public class TestMaps extends Fragment implements View.OnClickListener, OnMapRea
                 mMap.setMyLocationEnabled(false);
                 mMap.getUiSettings().setMyLocationButtonEnabled(false);
                 lastKnownLocation = null;
-                getLocationPermission();
             }
         } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
     }
 
-    private void getLocationPermission() {
+    private void getLocationPermission(Bundle savedInstanceState) {
         /*
          * Request location permission, so that we can get the location of the
          * device. The result of the permission request is handled by a callback,
@@ -165,6 +161,7 @@ public class TestMaps extends Fragment implements View.OnClickListener, OnMapRea
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true;
+            initMaps(savedInstanceState);
         } else {
             ActivityCompat.requestPermissions(requireActivity(),
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},

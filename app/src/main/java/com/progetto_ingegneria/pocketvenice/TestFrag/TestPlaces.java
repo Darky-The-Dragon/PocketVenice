@@ -1,7 +1,6 @@
 package com.progetto_ingegneria.pocketvenice.TestFrag;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.Adapter.PlaceAdapter;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.Listeners.PlaceCallback;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.Model.Place;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Places.PlaceDetailsActivity;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.ArrayList;

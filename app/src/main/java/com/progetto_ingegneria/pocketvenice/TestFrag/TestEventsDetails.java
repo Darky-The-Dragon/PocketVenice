@@ -4,18 +4,16 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -28,27 +26,27 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 
-public class TestEventsDeatails extends Fragment implements View.OnClickListener {
+public class TestEventsDetails extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String DETAILS = "param1";
-    private Event event;
     protected View view;
     protected TextView title, address, fromDate, toDate, fromHour, toHour, description, addEventBtn;
     protected ImageView imgEvent, shareBtn;
     protected String mTitle, mAddress, mFromDate, mToDate, mFromHour, mToHour, mDescription;
+    private Event event;
 
 
     // TODO: Rename and change types of parameters
 
-    public TestEventsDeatails() {
+    public TestEventsDetails() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static TestEventsDeatails newInstance(Event event) {
-        TestEventsDeatails fragment = new TestEventsDeatails();
+    public static TestEventsDetails newInstance(Event event) {
+        TestEventsDetails fragment = new TestEventsDetails();
         Bundle args = new Bundle(1);
         args.putSerializable(DETAILS, event);
         fragment.setArguments(args);
@@ -59,7 +57,7 @@ public class TestEventsDeatails extends Fragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            event = (Event)getArguments().getSerializable(DETAILS);
+            event = (Event) getArguments().getSerializable(DETAILS);
         }
     }
 
@@ -119,27 +117,6 @@ public class TestEventsDeatails extends Fragment implements View.OnClickListener
 
             getCalendarPermission();
 
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-            String startDate = mFromDate.replace("/", "-") + " " + mFromHour + ":00:00";
-            LocalDateTime start = LocalDateTime.parse(startDate, format);
-            String endDate = mToDate.replace("/", "-") + " " + mToHour + ":00:00";
-            LocalDateTime end = LocalDateTime.parse(endDate, format);
-
-            // Bug nel calcolare il tempo
-            long startMillis = start.atZone(ZoneId.of("Europe/Rome")).toInstant().toEpochMilli();
-            long endMillis = end.atZone(ZoneId.of("Europe/Rome")).toInstant().toEpochMilli();
-
-            Intent intent = new Intent(Intent.ACTION_INSERT);
-            intent.setData(CalendarContract.Events.CONTENT_URI);
-            intent.putExtra(CalendarContract.Events.CALENDAR_ID, 1);
-            intent.putExtra(CalendarContract.Events.TITLE, mTitle);
-            intent.putExtra(CalendarContract.Events.DESCRIPTION, "Time" + mFromHour + " " + mToHour);
-            intent.putExtra(CalendarContract.Events.DTSTART, startMillis);
-            intent.putExtra(CalendarContract.Events.DTEND, endMillis);
-            intent.putExtra(CalendarContract.Events.EVENT_LOCATION, mAddress);
-            intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "Europe/Rome");
-
-            startActivity(intent);
         } else if (v.getId() == R.id.item_event_share) {
             try {
                 Intent i = new Intent(Intent.ACTION_SEND);
@@ -153,6 +130,7 @@ public class TestEventsDeatails extends Fragment implements View.OnClickListener
             }
         }
     }
+
     private void getCalendarPermission() {
         /*
          * Request location permission, so that we can get the location of the
@@ -161,8 +139,33 @@ public class TestEventsDeatails extends Fragment implements View.OnClickListener
          */
         if (ContextCompat.checkSelfPermission(requireActivity().getApplicationContext(), Manifest.permission.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(requireActivity().getApplicationContext(), Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
+            addEvent();
         } else {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, 1);
         }
+    }
+
+    private void addEvent() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String startDate = mFromDate.replace("/", "-") + " " + mFromHour + ":00:00";
+        LocalDateTime start = LocalDateTime.parse(startDate, format);
+        String endDate = mToDate.replace("/", "-") + " " + mToHour + ":00:00";
+        LocalDateTime end = LocalDateTime.parse(endDate, format);
+
+        // Bug nel calcolare il tempo
+        long startMillis = start.atZone(ZoneId.of("Europe/Rome")).toInstant().toEpochMilli();
+        long endMillis = end.atZone(ZoneId.of("Europe/Rome")).toInstant().toEpochMilli();
+
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.setData(CalendarContract.Events.CONTENT_URI);
+        intent.putExtra(CalendarContract.Events.CALENDAR_ID, 1);
+        intent.putExtra(CalendarContract.Events.TITLE, mTitle);
+        intent.putExtra(CalendarContract.Events.DESCRIPTION, "Time" + mFromHour + " " + mToHour);
+        intent.putExtra(CalendarContract.Events.DTSTART, startMillis);
+        intent.putExtra(CalendarContract.Events.DTEND, endMillis);
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, mAddress);
+        intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "Europe/Rome");
+
+        startActivity(intent);
     }
 }

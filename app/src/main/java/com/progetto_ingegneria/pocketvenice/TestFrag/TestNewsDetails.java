@@ -1,12 +1,9 @@
 package com.progetto_ingegneria.pocketvenice.TestFrag;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
@@ -17,12 +14,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
-
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -31,8 +26,6 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.N
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Utility.DateTimeFormatting;
 import com.progetto_ingegneria.pocketvenice.R;
 import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetChangedListener {
 
@@ -139,13 +132,13 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
     }
 
     private void toolbarSetup() {
-        
+
         toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)requireActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
 
         //problemi da qui
-        ((AppCompatActivity)requireActivity()).getActionBar().setTitle("");
-        ((AppCompatActivity)requireActivity()).getActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) requireActivity()).getActionBar().setTitle("");
+        ((AppCompatActivity) requireActivity()).getActionBar().setDisplayHomeAsUpEnabled(true);
 
         final CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("");
@@ -173,6 +166,7 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater); }
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 }

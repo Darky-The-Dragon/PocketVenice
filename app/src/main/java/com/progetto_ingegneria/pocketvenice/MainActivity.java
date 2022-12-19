@@ -3,11 +3,13 @@ package com.progetto_ingegneria.pocketvenice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -15,15 +17,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.Auth.User;
 import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
@@ -32,21 +38,17 @@ import com.progetto_ingegneria.pocketvenice.TestFrag.TestEvents;
 import com.progetto_ingegneria.pocketvenice.TestFrag.TestMaps;
 import com.progetto_ingegneria.pocketvenice.TestFrag.TestNews;
 import com.progetto_ingegneria.pocketvenice.TestFrag.TestPlaces;
-import com.progetto_ingegneria.pocketvenice.databinding.ActivityMainBinding;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
-
-    protected TextView textTitle;
+    protected View headerView;
+    protected TextView textTitle, header_username;
     protected ImageView imageMenu;
     protected BottomNavigationView bottomNavigationView;
     protected NavigationView navigationView;
     protected DrawerLayout drawerLayout;
-    protected ActivityMainBinding binding;
     protected ProgressBar progressBar;
 
     @Override
@@ -55,13 +57,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initview();
+        setHeaderUsername();
         setup();
     }
 
-    private void setup() {
-        replaceFragment(new TestNews());
+    private void setHeaderUsername() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        assert firebaseUser != null;
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if (user != null)
+                    header_username.setText(user.getFullName());
+            }
 
-        textTitle.setText(R.string.news);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void setup() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            Toast.makeText(this, "Sono dentro l'IF", Toast.LENGTH_SHORT).show();
+            replaceFragment(new TestNews());
+            textTitle.setText(R.string.news);
+        }
         imageMenu.setOnClickListener(this);
         navigationView.setItemIconTintList(null);
     }
@@ -77,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomNavigationView.setOnItemSelectedListener(this);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
+        headerView = navigationView.getHeaderView(0);
+        header_username = headerView.findViewById(R.id.header_fullname);
     }
 
     @Override
@@ -87,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void replaceFragment(Fragment fragment) {
+        /*
         String backStateName =  fragment.getClass().getName();
 
         FragmentManager manager = getSupportFragmentManager();
@@ -99,40 +126,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         }
-
+        */
+        if (fragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_frame_layout, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
+        Toast.makeText(this, "Fragment after replace: " + getSupportFragmentManager().getBackStackEntryCount(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         // if your using fragment then you can do this way
         int fragments = getSupportFragmentManager().getBackStackEntryCount();
-        if (fragments == 1){
+        Toast.makeText(this, "FRAGMENTS: " + fragments, Toast.LENGTH_SHORT).show();
+        if (fragments == 1) {
             new AlertDialog.Builder(this)
                     .setMessage("Are you sure you want to exit?")
                     .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();
-                        }
-                    })
+                    .setPositiveButton("Yes", (dialog, id) -> finish())
                     .setNegativeButton("No", null)
                     .show();
-        }else{
+        } else {
             super.onBackPressed();
+            Menu menu = bottomNavigationView.getMenu();
             List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
-            Fragment fragment = fragmentList.get(fragmentList.size()-1);
+            Fragment fragment = fragmentList.get(fragmentList.size() - 1);
             //fragment corretto da settare.
-            if(fragment instanceof TestMaps && bottomNavigationView.getSelectedItemId() != R.id.map){
-                bottomNavigationView.setSelectedItemId(R.id.map);
-            }else if(fragment instanceof TestEvents && bottomNavigationView.getSelectedItemId() != R.id.events){
-                bottomNavigationView.setSelectedItemId(R.id.events);
-            }else if(fragment instanceof TestNews && bottomNavigationView.getSelectedItemId() != R.id.news){
-                bottomNavigationView.setSelectedItemId(R.id.news);
-            }else if(fragment instanceof TestPlaces && bottomNavigationView.getSelectedItemId() != R.id.places){
-                bottomNavigationView.setSelectedItemId(R.id.places);
+            if (fragment instanceof TestMaps && bottomNavigationView.getSelectedItemId() != R.id.map) {
+                MenuItem menuItem = menu.getItem(3);
+                menuItem.setChecked(true);
             }
-
-
+            if (fragment instanceof TestEvents && bottomNavigationView.getSelectedItemId() != R.id.events) {
+                MenuItem menuItem = menu.getItem(1);
+                menuItem.setChecked(true);
+            }
+            if (fragment instanceof TestNews && bottomNavigationView.getSelectedItemId() != R.id.news) {
+                MenuItem menuItem = menu.getItem(0);
+                menuItem.setChecked(true);
+            }
+            if (fragment instanceof TestPlaces && bottomNavigationView.getSelectedItemId() != R.id.places) {
+                MenuItem menuItem = menu.getItem(2);
+                menuItem.setChecked(true);
+            }
 
 
             //se setti la navigation bar come abbiamo fatto finche sono fragment senza reichiesta
@@ -174,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             replaceFragment(new Info());
             textTitle.setText(Info.class.getSimpleName());
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else if (item.getItemId() == R.id.guide) {
+        } else if (item.getItemId() == R.id.guide) {
             startActivity(new Intent(this, GuideActivity.class));
         } else if (item.getItemId() == R.id.logout) {
             logoutUser();

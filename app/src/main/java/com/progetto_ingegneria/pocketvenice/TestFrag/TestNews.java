@@ -10,16 +10,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.API.RequestManager;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Adapter.CustomAdapter;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Listeners.OnFetchDataListener;
@@ -154,10 +150,8 @@ public class TestNews extends Fragment implements View.OnClickListener, SelectLi
     public void OnNewsClicked(NewsHeadlines headlines) {
         Fragment fragment = TestNewsDetails.newInstance(headlines);
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        ft.replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit();;
-
+        ft.replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit();
     }
-
 
 
     @Override

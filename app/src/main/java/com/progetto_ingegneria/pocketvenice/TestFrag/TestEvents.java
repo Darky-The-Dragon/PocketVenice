@@ -1,20 +1,16 @@
 package com.progetto_ingegneria.pocketvenice.TestFrag;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,15 +20,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Adapter.EventAdapter;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.EventDetailsActivity;
-import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Listeners.EventCallback;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Adapter.EventViewHolder;
+import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Listeners.EventClickListener;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Model.Event;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestEvents extends Fragment implements EventCallback {
+public class TestEvents extends Fragment implements EventClickListener {
 
     protected ProgressBar progressBar;
     protected RecyclerView recyclerView;
@@ -98,32 +94,27 @@ public class TestEvents extends Fragment implements EventCallback {
     }
 
     @Override
-    public void onEventItemClick(int pos,
-                                 ImageView imgContainer,
-                                 ImageView imgEvent,
-                                 TextView title,
-                                 TextView address,
-                                 TextView fromDate,
-                                 TextView hyphen,
-                                 TextView toDate) {
+    public void onEventItemClick(EventViewHolder holder, int pos) {
 
-        Fragment testEventsDeatails = TestEventsDeatails.newInstance(eventsData.get(pos));
-        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        TestEventsDetails details = TestEventsDetails.newInstance(eventsData.get(pos));
+        details.setSharedElementEnterTransition(new TestEventsDetails());
+        details.setEnterTransition(new Fade());
+        setExitTransition(new Fade());
+        details.setSharedElementReturnTransition(new TestEventsDetails());
 
+        Toast.makeText(getContext(), "abcd", Toast.LENGTH_SHORT).show();
 
-        Pair<View, String> p1 = Pair.create((View) imgContainer, "eventContainerTN");
-        Pair<View, String> p2 = Pair.create((View) imgEvent, "eventTN");
-        Pair<View, String> p3 = Pair.create((View) title, "eventTitleTN");
-        Pair<View, String> p4 = Pair.create((View) address, "eventAddressTN");
-        Pair<View, String> p5 = Pair.create((View) fromDate, "eventFromDateTN");
-        Pair<View, String> p6 = Pair.create((View) hyphen, "eventHyphenTN");
-        Pair<View, String> p7 = Pair.create((View) toDate, "eventToDateTN");
-
-        ActivityOptionsCompat optionsCompat =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), p1, p2, p3, p4, p5, p6, p7);
-
-
-        ft.replace(R.id.main_frame_layout, testEventsDeatails).addToBackStack(null).commit();;
+        getParentFragmentManager().beginTransaction().
+                addSharedElement(holder.imgContainer, holder.imgContainer.getTransitionName()).
+                addSharedElement(holder.imgEvent, holder.imgEvent.getTransitionName()).
+                addSharedElement(holder.title, holder.title.getTransitionName()).
+                addSharedElement(holder.address, holder.address.getTransitionName()).
+                addSharedElement(holder.fromDate, holder.fromDate.getTransitionName()).
+                addSharedElement(holder.hyphen, holder.hyphen.getTransitionName()).
+                addSharedElement(holder.toDate, holder.toDate.getTransitionName()).
+                replace(R.id.main_frame_layout, details).
+                addToBackStack(null).
+                commit();
 
     }
 }
