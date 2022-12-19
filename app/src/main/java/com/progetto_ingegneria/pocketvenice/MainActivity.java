@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setup() {
-
         replaceFragment(new TestNews());
+
         textTitle.setText(R.string.news);
         imageMenu.setOnClickListener(this);
         navigationView.setItemIconTintList(null);
@@ -119,9 +119,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .show();
         }else{
             super.onBackPressed();
+            List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+            Fragment fragment = fragmentList.get(fragmentList.size()-1);
+            //fragment corretto da settare.
+            if(fragment instanceof TestMaps && bottomNavigationView.getSelectedItemId() != R.id.map){
+                bottomNavigationView.setSelectedItemId(R.id.map);
+            }else if(fragment instanceof TestEvents && bottomNavigationView.getSelectedItemId() != R.id.events){
+                bottomNavigationView.setSelectedItemId(R.id.events);
+            }else if(fragment instanceof TestNews && bottomNavigationView.getSelectedItemId() != R.id.news){
+                bottomNavigationView.setSelectedItemId(R.id.news);
+            }else if(fragment instanceof TestPlaces && bottomNavigationView.getSelectedItemId() != R.id.places){
+                bottomNavigationView.setSelectedItemId(R.id.places);
+            }
 
 
-            //manca il risettaggio navigationview, per il resto funziona
+
 
             //se setti la navigation bar come abbiamo fatto finche sono fragment senza reichiesta
             //dell'activity funziona altrimenti no

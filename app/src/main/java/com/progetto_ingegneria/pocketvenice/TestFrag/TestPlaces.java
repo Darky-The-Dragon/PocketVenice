@@ -40,6 +40,7 @@ public class TestPlaces extends Fragment implements PlaceCallback {
     protected DatabaseReference database;
     protected PlaceAdapter placeAdapter;
     protected List<Place> placesData;
+
     protected View view;
 
     public TestPlaces() {
