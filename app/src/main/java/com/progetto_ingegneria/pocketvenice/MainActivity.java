@@ -1,5 +1,6 @@
 package com.progetto_ingegneria.pocketvenice;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -37,6 +39,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
+
 
     protected TextView textTitle;
     protected ImageView imageMenu;
@@ -84,25 +87,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit();
+        String backStateName =  fragment.getClass().getName();
+
+        FragmentManager manager = getSupportFragmentManager();
+        boolean fragmentPopped = manager.popBackStackImmediate (backStateName, 0);
+
+        if (!fragmentPopped){ //fragment not in back stack, create it.
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.main_frame_layout, fragment, backStateName);
+            ft.addToBackStack(backStateName);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
+        }
+
     }
 
     @Override
-    public void onBackPressed() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_layout);
-        if (fragment != null) {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.remove(fragment).commit();
-
-            //manca risettaggio texttile in base al fragment
-            //da cambiare la riga sotto quando si torna indietro
-            //bottomNavigationView.setSelectedItemId(R.id.news);
-
-        } else {
+    public void onBackPressed(){
+        // if your using fragment then you can do this way
+        int fragments = getSupportFragmentManager().getBackStackEntryCount();
+        if (fragments == 1){
+            new AlertDialog.Builder(this)
+                    .setMessage("Are you sure you want to exit?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        }else{
             super.onBackPressed();
+
+
+            //manca il risettaggio navigationview, per il resto funziona
+
+            //se setti la navigation bar come abbiamo fatto finche sono fragment senza reichiesta
+            //dell'activity funziona altrimenti no
+
         }
     }
 
@@ -147,4 +170,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return true;
     }
+
+
 }
