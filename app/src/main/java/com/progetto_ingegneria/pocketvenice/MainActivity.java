@@ -1,7 +1,7 @@
 package com.progetto_ingegneria.pocketvenice;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,39 +50,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected NavigationView navigationView;
     protected DrawerLayout drawerLayout;
     protected ProgressBar progressBar;
+    protected FirebaseUser user;
+    protected boolean isLogged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        startGuide();
+        checkAuth();
         initview();
         setHeaderUsername();
         setup();
     }
 
+    private void startGuide() {
+        if (restorePrefData()) {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("isIntroOpened", false);
+            editor.apply();
+            startActivity(new Intent(MainActivity.this, GuideActivity.class));
+        }
+    }
+
+    private boolean restorePrefData() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
+        return pref.getBoolean("isIntroOpened", true);
+    }
+
     private void setHeaderUsername() {
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        assert firebaseUser != null;
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if (user != null)
-                    header_username.setText(user.getFullName());
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        if (isLogged) {
+            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            assert firebaseUser != null;
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    if (user != null)
+                        header_username.setText(user.getFullName());
+                }
 
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        } else {
+            header_username.setText(R.string.guest);
+        }
     }
 
     private void setup() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-            Toast.makeText(this, "Sono dentro l'IF", Toast.LENGTH_SHORT).show();
             replaceFragment(new TestNews());
             textTitle.setText(R.string.news);
         }
@@ -96,13 +119,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressBar = findViewById(R.id.progress_bar);
         textTitle = findViewById(R.id.menu_title);
         imageMenu = findViewById(R.id.menu_nav);
-        drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(this);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
         headerView = navigationView.getHeaderView(0);
         header_username = headerView.findViewById(R.id.header_fullname);
+
+        if (!isLogged) {
+            Menu menu = navigationView.getMenu();
+            for (int menuItemIndex = 0; menuItemIndex < menu.size(); menuItemIndex++) {
+                MenuItem menuItem = menu.getItem(menuItemIndex);
+                if (menuItem.getItemId() == R.id.login_sign_up) {
+                    menuItem.setVisible(true);
+                }
+                if (menuItem.getItemId() == R.id.logout) {
+                    menuItem.setVisible(false);
+                }
+            }
+        }
+    }
+
+    private void checkAuth() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            isLogged = true;
+        }
     }
 
     @Override
@@ -113,34 +155,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void replaceFragment(Fragment fragment) {
-        /*
-        String backStateName =  fragment.getClass().getName();
 
-        FragmentManager manager = getSupportFragmentManager();
-        boolean fragmentPopped = manager.popBackStackImmediate (backStateName, 0);
-
-        if (!fragmentPopped){ //fragment not in back stack, create it.
-            FragmentTransaction ft = manager.beginTransaction();
-            ft.replace(R.id.main_frame_layout, fragment, backStateName);
-            ft.addToBackStack(backStateName);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.commit();
-        }
-        */
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.main_frame_layout, fragment)
                     .addToBackStack(null)
                     .commit();
         }
-        Toast.makeText(this, "Fragment after replace: " + getSupportFragmentManager().getBackStackEntryCount(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onBackPressed() {
-        // if your using fragment then you can do this way
+
         int fragments = getSupportFragmentManager().getBackStackEntryCount();
-        Toast.makeText(this, "FRAGMENTS: " + fragments, Toast.LENGTH_SHORT).show();
+
         if (fragments == 1) {
             new AlertDialog.Builder(this)
                     .setMessage("Are you sure you want to exit?")
@@ -153,28 +182,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Menu menu = bottomNavigationView.getMenu();
             List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
             Fragment fragment = fragmentList.get(fragmentList.size() - 1);
-            //fragment corretto da settare.
-            if (fragment instanceof TestMaps && bottomNavigationView.getSelectedItemId() != R.id.map) {
-                MenuItem menuItem = menu.getItem(3);
-                menuItem.setChecked(true);
-            }
-            if (fragment instanceof TestEvents && bottomNavigationView.getSelectedItemId() != R.id.events) {
-                MenuItem menuItem = menu.getItem(1);
-                menuItem.setChecked(true);
-            }
+
             if (fragment instanceof TestNews && bottomNavigationView.getSelectedItemId() != R.id.news) {
+                textTitle.setText(R.string.news);
                 MenuItem menuItem = menu.getItem(0);
                 menuItem.setChecked(true);
             }
+            if (fragment instanceof TestEvents && bottomNavigationView.getSelectedItemId() != R.id.events) {
+                textTitle.setText(R.string.events);
+                MenuItem menuItem = menu.getItem(1);
+                menuItem.setChecked(true);
+            }
             if (fragment instanceof TestPlaces && bottomNavigationView.getSelectedItemId() != R.id.places) {
+                textTitle.setText(R.string.place);
                 MenuItem menuItem = menu.getItem(2);
                 menuItem.setChecked(true);
             }
-
-
-            //se setti la navigation bar come abbiamo fatto finche sono fragment senza reichiesta
-            //dell'activity funziona altrimenti no
-
+            if (fragment instanceof TestMaps && bottomNavigationView.getSelectedItemId() != R.id.map) {
+                textTitle.setText(R.string.map);
+                MenuItem menuItem = menu.getItem(3);
+                menuItem.setChecked(true);
+            }
         }
     }
 
@@ -200,9 +228,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             replaceFragment(new TestMaps());
             textTitle.setText(R.string.map);
         } else if (item.getItemId() == R.id.profile) {
-            replaceFragment(new Profile());
-            textTitle.setText(Profile.class.getSimpleName());
-            drawerLayout.closeDrawer(GravityCompat.START);
+            if (isLogged) {
+                replaceFragment(new Profile());
+                textTitle.setText(Profile.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                Toast.makeText(this,
+                        "You need to be logged in to access your profile",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else if (item.getItemId() == R.id.login_sign_up) {
+            startActivity(new Intent(this, LoginActivity.class));
         } else if (item.getItemId() == R.id.faq) {
             replaceFragment(new FAQ());
             textTitle.setText(FAQ.class.getSimpleName());

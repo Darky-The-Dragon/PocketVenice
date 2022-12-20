@@ -26,17 +26,17 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        mAuth = FirebaseAuth.getInstance();
+        initView();
 
+    }
+
+    private void initView() {
         editTextEmail = findViewById(R.id.email);
-
-        progressBar = findViewById(R.id.progress_bar);
-
         textViewSubmit = findViewById(R.id.submit);
         textViewSubmit.setOnClickListener(this);
-        textViewLogin = findViewById((R.id.login));
+        textViewLogin = findViewById(R.id.login);
         textViewLogin.setOnClickListener(this);
-
+        progressBar = findViewById(R.id.progress_bar);
     }
 
     @Override

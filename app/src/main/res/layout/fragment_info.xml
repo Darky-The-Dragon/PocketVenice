@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/profile_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -45,14 +44,25 @@
             android:background="@color/white"
             android:padding="15dp">
 
+            <TextView
+                android:id="@+id/credits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="@string/credits"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
             <View
                 android:id="@+id/divider_member_0"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_below="@id/credits"
                 android:background="#000" />
             <!--Member 1 -->
             <ImageView
-                android:id="@+id/image_member_1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_0"
@@ -80,7 +90,6 @@
 
             <!--Member 2 -->
             <ImageView
-                android:id="@+id/image_member_2"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_1"
@@ -108,7 +117,6 @@
 
             <!--Member 3 -->
             <ImageView
-                android:id="@+id/image_member_3"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_2"
@@ -136,7 +144,6 @@
 
             <!--Member 4 -->
             <ImageView
-                android:id="@+id/image_member_4"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_3"
@@ -164,7 +171,6 @@
 
             <!--Member 5 -->
             <ImageView
-                android:id="@+id/image_member_5"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_4"
@@ -183,7 +189,6 @@
                 android:textSize="18sp" />
 
             <View
-                android:id="@+id/divider_member_5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/show_member_5"

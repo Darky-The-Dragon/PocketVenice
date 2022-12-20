@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/profile_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -132,7 +131,6 @@
 
             <!--phone -->
             <ImageView
-                android:id="@+id/phone"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@+id/divider_email"
@@ -152,7 +150,6 @@
                 android:textSize="18sp" />
 
             <View
-                android:id="@+id/divider_phone"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/show_phone"

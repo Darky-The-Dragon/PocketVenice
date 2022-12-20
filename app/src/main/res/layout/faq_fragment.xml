@@ -6,7 +6,6 @@
     tools:context=".LateralNavbar.FAQ">
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,7 +25,7 @@
                 android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
-                android:text="A cosa serve l'app?"
+                android:text="@string/domanda_app"
                 android:textColor="@color/red"
                 android:textSize="18sp" />
 
@@ -37,7 +36,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Questa app ti aiuta ad esplorare e visitare Venezia: ti tiene aggiornato su notizie ed eventi di Venezia e ti illustra i principali luoghi da visitare, permettendo di visualizzare la mappa."
+                android:text="@string/risposta_app"
                 android:textColor="#000"
                 android:textSize="15sp" />
 
@@ -57,7 +56,7 @@
                 android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
-                android:text="Su quali dispositivi mobili è possibile utilizzare l'app?"
+                android:text="@string/domanda_compatibilita"
                 android:textColor="@color/red"
                 android:textSize="18sp" />
 
@@ -68,39 +67,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="23dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="L'app è compatibile con la maggior parte dei dispositivi mobili moderni Android a partire dalla versione 10."
-                android:textColor="#000"
-                android:textSize="15sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="20dp"
-                android:background="#c3b377" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/golden_border_rounded_corner"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:text="Non ricevo e-mail dopo la registrazione oppure selezionando 'Password dimenticata'. Qual è il motivo?"
-                android:textColor="@color/red"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="372dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="23dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="A volte l'invio può richiedere del tempo. Verificare anche nella cartella Spam o Posta indesiderata della casella di posta elettronica."
+                android:text="@string/risposta_compatibilita"
                 android:textColor="#000"
                 android:textSize="15sp" />
 
@@ -121,7 +88,7 @@
                 android:background="@drawable/golden_border_rounded_corner"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
-                android:text="Per quale scopo è necessaria l'autorizzazione della posizione?"
+                android:text="@string/domanda_email"
                 android:textColor="@color/red"
                 android:textSize="18sp" />
 
@@ -132,8 +99,39 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="23dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="La posizione è necessaria per poter visualizzare sulla mappa dove ci si trova e comprendere meglio la distanza dai punti di interesse.
-    "
+                android:text="@string/risposta_email"
+                android:textColor="#000"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="20dp"
+                android:background="#c3b377" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/golden_border_rounded_corner"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="@string/domanda_autorizzazione"
+                android:textColor="@color/red"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="372dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="23dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/risposta_autorizzazione"
                 android:textColor="#000"
                 android:textSize="15sp" />
         </LinearLayout>

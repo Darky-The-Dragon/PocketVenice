@@ -34,7 +34,6 @@
                 tools:ignore="ContentDescription,UnusedAttribute" />
 
             <RelativeLayout
-                android:id="@+id/headerContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -51,7 +50,6 @@
                     tools:ignore="ContentDescription" />
 
                 <ImageView
-                    android:id="@+id/img2"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_alignBottom="@id/img"

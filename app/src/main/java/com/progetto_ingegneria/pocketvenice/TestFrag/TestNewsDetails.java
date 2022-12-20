@@ -22,6 +22,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Models.NewsHeadlines;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.News.Utility.DateTimeFormatting;
 import com.progetto_ingegneria.pocketvenice.R;
@@ -39,7 +41,9 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
     protected AppBarLayout appBarLayout;
     protected Toolbar toolbar;
     protected String mUrl, mImg, mTitle, mDate, mSource, mAuthor;
-    private NewsHeadlines mHeadlines;
+    protected NewsHeadlines mHeadlines;
+    protected FirebaseUser user;
+    protected boolean isLogged = false;
 
     public TestNewsDetails() {
         // Required empty public constructor
@@ -71,8 +75,9 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
         //La chiamata a questo metodo provoca NullPointerException
         //toolbarSetup();
 
-
+        checkAuth();
         initView();
+        //toolbarSetup();
         loadData();
         setData();
         initWebView(mUrl);
@@ -131,6 +136,13 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
         title = view.findViewById(R.id.title);
     }
 
+    private void checkAuth() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            isLogged = true;
+        }
+    }
+
     private void toolbarSetup() {
 
         toolbar = view.findViewById(R.id.toolbar);
@@ -142,7 +154,6 @@ public class TestNewsDetails extends Fragment implements AppBarLayout.OnOffsetCh
 
         final CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("");
-
 
     }
 

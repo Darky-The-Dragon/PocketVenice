@@ -19,7 +19,6 @@
             android:background="@drawable/red_gold_bg">
 
             <ImageView
-                android:id="@+id/logo"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
@@ -29,56 +28,45 @@
 
         </FrameLayout>
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="@string/login"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="65dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="@string/login"
-                        android:textColor="#000000"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ProgressBar
-                        android:id="@+id/progress_bar"
-                        style="?android:attr/progressBarStyleLarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="MissingConstraints" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="65dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="65dp"
-                    android:background="@drawable/golden_border_rounded_corner">
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/golden_border_rounded_corner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <!-- Fields for input: -->
                     <EditText
@@ -94,11 +82,12 @@
                         android:maxLines="1"
                         android:paddingStart="17dp"
                         android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
                         android:paddingBottom="12dp"
                         android:textColorHint="#b31a34"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="12sp"
-                        tools:ignore="RtlSymmetry" />
+                        tools:ignore="RtlSymmetry,TextContrastCheck" />
 
                     <!--ICONS-->
                     <ImageView
@@ -108,24 +97,41 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="17dp"
                         android:contentDescription="@string/desc_email"
-                        android:src="@drawable/email" />
+                        android:src="@drawable/email"
+                        tools:ignore="ImageContrastCheck" />
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="65dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="65dp"
-                    android:background="@drawable/golden_border_rounded_corner">
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/golden_border_rounded_corner"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
                     <!-- Fields for input: -->
+                    <ImageView
+                        android:id="@id/icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="17dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/desc_pass"
+                        android:src="@drawable/password"
+                        tools:ignore="ImageContrastCheck" />
+
                     <EditText
                         android:id="@+id/password"
-                        android:layout_width="match_parent"
+                        android:layout_width="205dp"
                         android:layout_height="match_parent"
-                        android:layout_toEndOf="@+id/icon"
+                        android:layout_weight="1"
                         android:autofillHints="password"
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/poppins_regular"
@@ -134,6 +140,7 @@
                         android:maxLines="1"
                         android:paddingStart="17dp"
                         android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
                         android:paddingBottom="12dp"
                         android:textColorHint="#b31a34"
                         android:textCursorDrawable="@drawable/cursor_color"
@@ -141,25 +148,27 @@
                         tools:ignore="RtlSymmetry" />
 
                     <!--ICONS-->
-                    <ImageView
-                        android:id="@id/icon"
-                        android:layout_width="15dp"
-                        android:layout_height="10dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="17dp"
-                        android:contentDescription="@string/desc_pass"
-                        android:src="@drawable/password" />
 
-                </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/show_hide_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="17dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_show_hide_password_24"
+                        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/login"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="65dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="65dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
                     android:background="@drawable/red_fill__rounded_color"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
@@ -167,9 +176,12 @@
                     android:paddingBottom="14dp"
                     android:text="@string/login"
                     android:textColor="#c3b377"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
         <TextView
@@ -193,7 +205,6 @@
 
 
             <TextView
-                android:id='@+id/question'
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -270,5 +281,25 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

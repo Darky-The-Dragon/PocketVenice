@@ -1,10 +1,14 @@
 package com.progetto_ingegneria.pocketvenice.Auth;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,8 +22,9 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    protected TextView textViewLogin, textViewRegister, textViewForgotPassword;
+    protected TextView textViewLogin, textViewRegister, textViewGuest, textViewForgotPassword;
     protected EditText editTextUsername, editTextPassword;
+    protected ImageView imageViewShowHidePassword;
     protected ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
@@ -30,34 +35,68 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
-        editTextUsername = findViewById(R.id.username);
-        editTextPassword = findViewById(R.id.password);
+        initView();
+        setGuide();
+        checkLogin();
 
-        progressBar = findViewById(R.id.progress_bar);
+    }
 
-        textViewLogin = findViewById(R.id.login);
-        textViewLogin.setOnClickListener(this);
-        textViewRegister = findViewById(R.id.register);
-        textViewRegister.setOnClickListener(this);
-        textViewForgotPassword = findViewById(R.id.forgotPassword);
-        textViewForgotPassword.setOnClickListener(this);
+    private void setGuide() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
+        if (!pref.contains("isIntroOpened")) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("isIntroOpened", true);
+            editor.apply();
+        }
+    }
 
+    private void checkLogin() {
         if (mAuth.getCurrentUser() != null) {
             progressBar.setVisibility(View.VISIBLE);
             emailVerification();
         }
+    }
 
+    private void initView() {
+        editTextUsername = findViewById(R.id.username);
+        editTextPassword = findViewById(R.id.password);
+        progressBar = findViewById(R.id.progress_bar);
+        textViewLogin = findViewById(R.id.login);
+        textViewLogin.setOnClickListener(this);
+        textViewRegister = findViewById(R.id.register);
+        textViewRegister.setOnClickListener(this);
+        textViewGuest = findViewById(R.id.guest);
+        textViewGuest.setOnClickListener(this);
+        textViewForgotPassword = findViewById(R.id.forgotPassword);
+        textViewForgotPassword.setOnClickListener(this);
+        imageViewShowHidePassword = findViewById(R.id.show_hide_password);
+        imageViewShowHidePassword.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.login) {
+        if (v.getId() == R.id.show_hide_password) {
+            showHidePassword();
+        } else if (v.getId() == R.id.login) {
             authenticateUser();
         } else if (v.getId() == R.id.register) {
             startActivity(new Intent(this, RegisterActivity.class));
+        } else if (v.getId() == R.id.guest) {
+            showMainActivity();
         } else if (v.getId() == R.id.forgotPassword) {
             startActivity(new Intent(this, ResetPasswordActivity.class));
+        }
+    }
+
+    private void showHidePassword() {
+
+        if (editTextPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+            //Show Password
+            editTextPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            //Hide Password
+            editTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
     }
 
@@ -110,6 +149,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void showMainActivity() {
         progressBar.setVisibility(View.GONE);
         startActivity(new Intent(this, MainActivity.class));
-        finish();
     }
 }

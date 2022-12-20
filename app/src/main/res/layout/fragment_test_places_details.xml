@@ -74,20 +74,19 @@
         app:layout_constraintTop_toTopOf="@+id/item_place_district_name" />
 
     <ImageView
-        android:id="@+id/item_place_favicon"
+        android:id="@+id/item_place_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="@+id/item_place_container_img"
         app:layout_constraintTop_toTopOf="@+id/item_place_container_img"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
-        app:tint="#C3C0C0"
+        app:srcCompat="@drawable/ic_share"
+        app:tint="#c3b377"
         tools:ignore="ContentDescription" />
 
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="409dp"
         android:layout_height="584dp"
         android:layout_marginTop="24dp"

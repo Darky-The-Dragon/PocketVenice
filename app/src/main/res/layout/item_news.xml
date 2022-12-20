@@ -27,7 +27,6 @@
             tools:ignore="ContentDescription,UnusedAttribute" />
 
         <ImageView
-            android:id="@+id/shadow_bottom"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_alignBottom="@+id/img_headline"

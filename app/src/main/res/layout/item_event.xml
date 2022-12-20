@@ -93,7 +93,6 @@
         app:layout_constraintTop_toTopOf="@+id/hyphen" />
 
     <ImageView
-        android:id="@+id/item_event_favicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -101,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
         app:layout_constraintTop_toTopOf="@+id/item_event_container_img"
         app:srcCompat="@drawable/ic_baseline_favorite_border_24"
-        app:tint="#C3C0C0"
+        app:tint="#c3b377"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

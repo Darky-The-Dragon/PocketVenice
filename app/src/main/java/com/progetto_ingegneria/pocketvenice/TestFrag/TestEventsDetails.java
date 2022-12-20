@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -18,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Model.Event;
 import com.progetto_ingegneria.pocketvenice.R;
 
@@ -35,16 +38,14 @@ public class TestEventsDetails extends Fragment implements View.OnClickListener 
     protected TextView title, address, fromDate, toDate, fromHour, toHour, description, addEventBtn;
     protected ImageView imgEvent, shareBtn;
     protected String mTitle, mAddress, mFromDate, mToDate, mFromHour, mToHour, mDescription;
-    private Event event;
-
-
-    // TODO: Rename and change types of parameters
+    protected FirebaseUser user;
+    protected boolean isLogged = false;
+    protected Event event;
 
     public TestEventsDetails() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static TestEventsDetails newInstance(Event event) {
         TestEventsDetails fragment = new TestEventsDetails();
         Bundle args = new Bundle(1);
@@ -65,8 +66,9 @@ public class TestEventsDetails extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_test_events_deatails, container, false);
+        view = inflater.inflate(R.layout.fragment_test_events_details, container, false);
 
+        checkAuth();
         initView();
         loadEventData();
 
@@ -111,23 +113,38 @@ public class TestEventsDetails extends Fragment implements View.OnClickListener 
         addEventBtn.setOnClickListener(this);
     }
 
+    private void checkAuth() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            isLogged = true;
+        }
+    }
+
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.details_event_addEvent) {
 
-            getCalendarPermission();
+        if (isLogged) {
 
-        } else if (v.getId() == R.id.item_event_share) {
-            try {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("text/plan");
-                i.putExtra(Intent.EXTRA_SUBJECT, mTitle);
-                String body = mTitle + "\n" + mAddress + "\n" + mFromDate + " " + mToDate + "\n" + "\n" + "Shared from PocketVenice App" + "\n";
-                i.putExtra(Intent.EXTRA_TEXT, body);
-                startActivity(Intent.createChooser(i, "Share with: "));
-            } catch (Exception e) {
-                //Toast.makeText(this, "Something went wrong. Cannot share at this moment. Try again", Toast.LENGTH_SHORT).show();
+            if (v.getId() == R.id.details_event_addEvent) {
+
+                getCalendarPermission();
+
+            } else if (v.getId() == R.id.item_event_share) {
+
+                try {
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("text/plan");
+                    i.putExtra(Intent.EXTRA_SUBJECT, mTitle);
+                    String body = mTitle + "\n" + mAddress + "\n" + mFromDate + " " + mToDate + "\n" + "\n" + "Shared from PocketVenice App" + "\n";
+                    i.putExtra(Intent.EXTRA_TEXT, body);
+                    startActivity(Intent.createChooser(i, "Share with: "));
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), "Something went wrong. Cannot share at this moment. Try again", Toast.LENGTH_SHORT).show();
+                }
             }
+
+        } else {
+            Toast.makeText(getActivity(), "You have to be logged to share this event", Toast.LENGTH_SHORT).show();
         }
     }
 

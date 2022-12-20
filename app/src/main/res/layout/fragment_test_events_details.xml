@@ -131,7 +131,7 @@
         app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
         app:layout_constraintTop_toTopOf="@+id/item_event_container_img"
         app:srcCompat="@drawable/ic_share"
-        app:tint="#C3C0C0"
+        app:tint="#c3b377"
         tools:ignore="ContentDescription" />
 
     <ScrollView
