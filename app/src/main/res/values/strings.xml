@@ -87,5 +87,15 @@
     <string name="risposta_compatibilita">L\'app è compatibile con la maggior parte dei dispositivi mobili moderni Android a partire dalla versione 10.</string>
     <string name="domanda_app">A cosa serve l\'app?</string>
     <string name="risposta_app">Questa app ti aiuta ad esplorare e visitare Venezia: ti tiene aggiornato su notizie ed eventi di Venezia e ti illustra i principali luoghi da visitare, permettendo di visualizzare la mappa.</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="share">Share</string>
+    <string name="open_browser">Open in browser</string>
+    <string name="cancel">Cancel</string>
+    <string name="default_password">******</string>
+    <string name="Nicolo">Bregantin Nicolò</string>
+    <string name="Leonardo">Bilardi Leonardo</string>
+    <string name="Beatrice">Spagnolo Beatrice</string>
+    <string name="Maisha">Bhuiyan Maisha Fahmida</string>
+    <string name="Darky">Zotea Dumitru</string>
 
 </resources>

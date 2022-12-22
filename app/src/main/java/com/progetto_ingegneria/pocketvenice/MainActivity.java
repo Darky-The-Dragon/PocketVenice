@@ -29,7 +29,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
-import com.progetto_ingegneria.pocketvenice.Auth.User;
 import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
@@ -38,6 +37,7 @@ import com.progetto_ingegneria.pocketvenice.TestFrag.TestEvents;
 import com.progetto_ingegneria.pocketvenice.TestFrag.TestMaps;
 import com.progetto_ingegneria.pocketvenice.TestFrag.TestNews;
 import com.progetto_ingegneria.pocketvenice.TestFrag.TestPlaces;
+import com.progetto_ingegneria.pocketvenice.User.User;
 
 import java.util.List;
 

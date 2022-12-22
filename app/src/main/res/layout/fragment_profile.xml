@@ -39,7 +39,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:background="@color/white"
             android:padding="15dp">
 
@@ -150,11 +152,32 @@
                 android:textSize="18sp" />
 
             <View
+                android:id="@+id/bottom"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/show_phone"
                 android:layout_marginTop="20dp"
                 android:background="#000" />
+
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bottom"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/red_fill__rounded_color"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="@string/edit_profile"
+                android:textColor="#c3b377"
+                android:textSize="17sp" />
 
         </RelativeLayout>
     </LinearLayout>

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.progetto_ingegneria.pocketvenice.R;
+import com.progetto_ingegneria.pocketvenice.User.User;
 
 import java.util.Objects;
 
@@ -106,8 +107,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             editTextMobile.setError("A phone number is needed for verification!");
             editTextMobile.requestFocus();
         } else if (!Patterns.PHONE.matcher(mobile).matches()) {
-            editTextEmail.setError("Please provide a valid phone number!");
-            editTextEmail.requestFocus();
+            editTextMobile.setError("Please provide a valid phone number!");
+            editTextMobile.requestFocus();
         } else if (email.isEmpty()) {
             editTextEmail.setError("An email is required!");
             editTextEmail.requestFocus();

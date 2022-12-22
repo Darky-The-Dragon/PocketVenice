@@ -112,7 +112,7 @@ public class TestPlacesDetails extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         if (isLogged) {
 
-            if (v.getId() == R.id.item_event_share) {
+            if (v.getId() == R.id.item_place_share) {
 
                 try {
                     Intent i = new Intent(Intent.ACTION_SEND);

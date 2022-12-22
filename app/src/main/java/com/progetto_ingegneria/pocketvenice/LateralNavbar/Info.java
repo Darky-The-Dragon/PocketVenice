@@ -32,13 +32,12 @@ public class Info extends Fragment {
         member4 = view.findViewById(R.id.show_member_4);
         member5 = view.findViewById(R.id.show_member_5);
 
-        appName.setText("Pocket Venice");
-        member3.setText("Bregantin Nicolò");
-        member2.setText("Bilardi Leonardo");
-        member4.setText("Spagnolo Beatrice");
-        member1.setText("Bhuiyan Maisha Fahmida");
-        member5.setText("Zotea Dumitru");
-
+        appName.setText(R.string.app_name);
+        member3.setText(R.string.Nicolo);
+        member2.setText(R.string.Leonardo);
+        member4.setText(R.string.Beatrice);
+        member1.setText(R.string.Maisha);
+        member5.setText(R.string.Darky);
 
         // Inflate the layout for this fragment
         return view;

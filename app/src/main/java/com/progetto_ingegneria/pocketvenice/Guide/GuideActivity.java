@@ -92,20 +92,6 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         btnUnloadAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_unload_anim);
     }
 
-    /*
-        private boolean restorePrefData() {
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
-            return pref.getBoolean("isIntroOpened", false);
-
-        }
-
-        private void savePefesData() {
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putBoolean("isIntroOpened", true);
-            editor.apply();
-        }
-    */
     private void loadLastScreen() {
         btnNext.setVisibility(View.INVISIBLE);
         btnGetStarted.setVisibility(View.VISIBLE);
