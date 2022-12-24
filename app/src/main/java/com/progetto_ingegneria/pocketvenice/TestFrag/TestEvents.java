@@ -97,21 +97,21 @@ public class TestEvents extends Fragment implements EventClickListener {
     public void onEventItemClick(EventViewHolder holder, int pos) {
 
         TestEventsDetails details = TestEventsDetails.newInstance(eventsData.get(pos));
-        details.setSharedElementEnterTransition(new TestEventsDetails());
-        details.setEnterTransition(new Fade());
-        setExitTransition(new Fade());
-        details.setSharedElementReturnTransition(new TestEventsDetails());
+        //details.setSharedElementEnterTransition(new TestEventsDetails());
+        //details.setEnterTransition(new Fade());
+        //setExitTransition(new Fade());
+        //details.setSharedElementReturnTransition(new TestEventsDetails());
 
-        Toast.makeText(getContext(), "abcd", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "abcd", Toast.LENGTH_SHORT).show();
 
         getParentFragmentManager().beginTransaction().
-                addSharedElement(holder.imgContainer, holder.imgContainer.getTransitionName()).
-                addSharedElement(holder.imgEvent, holder.imgEvent.getTransitionName()).
-                addSharedElement(holder.title, holder.title.getTransitionName()).
-                addSharedElement(holder.address, holder.address.getTransitionName()).
-                addSharedElement(holder.fromDate, holder.fromDate.getTransitionName()).
-                addSharedElement(holder.hyphen, holder.hyphen.getTransitionName()).
-                addSharedElement(holder.toDate, holder.toDate.getTransitionName()).
+                //addSharedElement(holder.imgContainer, holder.imgContainer.getTransitionName()).
+                //addSharedElement(holder.imgEvent, holder.imgEvent.getTransitionName()).
+                //addSharedElement(holder.title, holder.title.getTransitionName()).
+                //addSharedElement(holder.address, holder.address.getTransitionName()).
+                //addSharedElement(holder.fromDate, holder.fromDate.getTransitionName()).
+                //addSharedElement(holder.hyphen, holder.hyphen.getTransitionName()).
+                //addSharedElement(holder.toDate, holder.toDate.getTransitionName()).
                 replace(R.id.main_frame_layout, details).
                 addToBackStack(null).
                 commit();

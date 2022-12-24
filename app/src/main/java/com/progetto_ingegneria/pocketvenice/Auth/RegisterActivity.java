@@ -43,7 +43,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         textViewRegister.setOnClickListener(this);
         textViewLogin = findViewById(R.id.login);
         textViewLogin.setOnClickListener(this);
-
         editTextFullName = findViewById(R.id.full_name);
         editTextAge = findViewById(R.id.age);
         editTextMobile = findViewById(R.id.mobile);
@@ -54,8 +53,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         imageViewShowHidePassword.setOnClickListener(this);
         imageViewShowHideConfirmPassword = findViewById(R.id.show_hide_confirm_password);
         imageViewShowHideConfirmPassword.setOnClickListener(this);
-
         progressBar = findViewById(R.id.progress_bar);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -95,8 +94,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             editTextFullName.setError("Full Name is required!");
             editTextFullName.requestFocus();
         } else if (fullName.length() < 3) {
-            editTextPassword.setError("Your full name must be at least 3 characters long!");
-            editTextPassword.requestFocus();
+            editTextFullName.setError("Your full name must be at least 3 characters long!");
+            editTextFullName.requestFocus();
         } else if (age.isEmpty()) {
             editTextAge.setError("Age is required!");
             editTextAge.requestFocus();
