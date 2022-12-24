@@ -21,6 +21,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
 import com.progetto_ingegneria.pocketvenice.BottomNavbarActivities.Events.Model.Event;
 import com.progetto_ingegneria.pocketvenice.R;
 
@@ -177,12 +178,11 @@ public class TestEventsDetails extends Fragment implements View.OnClickListener 
         intent.setData(CalendarContract.Events.CONTENT_URI);
         intent.putExtra(CalendarContract.Events.CALENDAR_ID, 1);
         intent.putExtra(CalendarContract.Events.TITLE, mTitle);
+        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startMillis);
+        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endMillis);
         intent.putExtra(CalendarContract.Events.DESCRIPTION, "Time" + mFromHour + " " + mToHour);
-        intent.putExtra(CalendarContract.Events.DTSTART, startMillis);
-        intent.putExtra(CalendarContract.Events.DTEND, endMillis);
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION, mAddress);
         intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "Europe/Rome");
-
         startActivity(intent);
     }
 }

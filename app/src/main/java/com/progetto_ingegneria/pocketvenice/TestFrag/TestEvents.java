@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -97,24 +98,32 @@ public class TestEvents extends Fragment implements EventClickListener {
     public void onEventItemClick(EventViewHolder holder, int pos) {
 
         TestEventsDetails details = TestEventsDetails.newInstance(eventsData.get(pos));
-        //details.setSharedElementEnterTransition(new TestEventsDetails());
-        //details.setEnterTransition(new Fade());
-        //setExitTransition(new Fade());
-        //details.setSharedElementReturnTransition(new TestEventsDetails());
 
-        //Toast.makeText(getContext(), "abcd", Toast.LENGTH_SHORT).show();
+        details.setSharedElementEnterTransition(new Transition());
+        details.setEnterTransition(new Fade());
+        details.setSharedElementReturnTransition(new Transition());
+        details.setExitTransition(new Fade());
+
+        ViewCompat.setTransitionName(holder.imgContainer, "eventContainerTN");
+        ViewCompat.setTransitionName(holder.imgEvent, "eventTN");
+        ViewCompat.setTransitionName(holder.title, "eventTitleTN");
+        ViewCompat.setTransitionName(holder.address, "eventAddressTN");
+        ViewCompat.setTransitionName(holder.fromDate, "eventFromDateTN");
+        ViewCompat.setTransitionName(holder.hyphen, "eventHyphenTN");
+        ViewCompat.setTransitionName(holder.toDate, "eventToDateTN");
 
         getParentFragmentManager().beginTransaction().
-                //addSharedElement(holder.imgContainer, holder.imgContainer.getTransitionName()).
-                //addSharedElement(holder.imgEvent, holder.imgEvent.getTransitionName()).
-                //addSharedElement(holder.title, holder.title.getTransitionName()).
-                //addSharedElement(holder.address, holder.address.getTransitionName()).
-                //addSharedElement(holder.fromDate, holder.fromDate.getTransitionName()).
-                //addSharedElement(holder.hyphen, holder.hyphen.getTransitionName()).
-                //addSharedElement(holder.toDate, holder.toDate.getTransitionName()).
+                addSharedElement(holder.imgContainer, "eventContainerTN").
+                addSharedElement(holder.imgEvent, "eventTN").
+                addSharedElement(holder.title, "eventTitleTN").
+                addSharedElement(holder.address, "eventAddressTN").
+                addSharedElement(holder.fromDate, "eventFromDateTN").
+                addSharedElement(holder.hyphen, "eventHyphenTN").
+                addSharedElement(holder.toDate, "eventToDateTN").
                 replace(R.id.main_frame_layout, details).
                 addToBackStack(null).
                 commit();
 
     }
+
 }

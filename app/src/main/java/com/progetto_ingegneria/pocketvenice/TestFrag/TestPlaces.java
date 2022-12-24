@@ -2,6 +2,7 @@ package com.progetto_ingegneria.pocketvenice.TestFrag;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -106,20 +108,30 @@ public class TestPlaces extends Fragment implements PlaceCallback {
                                  TextView score,
                                  RatingBar ratingBar) {
 
-        Fragment testPlacesDeatails = TestPlacesDetails.newInstance(placesData.get(pos));
-        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        Fragment placesDeatails = TestPlacesDetails.newInstance(placesData.get(pos));
 
-        Pair<View, String> p1 = Pair.create((View) imgContainer, "placeContainerTN");
-        Pair<View, String> p2 = Pair.create((View) imgPlace, "placeTN");
-        Pair<View, String> p3 = Pair.create((View) title, "placeTitleTN");
-        Pair<View, String> p4 = Pair.create((View) address, "placeAddressTN");
-        Pair<View, String> p5 = Pair.create((View) score, "placeScoreTN");
-        Pair<View, String> p6 = Pair.create((View) ratingBar, "placeRateTN");
+        placesDeatails.setSharedElementEnterTransition(new Transition());
+        placesDeatails.setEnterTransition(new Fade());
+        placesDeatails.setSharedElementReturnTransition(new Transition());
+        placesDeatails.setExitTransition(new Fade());
 
-        ActivityOptionsCompat optionsCompat =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), p1, p2, p3, p4, p5, p6);
+        ViewCompat.setTransitionName(imgContainer, "placeContainerTN");
+        ViewCompat.setTransitionName(imgPlace, "placeTN");
+        ViewCompat.setTransitionName(title, "placeTitleTN");
+        ViewCompat.setTransitionName(address, "placeAddressTN");
+        ViewCompat.setTransitionName(score, "placeScoreTN");
+        ViewCompat.setTransitionName(ratingBar, "placeRateTN");
 
-        ft.replace(R.id.main_frame_layout, testPlacesDeatails).addToBackStack(null).commit();
+        getParentFragmentManager().beginTransaction()
+                .addSharedElement(imgContainer, "placeContainerTN")
+                .addSharedElement(imgPlace, "placeTN")
+                .addSharedElement(title, "placeTitleTN")
+                .addSharedElement(address, "placeAddressTN")
+                .addSharedElement(score, "placeScoreTN")
+                .addSharedElement(ratingBar, "placeRateTN")
+                .replace(R.id.main_frame_layout, placesDeatails)
+                .addToBackStack(null)
+                .commit();
 
     }
 }
