@@ -5,6 +5,7 @@
     <!-- TEXT FIELDS -->
     <string name="full_name">Full name</string>
     <string name="age">Age</string>
+    <string name="date_format">dd/MM/yyyy</string>
     <string name="email">Email</string>
     <string name="mobile">Mobile</string>
     <string name="password">Password</string>
