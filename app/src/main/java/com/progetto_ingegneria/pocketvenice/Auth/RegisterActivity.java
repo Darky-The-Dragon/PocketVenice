@@ -1,5 +1,6 @@
 package com.progetto_ingegneria.pocketvenice.Auth;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -19,14 +20,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.progetto_ingegneria.pocketvenice.R;
 import com.progetto_ingegneria.pocketvenice.User.User;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected ImageView imageViewShowHidePassword, imageViewShowHideConfirmPassword;
-    protected TextView textViewRegister, textViewLogin;
-    protected EditText editTextFullName, editTextAge, editTextEmail, editTextMobile, editTextPassword, editTextConfirmPassword;
+    protected TextView textViewRegister, textViewLogin, age_tv;
+    protected EditText editTextFullName, editTextEmail, editTextMobile, editTextPassword, editTextConfirmPassword;
     protected ProgressBar progressBar;
     protected FirebaseAuth mAuth;
     protected String fullName, age, email, mobile, password, confirmPassword;
@@ -44,12 +46,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         textViewLogin = findViewById(R.id.login);
         textViewLogin.setOnClickListener(this);
         editTextFullName = findViewById(R.id.full_name);
-        editTextAge = findViewById(R.id.age);
+        age_tv = findViewById(R.id.age);
         editTextMobile = findViewById(R.id.mobile);
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         editTextConfirmPassword = findViewById(R.id.confirm_password);
         imageViewShowHidePassword = findViewById(R.id.show_hide_password);
+
+        age_tv.setOnClickListener(this);
         imageViewShowHidePassword.setOnClickListener(this);
         imageViewShowHideConfirmPassword = findViewById(R.id.show_hide_confirm_password);
         imageViewShowHideConfirmPassword.setOnClickListener(this);
@@ -68,6 +72,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             startActivity(new Intent(this, LoginActivity.class));
         } else if (v.getId() == R.id.register) {
             registerUser();
+        }else if(v.getId() == R.id.age){
+
+            final Calendar calendar = Calendar.getInstance();
+            final int year = calendar.get(Calendar.YEAR);
+            final int month = calendar.get(Calendar.MONTH);
+            final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    RegisterActivity.this,
+                    (view, year1, month1, day1) -> {
+                        month1++;
+                        String date;
+                        date = day1 + "/" + month1 + "/" + year1;
+                        age_tv.setText(date);
+                    }, year, month, day);
+            datePickerDialog.show();
+            age_tv.setError(null);
         }
     }
 
@@ -84,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void registerUser() {
         fullName = editTextFullName.getText().toString().trim();
-        age = editTextAge.getText().toString().trim();
+        age = age_tv.getText().toString().trim();
         email = editTextEmail.getText().toString().toLowerCase().trim();
         mobile = editTextMobile.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
@@ -96,12 +117,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         } else if (fullName.length() < 3) {
             editTextFullName.setError("Your full name must be at least 3 characters long!");
             editTextFullName.requestFocus();
-        } else if (age.isEmpty()) {
-            editTextAge.setError("Age is required!");
-            editTextAge.requestFocus();
-        } else if (Integer.parseInt(age) < 14) {
-            editTextAge.setError("You must be at least 14 year old to register!");
-            editTextAge.requestFocus();
+        } else if (age.equals("dd/MM/yyyy")) {
+            age_tv.setError("Age is required!");
+            age_tv.requestFocus();
+        } else if (check_Age() < 14) {
+            age_tv.setError("You must be at least 14 year old to register!");
+            age_tv.requestFocus();
         } else if (mobile.isEmpty()) {
             editTextMobile.setError("A phone number is needed for verification!");
             editTextMobile.requestFocus();
@@ -133,6 +154,27 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             progressBar.setVisibility(View.VISIBLE);
             createNewUser();
         }
+    }
+
+    private int check_Age() {
+
+        String[] start_string = age.split("/");
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH)+1;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        //0 giorni, 1 mesi, 2 anni
+
+        int diff = year - Integer.parseInt(start_string[2]);
+
+
+        if(diff != 0 &&month - Integer.parseInt(start_string[1]) == 0
+        && day - Integer.parseInt(start_string[0]) < 0){
+            diff--;
+        }
+        return diff;
+
     }
 
     private void createNewUser() {
