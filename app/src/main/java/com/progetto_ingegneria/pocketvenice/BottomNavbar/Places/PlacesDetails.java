@@ -3,6 +3,8 @@ package com.progetto_ingegneria.pocketvenice.BottomNavbar.Places;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,8 +17,10 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.Maps.Maps;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.Model.Place;
 import com.progetto_ingegneria.pocketvenice.R;
 
@@ -25,7 +29,7 @@ public class PlacesDetails extends Fragment implements View.OnClickListener {
 
 
     private static final String DETAILS = "param1";
-    protected TextView title, district, address, description;
+    protected TextView title, district, address, description, search;
     protected ImageView imgPlace, shareBtn;
     protected RatingBar ratingBar;
     protected String mTitle, mAddress, mDistrict, mDescription;
@@ -97,7 +101,9 @@ public class PlacesDetails extends Fragment implements View.OnClickListener {
         district = view.findViewById(R.id.item_place_district);
         description = view.findViewById(R.id.details_places_description);
         ratingBar = view.findViewById(R.id.item_place_ratingbar);
+        search = view.findViewById(R.id.details_place_search);
         shareBtn = view.findViewById(R.id.item_place_share);
+        search.setOnClickListener(this);
         shareBtn.setOnClickListener(this);
     }
 
@@ -128,6 +134,20 @@ public class PlacesDetails extends Fragment implements View.OnClickListener {
 
         } else {
             Toast.makeText(getActivity(), "You have to be logged to share this place", Toast.LENGTH_SHORT).show();
+        }
+        if(v.getId() == R.id.details_place_search){
+            Fragment map = Maps.newInstance(mAddress);
+            BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView);
+            TextView textTitle = requireActivity().findViewById(R.id.menu_title);
+            Menu menu = bottomNavigationView.getMenu();
+            MenuItem menuItem = menu.getItem(3);
+
+            textTitle.setText(R.string.map);
+            menuItem.setChecked(true);
+            getParentFragmentManager().beginTransaction().
+                    replace(R.id.main_frame_layout, map).
+                    addToBackStack(null).
+                    commit();
         }
     }
 }

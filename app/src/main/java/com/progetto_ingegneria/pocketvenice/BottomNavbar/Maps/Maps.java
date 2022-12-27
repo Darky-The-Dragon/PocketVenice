@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -23,11 +24,15 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.EventsDetails;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Model.Event;
 import com.progetto_ingegneria.pocketvenice.R;
 
 public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCallback {
 
     protected static final String TAG = "Maps";
+    private static final String DETAILS = "param1";
+    private String address;
     protected static final int DEFAULT_ZOOM = 15;
     protected static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     protected static final String KEY_CAMERA_POSITION = "camera_position";      // Keys for storing activity state.
@@ -40,6 +45,24 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
     protected boolean locationPermissionGranted;
     protected Location lastKnownLocation;           // The geographical location where the device is currently located. That is, the last-known location retrieved by the Fused Location Provider.
     protected View view;
+
+
+    public static Maps newInstance(String address) {
+        Maps fragment = new Maps();
+        Bundle args = new Bundle(1);
+        args.putString(DETAILS, address);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+           address = getArguments().getString(DETAILS);
+        }
+    }
+
 
     public Maps() {
         // Required empty public constructor
@@ -54,6 +77,8 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
 
         initView();
         getLocationPermission(savedInstanceState);
+
+        Toast.makeText(getContext(),address, Toast.LENGTH_SHORT).show();
 
         return view;
     }
