@@ -109,11 +109,11 @@
                 <!-- Fields for input: -->
                 <TextView
                     android:id="@+id/age"
+                    style="@android:style/Widget.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toEndOf="@+id/age_icon"
                     android:autofillHints="Age"
-                    android:text="@string/date_format"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/poppins_regular"
                     android:maxLines="1"
@@ -121,8 +121,8 @@
                     android:paddingTop="12dp"
                     android:paddingEnd="12dp"
                     android:paddingBottom="12dp"
+                    android:text="@string/date_format"
                     android:textColor="#b31a34"
-                    style="@android:style/Widget.EditText"
                     android:textCursorDrawable="@drawable/cursor_color"
                     android:textSize="12sp"
                     tools:ignore="RtlSymmetry" />

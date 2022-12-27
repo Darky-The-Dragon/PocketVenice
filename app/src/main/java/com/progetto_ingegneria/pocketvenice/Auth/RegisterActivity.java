@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             startActivity(new Intent(this, LoginActivity.class));
         } else if (v.getId() == R.id.register) {
             registerUser();
-        }else if(v.getId() == R.id.age){
+        } else if (v.getId() == R.id.age) {
 
             final Calendar calendar = Calendar.getInstance();
             final int year = calendar.get(Calendar.YEAR);
@@ -161,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String[] start_string = age.split("/");
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH)+1;
+        int month = c.get(Calendar.MONTH) + 1;
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         //0 giorni, 1 mesi, 2 anni
@@ -169,8 +169,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         int diff = year - Integer.parseInt(start_string[2]);
 
 
-        if(diff != 0 &&month - Integer.parseInt(start_string[1]) == 0
-        && day - Integer.parseInt(start_string[0]) < 0){
+        if (diff != 0 && month - Integer.parseInt(start_string[1]) == 0
+                && day - Integer.parseInt(start_string[0]) < 0) {
             diff--;
         }
         return diff;

@@ -58,14 +58,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Auth.OTP"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Auth.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize">

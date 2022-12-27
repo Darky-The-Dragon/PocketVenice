@@ -29,14 +29,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Events;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.Maps.Maps;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.News.News;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.Places;
 import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
-import com.progetto_ingegneria.pocketvenice.TestFrag.TestEvents;
-import com.progetto_ingegneria.pocketvenice.TestFrag.TestMaps;
-import com.progetto_ingegneria.pocketvenice.TestFrag.TestNews;
-import com.progetto_ingegneria.pocketvenice.TestFrag.TestPlaces;
 import com.progetto_ingegneria.pocketvenice.User.User;
 
 import java.util.List;
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setup() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-            replaceFragment(new TestNews());
+            replaceFragment(new News());
             textTitle.setText(R.string.news);
         }
         imageMenu.setOnClickListener(this);
@@ -183,22 +183,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
             Fragment fragment = fragmentList.get(fragmentList.size() - 1);
 
-            if (fragment instanceof TestNews && bottomNavigationView.getSelectedItemId() != R.id.news) {
+            if (fragment instanceof News && bottomNavigationView.getSelectedItemId() != R.id.news) {
                 textTitle.setText(R.string.news);
                 MenuItem menuItem = menu.getItem(0);
                 menuItem.setChecked(true);
             }
-            if (fragment instanceof TestEvents && bottomNavigationView.getSelectedItemId() != R.id.events) {
+            if (fragment instanceof Events && bottomNavigationView.getSelectedItemId() != R.id.events) {
                 textTitle.setText(R.string.events);
                 MenuItem menuItem = menu.getItem(1);
                 menuItem.setChecked(true);
             }
-            if (fragment instanceof TestPlaces && bottomNavigationView.getSelectedItemId() != R.id.places) {
+            if (fragment instanceof Places && bottomNavigationView.getSelectedItemId() != R.id.places) {
                 textTitle.setText(R.string.place);
                 MenuItem menuItem = menu.getItem(2);
                 menuItem.setChecked(true);
             }
-            if (fragment instanceof TestMaps && bottomNavigationView.getSelectedItemId() != R.id.map) {
+            if (fragment instanceof Maps && bottomNavigationView.getSelectedItemId() != R.id.map) {
                 textTitle.setText(R.string.map);
                 MenuItem menuItem = menu.getItem(3);
                 menuItem.setChecked(true);
@@ -216,16 +216,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.news) {
-            replaceFragment(new TestNews());
+            replaceFragment(new News());
             textTitle.setText(R.string.news);
         } else if (item.getItemId() == R.id.events) {
-            replaceFragment(new TestEvents());
+            replaceFragment(new Events());
             textTitle.setText(R.string.events);
         } else if (item.getItemId() == R.id.places) {
-            replaceFragment(new TestPlaces());
+            replaceFragment(new Places());
             textTitle.setText(R.string.place);
         } else if (item.getItemId() == R.id.map) {
-            replaceFragment(new TestMaps());
+            replaceFragment(new Maps());
             textTitle.setText(R.string.map);
         } else if (item.getItemId() == R.id.profile) {
             if (isLogged) {
