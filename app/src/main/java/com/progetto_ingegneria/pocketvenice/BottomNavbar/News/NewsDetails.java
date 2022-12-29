@@ -71,10 +71,7 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_news_details, container, false);
-
-        //La chiamata a questo metodo provoca NullPointerException
-        //toolbarSetup();
+        view = inflater.inflate(R.layout.fragment_news_details_test, container, false);
 
         checkAuth();
         initView();
@@ -115,6 +112,7 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
         appbar_title.setText(mTitle);
         appbar_subtitle.setText(mUrl);
         title.setText(mTitle);
+        date.setText(DateTimeFormatting.DateFormat(mDate));
         time.setText(DateTimeFormatting.DateToTimeFormat(mDate));
     }
 
@@ -130,10 +128,12 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     private void initView() {
         appBarLayout = view.findViewById(R.id.appbar);
         appBarLayout.addOnOffsetChangedListener(this);
+        date_behaviour = view.findViewById(R.id.date_behavior);
         titleAppbar = view.findViewById(R.id.title_appbar);
         imageView = view.findViewById(R.id.backdrop);
         appbar_title = view.findViewById(R.id.title_on_appbar);
         appbar_subtitle = view.findViewById(R.id.subtitle_on_appbar);
+        date = view.findViewById(R.id.date);
         time = view.findViewById(R.id.time);
         title = view.findViewById(R.id.title);
     }
@@ -148,15 +148,20 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     private void toolbarSetup() {
 
         toolbar = view.findViewById(R.id.toolbar);
-        AppCompatActivity activity = (AppCompatActivity) requireActivity();
-        activity.setSupportActionBar(toolbar);
+        //AppCompatActivity activity = (AppCompatActivity) requireActivity();
+        //activity.setSupportActionBar(toolbar);
         //mancano i settaggi ora
+        //activity.getSupportActionBar().setTitle("");
+        //activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //final CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
+        //collapsingToolbarLayout.setTitle("");
 
-
-
-
+        //appBarLayout = view.findViewById(R.id.appbar);
+        //appBarLayout.addOnOffsetChangedListener(this);
+        toolbar.inflateMenu(R.menu.menu_news);
     }
+
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -166,15 +171,14 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
 
         if (percentage == 1f && isHideToolbarView) {
             //date_behaviour.setBackgroundColor(10);
-            //date_behaviour.setVisibility(View.GONE);
+            date_behaviour.setVisibility(View.GONE);
             titleAppbar.setVisibility(View.VISIBLE);
             isHideToolbarView = !isHideToolbarView;
         } else if (percentage < 1f && isHideToolbarView) {
             //date_behaviour.setBackgroundColor(10);
-            //date_behaviour.setVisibility(View.VISIBLE);
+            date_behaviour.setVisibility(View.VISIBLE);
             titleAppbar.setVisibility(View.GONE);
             isHideToolbarView = !isHideToolbarView;
         }
     }
-
 }
