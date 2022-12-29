@@ -116,10 +116,10 @@ public class PlacesDetails extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (isLogged) {
 
-            if (v.getId() == R.id.item_place_share) {
+        if (v.getId() == R.id.item_place_share) {
 
+            if (isLogged) {
                 try {
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("text/plan");
@@ -130,12 +130,11 @@ public class PlacesDetails extends Fragment implements View.OnClickListener {
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), "Something went wrong. Cannot share at this moment. Try again", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(getActivity(), "You have to be logged to share this place", Toast.LENGTH_SHORT).show();
             }
-
-        } else {
-            Toast.makeText(getActivity(), "You have to be logged to share this place", Toast.LENGTH_SHORT).show();
         }
-        if(v.getId() == R.id.details_place_search){
+        if (v.getId() == R.id.details_place_search) {
             Fragment map = Maps.newInstance(mAddress);
             BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView);
             TextView textTitle = requireActivity().findViewById(R.id.menu_title);
