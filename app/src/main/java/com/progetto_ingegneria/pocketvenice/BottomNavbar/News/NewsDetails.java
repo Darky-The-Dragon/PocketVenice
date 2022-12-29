@@ -78,7 +78,7 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
 
         checkAuth();
         initView();
-        //toolbarSetup();
+        toolbarSetup();
         loadData();
         setData();
         initWebView(mUrl);
@@ -148,14 +148,13 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     private void toolbarSetup() {
 
         toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        AppCompatActivity activity = (AppCompatActivity) requireActivity();
+        activity.setSupportActionBar(toolbar);
+        //mancano i settaggi ora
 
-        //problemi da qui
-        requireActivity().getActionBar().setTitle("");
-        requireActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("");
+
+
 
     }
 
@@ -178,8 +177,4 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
         }
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 }

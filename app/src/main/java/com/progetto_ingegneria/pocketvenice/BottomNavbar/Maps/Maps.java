@@ -1,12 +1,15 @@
 package com.progetto_ingegneria.pocketvenice.BottomNavbar.Maps;
 
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -23,22 +26,28 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
-import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.EventsDetails;
-import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Model.Event;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.progetto_ingegneria.pocketvenice.R;
+
 
 public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCallback {
 
     protected static final String TAG = "Maps";
     private static final String DETAILS = "param1";
-    private String address;
+    private String address= null;
     protected static final int DEFAULT_ZOOM = 15;
     protected static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     protected static final String KEY_CAMERA_POSITION = "camera_position";      // Keys for storing activity state.
     protected static final String KEY_LOCATION = "location";                    // Keys for storing activity state.
-    protected final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);  // A default location (Sydney, Australia) and default zoom to use when location permission is not granted.
+    protected final LatLng defaultLocation = new LatLng(45.440975, 12.321038);  // A default location venezia santa lucia
+
     protected ProgressBar progressBar;
+    protected Marker marker;
+    protected EditText etCity;
+    protected FloatingActionButton floatingActionButton;
     protected GoogleMap mMap;
     protected CameraPosition cameraPosition;
     protected FusedLocationProviderClient fusedLocationProviderClient;          // The entry point to the Fused Location Provider.
@@ -78,8 +87,6 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
         initView();
         getLocationPermission(savedInstanceState);
 
-        Toast.makeText(getContext(),address, Toast.LENGTH_SHORT).show();
-
         return view;
     }
 
@@ -108,11 +115,18 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
     }
 
     private void initView() {
+        floatingActionButton = view.findViewById(R.id.fabSearchCity);
+        floatingActionButton.setOnClickListener(this);
+        etCity = view.findViewById(R.id.et_SearchFor);
         progressBar = view.findViewById(R.id.progress_bar);
     }
 
     @Override
     public void onClick(View v) {
+        if(v.getId() == R.id.fabSearchCity){
+            address = etCity.getText().toString();
+            set_pos();
+        }
 
     }
 
@@ -125,6 +139,36 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
+        if(address != null){
+            set_pos();
+        }
+    }
+
+
+    private void set_pos() {
+        try {
+            Geocoder geocoder = new Geocoder(getContext());
+            Address address_place = geocoder.getFromLocationName(address, 1).get(0);
+            LatLng place = new LatLng(address_place.getLatitude(), address_place.getLongitude());
+            if(marker != null){
+                marker.remove();
+            }
+
+            marker = mMap.addMarker(new MarkerOptions().position(place).title(address));
+
+
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(place)
+                    .zoom(DEFAULT_ZOOM)
+                    .bearing(300)
+                    .tilt(50)
+                    .build();
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition ));
+
+        }catch (Exception e){
+            Toast.makeText(getContext(), "Hai inserito un indirizzo non valido",Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void getDeviceLocation() {

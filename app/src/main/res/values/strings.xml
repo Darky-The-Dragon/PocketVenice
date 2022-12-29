@@ -79,6 +79,9 @@
     <string name="next">Next</string>
     <string name="add_event">Add Event</string>
     <string name="src_place">Search place in map</string>
+    <string name="serach_for">Cerca</string>
+    <string name="enter_some">Cerca qualcosa</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="credits">Credits</string>
     <string name="domanda_autorizzazione">Per quale scopo è necessaria l\'autorizzazione della posizione?</string>
