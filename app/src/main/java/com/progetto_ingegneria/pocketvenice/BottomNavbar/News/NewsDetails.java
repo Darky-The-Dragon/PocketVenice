@@ -1,10 +1,13 @@
 package com.progetto_ingegneria.pocketvenice.BottomNavbar.News;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
@@ -15,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -31,19 +35,15 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.Utility.DateTimeFormatt
 import com.progetto_ingegneria.pocketvenice.R;
 import com.squareup.picasso.Picasso;
 
-public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChangedListener {
+public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickListener {
 
     private static final String HEADLINES = "param1";
     protected View view;
-    protected ImageView imageView;
-    protected TextView appbar_title, appbar_subtitle, date, time, title;
-    protected boolean isHideToolbarView = false;
-
-    protected FrameLayout date_behaviour;
-    protected LinearLayout titleAppbar;
-    protected AppBarLayout appBarLayout;
-
+    protected ImageView container_img;
+    protected TextView title, time, title_appbar, subtitle_appbar;
     protected Toolbar toolbar;
+    protected WebView webView;
+
     protected String mUrl, mImg, mTitle, mDate, mSource, mAuthor;
     protected NewsHeadlines mHeadlines;
     protected FirebaseUser user;
@@ -74,22 +74,25 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_news_details_test, container, false);
+        view = inflater.inflate(R.layout.fragment_news_details, container, false);
 
         checkAuth();
         initView();
-        toolbarSetup();
+        setupToolbar();
         loadData();
         setData();
-        initWebView(mUrl);
+        initWebView();
 
         return view;
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
-    private void initWebView(String mUrl) {
+    private void setupToolbar() {
+        toolbar.inflateMenu(R.menu.menu_news);
+    }
 
-        WebView webView = view.findViewById(R.id.webView);
+    @SuppressLint("SetJavaScriptEnabled")
+    private void initWebView() {
+
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
@@ -111,12 +114,12 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     }
 
     private void setData() {
-        Picasso.get().load(mImg).into(imageView);
-       // appbar_title.setText(mTitle);
-        //appbar_subtitle.setText(mUrl);
+        Picasso.get().load(mImg).into(container_img);
+        title_appbar.setText(mTitle);
+        subtitle_appbar.setText(mUrl);
         title.setText(mTitle);
-        //date.setText(DateTimeFormatting.DateFormat(mDate));
         time.setText(DateTimeFormatting.DateToTimeFormat(mDate));
+
     }
 
     private void loadData() {
@@ -129,16 +132,16 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     }
 
     private void initView() {
-        appBarLayout = view.findViewById(R.id.appbar);
-        appBarLayout.addOnOffsetChangedListener(this);
-        //date_behaviour = view.findViewById(R.id.date_behavior);
-        titleAppbar = view.findViewById(R.id.title_appbar);
-        imageView = view.findViewById(R.id.backdrop);
-        appbar_title = view.findViewById(R.id.title_on_appbar);
-        appbar_subtitle = view.findViewById(R.id.subtitle_on_appbar);
-       //date = view.findViewById(R.id.date);
-        time = view.findViewById(R.id.time);
         title = view.findViewById(R.id.title);
+        container_img = view.findViewById(R.id.backdrop);
+        title_appbar = view.findViewById(R.id.title_on_appbar);
+        subtitle_appbar = view.findViewById(R.id.subtitle_on_appbar);
+        time = view.findViewById(R.id.time);
+        toolbar = view.findViewById(R.id.toolbar);
+        webView = view.findViewById(R.id.webView);
+
+        toolbar.setOnMenuItemClickListener(this);
+
     }
 
     private void checkAuth() {
@@ -148,33 +151,30 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
         }
     }
 
-    private void toolbarSetup() {
-        toolbar = view.findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_news);
-
-
-        final CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("");
-
-    }
-
 
     @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        int maxScroll = appBarLayout.getTotalScrollRange();
-        float percentage = (float) Math.abs(verticalOffset) / (float) maxScroll;
-
-
-        if (percentage == 1f && isHideToolbarView) {
-            //date_behaviour.setBackgroundColor(10);
-            date_behaviour.setVisibility(View.GONE);
-            titleAppbar.setVisibility(View.VISIBLE);
-            isHideToolbarView = !isHideToolbarView;
-        } else if (percentage < 1f && isHideToolbarView) {
-            //date_behaviour.setBackgroundColor(10);
-            date_behaviour.setVisibility(View.VISIBLE);
-            titleAppbar.setVisibility(View.GONE);
-            isHideToolbarView = !isHideToolbarView;
+    public boolean onMenuItemClick(MenuItem item) {
+        if(item.getItemId() == R.id.view_web){
+            try {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(mUrl));
+                requireActivity().startActivity(i);
+            }catch (Exception e) {
+                Toast.makeText(getActivity(), "Something went wrong. Cannot open browser. Try again", Toast.LENGTH_SHORT).show();
+            }
         }
+        if(item.getItemId() == R.id.share_button){
+            try {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plan");
+                i.putExtra(Intent.EXTRA_SUBJECT, mTitle);
+                String body = "News:\n" + mTitle +  "Shared from PocketVenice App" + "\n";
+                i.putExtra(Intent.EXTRA_TEXT, body);
+                startActivity(Intent.createChooser(i, "Share with: "));
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Something went wrong. Cannot share at this moment. Try again", Toast.LENGTH_SHORT).show();
+            }
+        }
+        return true;
     }
 }
