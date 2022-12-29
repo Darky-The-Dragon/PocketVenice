@@ -5,24 +5,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".BottomNavbar.News.NewsDetails">
 
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            app:titleEnabled="false"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
+            android:layout_height="250dp"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:visibility="visible"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
 
             <ImageView
                 android:id="@+id/backdrop"
@@ -34,43 +40,7 @@
                 android:transitionName="img"
                 tools:ignore="UnusedAttribute" />
 
-            <RelativeLayout
-                android:id="@+id/headerContent"
-                app:layout_collapseMode="pin"
-                android:fitsSystemWindows="true"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/img"
-                    android:src="@drawable/top_shadow"
-                    android:scaleType="centerCrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp" />
-
-                <ImageView
-                    android:layout_alignParentBottom="true"
-                    android:src="@drawable/bottom_shadow"
-                    android:id="@+id/img2"
-                    android:layout_alignBottom="@id/img"
-                    android:scaleType="centerCrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp" />
-
-            </RelativeLayout>
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:contentInsetStart="0dp"
-                android:contentInsetLeft="0dp"
-                app:contentInsetLeft="0dp"
-                app:contentInsetStart="0dp"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <LinearLayout
                     android:id="@+id/title_appbar"
@@ -104,8 +74,6 @@
                         android:ellipsize="end"/>
 
                 </LinearLayout>
-
-            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -197,37 +165,5 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <FrameLayout
-        android:id="@+id/date_behavior"
-        app:layout_anchor="@+id/appbar"
-        app:behavior_autoHide="true"
-        android:adjustViewBounds="true"
-        app:layout_anchorGravity="right|end|bottom"
-        android:clickable="false"
-        android:layout_below="@id/img"
-        android:background="@drawable/round_white"
-        android:layout_width="wrap_content"
-        android:padding="5dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="410dp"
-        android:layout_height="wrap_content"
-        tools:ignore="UnusedAttribute">
-        <ImageView
-            android:src="@drawable/ic_date"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
-        <TextView
-            android:textColor="#606060"
-            android:id="@+id/date"
-            android:layout_marginLeft="27dp"
-            android:layout_marginRight="10dp"
-            android:text="01 January 1990"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

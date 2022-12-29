@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -37,9 +38,11 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     protected ImageView imageView;
     protected TextView appbar_title, appbar_subtitle, date, time, title;
     protected boolean isHideToolbarView = false;
+
     protected FrameLayout date_behaviour;
     protected LinearLayout titleAppbar;
     protected AppBarLayout appBarLayout;
+
     protected Toolbar toolbar;
     protected String mUrl, mImg, mTitle, mDate, mSource, mAuthor;
     protected NewsHeadlines mHeadlines;
@@ -109,10 +112,10 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
 
     private void setData() {
         Picasso.get().load(mImg).into(imageView);
-        appbar_title.setText(mTitle);
-        appbar_subtitle.setText(mUrl);
+       // appbar_title.setText(mTitle);
+        //appbar_subtitle.setText(mUrl);
         title.setText(mTitle);
-        date.setText(DateTimeFormatting.DateFormat(mDate));
+        //date.setText(DateTimeFormatting.DateFormat(mDate));
         time.setText(DateTimeFormatting.DateToTimeFormat(mDate));
     }
 
@@ -128,12 +131,12 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     private void initView() {
         appBarLayout = view.findViewById(R.id.appbar);
         appBarLayout.addOnOffsetChangedListener(this);
-        date_behaviour = view.findViewById(R.id.date_behavior);
+        //date_behaviour = view.findViewById(R.id.date_behavior);
         titleAppbar = view.findViewById(R.id.title_appbar);
         imageView = view.findViewById(R.id.backdrop);
         appbar_title = view.findViewById(R.id.title_on_appbar);
         appbar_subtitle = view.findViewById(R.id.subtitle_on_appbar);
-        date = view.findViewById(R.id.date);
+       //date = view.findViewById(R.id.date);
         time = view.findViewById(R.id.time);
         title = view.findViewById(R.id.title);
     }
@@ -146,20 +149,13 @@ public class NewsDetails extends Fragment implements AppBarLayout.OnOffsetChange
     }
 
     private void toolbarSetup() {
-
         toolbar = view.findViewById(R.id.toolbar);
-        //AppCompatActivity activity = (AppCompatActivity) requireActivity();
-        //activity.setSupportActionBar(toolbar);
-        //mancano i settaggi ora
-        //activity.getSupportActionBar().setTitle("");
-        //activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //final CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
-        //collapsingToolbarLayout.setTitle("");
-
-        //appBarLayout = view.findViewById(R.id.appbar);
-        //appBarLayout.addOnOffsetChangedListener(this);
         toolbar.inflateMenu(R.menu.menu_news);
+
+
+        final CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle("");
+
     }
 
 
