@@ -73,7 +73,7 @@
 
             <!--age -->
             <ImageView
-                android:id="@+id/age"
+                android:id="@+id/birthdate"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@+id/divider_name"
@@ -82,11 +82,11 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/show_age"
+                android:id="@+id/show_birthdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/divider_name"
-                android:layout_alignStart="@+id/age"
+                android:layout_alignStart="@+id/birthdate"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="20dp"
                 android:hint="@string/loading"
@@ -96,7 +96,7 @@
                 android:id="@+id/divider_age"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/show_age"
+                android:layout_below="@+id/show_birthdate"
                 android:layout_marginTop="20dp"
                 android:background="#000" />
 

@@ -1,5 +1,6 @@
 package com.progetto_ingegneria.pocketvenice.User;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -28,10 +29,12 @@ import com.progetto_ingegneria.pocketvenice.Auth.LoginActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
 import com.progetto_ingegneria.pocketvenice.R;
 
+import java.util.Calendar;
+
 public class EditUserData extends Fragment implements View.OnClickListener {
 
-    protected EditText editTextFullName, editTextEmail, editTextMobile, editTextAge, editTextPassword;
-    protected TextView cancelBtn, submitBtn;
+    protected EditText editTextFullName, editTextEmail, editTextMobile, editTextPassword;
+    protected TextView TextViewBirthdate, cancelBtn, submitBtn;
     protected ImageView imageViewShowHidePassword;
     protected String fullName, age, email, mobile, password;
     protected FirebaseUser firebaseUser;
@@ -66,7 +69,7 @@ public class EditUserData extends Fragment implements View.OnClickListener {
                 editTextFullName.setHint(user.getFullName());
                 editTextEmail.setHint(user.getEmail());
                 editTextMobile.setHint(user.getMobile());
-                editTextAge.setHint(user.getAge());
+                TextViewBirthdate.setHint(user.getBirthdate());
                 editTextPassword.setHint(R.string.default_password);
             }
 
@@ -86,7 +89,8 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         editTextFullName = view.findViewById(R.id.edit_full_name);
         editTextEmail = view.findViewById(R.id.edit_email);
         editTextMobile = view.findViewById(R.id.edit_phone);
-        editTextAge = view.findViewById(R.id.edit_age);
+        TextViewBirthdate = view.findViewById(R.id.edit_birthdate);
+        TextViewBirthdate.setOnClickListener(this);
         editTextPassword = view.findViewById(R.id.password);
         imageViewShowHidePassword = view.findViewById(R.id.show_hide_password);
         imageViewShowHidePassword.setOnClickListener(this);
@@ -105,6 +109,23 @@ public class EditUserData extends Fragment implements View.OnClickListener {
             loadProfileFragment();
         } else if (v.getId() == R.id.submit) {
             submitNewUserInfo();
+        } else if (v.getId() == R.id.edit_birthdate) {
+
+            final Calendar calendar = Calendar.getInstance();
+            final int year = calendar.get(Calendar.YEAR);
+            final int month = calendar.get(Calendar.MONTH);
+            final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    getContext(),
+                    (view, year1, month1, day1) -> {
+                        month1++;
+                        String date;
+                        date = day1 + "/" + month1 + "/" + year1;
+                        TextViewBirthdate.setText(date);
+                    }, year, month, day);
+            datePickerDialog.show();
+            TextViewBirthdate.setError(null);
         }
     }
 
@@ -122,7 +143,7 @@ public class EditUserData extends Fragment implements View.OnClickListener {
     private void submitNewUserInfo() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         fullName = editTextFullName.getText().toString().trim();
-        age = editTextAge.getText().toString().trim();
+        age = TextViewBirthdate.getText().toString().trim();
         email = editTextEmail.getText().toString().toLowerCase().trim();
         mobile = editTextMobile.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
@@ -133,12 +154,12 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         } else if (fullName.equals(user.getFullName())) {
             editTextFullName.setError("Your new full name can't be the same as your previous one");
             editTextFullName.requestFocus();
-        } else if (!age.isEmpty() && Integer.parseInt(age) < 14) {
-            editTextAge.setError("You can't be older less than 14 year old");
-            editTextAge.requestFocus();
-        } else if (age.equals(user.getAge())) {
-            editTextAge.setError("Your new birthday date can't be the same as your previous one");
-            editTextAge.requestFocus();
+        } else if (!age.isEmpty() && check_Age() < 14) {
+            TextViewBirthdate.setError("You can't be older less than 14 year old");
+            TextViewBirthdate.requestFocus();
+        } else if (age.equals(user.getBirthdate())) {
+            TextViewBirthdate.setError("Your new birthday date can't be the same as your previous one");
+            TextViewBirthdate.requestFocus();
         } else if (!email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Please provide a valid email!");
             editTextEmail.requestFocus();
@@ -167,7 +188,7 @@ public class EditUserData extends Fragment implements View.OnClickListener {
                             if (!fullName.isEmpty() && !fullName.equals(user.getFullName())) {
                                 databaseReference.child("fullName").setValue(fullName);
                             }
-                            if (!age.isEmpty() && !age.equals(user.getAge())) {
+                            if (!age.isEmpty() && !age.equals(user.getBirthdate())) {
                                 databaseReference.child("age").setValue(age);
                             }
                             if (!email.isEmpty() && !email.equals(user.getEmail())) {
@@ -196,6 +217,27 @@ public class EditUserData extends Fragment implements View.OnClickListener {
                         }
                     });
         }
+    }
+
+    private int check_Age() {
+
+        String[] start_string = age.split("/");
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH) + 1;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        //0 giorni, 1 mesi, 2 anni
+
+        int diff = year - Integer.parseInt(start_string[2]);
+
+
+        if (diff != 0 && month - Integer.parseInt(start_string[1]) == 0
+                && day - Integer.parseInt(start_string[0]) < 0) {
+            diff--;
+        }
+        return diff;
+
     }
 
     private void logoutUser() {

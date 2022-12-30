@@ -25,7 +25,7 @@ import com.progetto_ingegneria.pocketvenice.User.User;
  */
 public class Profile extends Fragment implements View.OnClickListener {
 
-    protected TextView titleWelcome, fullName, email, phone, age, editBtn;
+    protected TextView titleWelcome, fullName, email, phone, birthdate, editBtn;
     protected FirebaseUser firebaseUser;
     protected DatabaseReference databaseReference;
     protected View view;
@@ -58,7 +58,7 @@ public class Profile extends Fragment implements View.OnClickListener {
                 titleWelcome.setText("Welcome " + user.getFullName());
                 email.setText(user.getEmail());
                 phone.setText(user.getMobile());
-                age.setText(user.getAge());
+                birthdate.setText(user.getBirthdate());
             }
 
             @Override
@@ -78,7 +78,7 @@ public class Profile extends Fragment implements View.OnClickListener {
         fullName = view.findViewById(R.id.show_full_name);
         email = view.findViewById(R.id.show_email);
         phone = view.findViewById(R.id.show_phone);
-        age = view.findViewById(R.id.show_age);
+        birthdate = view.findViewById(R.id.show_birthdate);
         editBtn = view.findViewById(R.id.edit);
         editBtn.setOnClickListener(this);
     }

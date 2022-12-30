@@ -107,7 +107,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/age"
+                android:id="@+id/birthdate"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="64dp"
@@ -119,38 +119,35 @@
                 app:layout_constraintTop_toBottomOf="@id/fullname">
 
                 <!-- Fields for input: -->
-                <EditText
-                    android:id="@+id/edit_age"
+                <TextView
+                    android:id="@+id/edit_birthdate"
+                    style="@android:style/Widget.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_toEndOf="@+id/age_icon"
-                    android:autofillHints="emailAddress"
+                    android:layout_toEndOf="@+id/date_icon"
+                    android:autofillHints="Birthdate"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/age"
-                    android:inputType="date"
                     android:maxLines="1"
                     android:paddingStart="17dp"
                     android:paddingTop="12dp"
                     android:paddingEnd="12dp"
                     android:paddingBottom="12dp"
-                    android:textColorHint="#b31a34"
+                    android:text="@string/date_format"
+                    android:textColor="#b31a34"
                     android:textCursorDrawable="@drawable/cursor_color"
                     android:textSize="12sp"
-                    tools:ignore="RtlSymmetry,TextContrastCheck" />
+                    tools:ignore="RtlSymmetry" />
 
                 <!--ICONS-->
                 <ImageView
-                    android:id="@id/age_icon"
+                    android:id="@id/date_icon"
                     android:layout_width="15dp"
-                    android:layout_height="10dp"
+                    android:layout_height="15dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="17dp"
-                    android:contentDescription="@string/age_desc"
-                    android:src="@drawable/age"
-                    tools:ignore="ImageContrastCheck" />
+                    android:contentDescription="@string/date_desc"
+                    android:src="@drawable/ic_baseline_calendar_month_24" />
 
             </RelativeLayout>
 
@@ -164,7 +161,7 @@
                 android:background="@drawable/golden_border_rounded_corner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/age">
+                app:layout_constraintTop_toBottomOf="@+id/birthdate">
 
                 <!-- Fields for input: -->
                 <EditText

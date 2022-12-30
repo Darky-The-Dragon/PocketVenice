@@ -2,15 +2,15 @@ package com.progetto_ingegneria.pocketvenice.User;
 
 public class User {
 
-    protected String fullName, age, email, mobile;
+    protected String fullName, birthdate, email, mobile;
 
     public User() {
         //MUST BE EMPTY
     }
 
-    public User(String fullName, String age, String email, String mobile) {
+    public User(String fullName, String birthdate, String email, String mobile) {
         this.fullName = fullName;
-        this.age = age;
+        this.birthdate = birthdate;
         this.email = email;
         this.mobile = mobile;
     }
@@ -19,8 +19,8 @@ public class User {
         return fullName;
     }
 
-    public String getAge() {
-        return age;
+    public String getBirthdate() {
+        return birthdate;
     }
 
     public String getEmail() {

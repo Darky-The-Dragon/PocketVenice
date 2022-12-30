@@ -108,12 +108,12 @@
 
                 <!-- Fields for input: -->
                 <TextView
-                    android:id="@+id/age"
+                    android:id="@+id/birthdate"
                     style="@android:style/Widget.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toEndOf="@+id/age_icon"
-                    android:autofillHints="Age"
+                    android:layout_toEndOf="@+id/date_icon"
+                    android:autofillHints="Birthdate"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/poppins_regular"
                     android:maxLines="1"
@@ -127,16 +127,15 @@
                     android:textSize="12sp"
                     tools:ignore="RtlSymmetry" />
 
-
                 <!--ICONS-->
                 <ImageView
-                    android:id="@id/age_icon"
+                    android:id="@id/date_icon"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="17dp"
-                    android:contentDescription="@string/age_desc"
-                    android:src="@drawable/age" />
+                    android:contentDescription="@string/date_desc"
+                    android:src="@drawable/ic_baseline_calendar_month_24" />
 
             </RelativeLayout>
 

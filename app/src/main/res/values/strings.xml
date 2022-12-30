@@ -4,8 +4,7 @@
 
     <!-- TEXT FIELDS -->
     <string name="full_name">Full name</string>
-    <string name="age">Age</string>
-    <string name="date_format">dd/MM/yyyy</string>
+    <string name="date_format">dd/mm/yyyy</string>
     <string name="email">Email</string>
     <string name="mobile">Mobile</string>
     <string name="password">Password</string>
@@ -22,13 +21,12 @@
     <!-- ICON DESC -->
     <string name="desc_logo">App logo</string>
     <string name="username_desc">Username icon</string>
-    <string name="age_desc">Age icon</string>
+    <string name="date_desc">Date icon</string>
     <string name="desc_mobile">Mobile icon</string>
     <string name="desc_email">Email icon</string>
     <string name="desc_pass">Password icon</string>
 
     <!-- MISCELLANEOUS -->
-    <string name="asterisk">*</string>
     <string name="didn_t_receive">Didn\'t receive the OTP?</string>
 
 
@@ -80,9 +78,7 @@
     <string name="add_event">Add Event</string>
     <string name="src_place">Search place in map</string>
     <string name="serach_for">Cerca</string>
-    <string name="enter_some">Cerca qualcosa</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="enter_some">Cerca un posto</string>
     <string name="credits">Credits</string>
     <string name="domanda_autorizzazione">Per quale scopo è necessaria l\'autorizzazione della posizione?</string>
     <string name="risposta_autorizzazione">La posizione è necessaria per poter visualizzare sulla mappa dove ci si trova e comprendere meglio la distanza dai punti di interesse.</string>
