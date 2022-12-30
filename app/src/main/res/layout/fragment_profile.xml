@@ -78,7 +78,8 @@
                 android:layout_height="25dp"
                 android:layout_below="@+id/divider_name"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/age"
+                android:background="@drawable/ic_baseline_calendar_month_24"
+                android:backgroundTint ="@color/black"
                 tools:ignore="ContentDescription" />
 
             <TextView
