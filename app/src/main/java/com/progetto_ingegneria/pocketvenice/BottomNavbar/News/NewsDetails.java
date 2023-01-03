@@ -24,7 +24,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Models.NewsHeadlines;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Utility.DateTimeFormatting;
 import com.progetto_ingegneria.pocketvenice.R;
-import com.squareup.picasso.Picasso;
 
 public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickListener {
 
@@ -105,12 +104,8 @@ public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickList
     }
 
     private void setData() {
-        Picasso.get().load(mImg).into(container_img);
-        title_appbar.setText(mTitle);
-        subtitle_appbar.setText(mUrl);
         title.setText(mTitle);
         time.setText(DateTimeFormatting.DateToTimeFormat(mDate));
-
     }
 
     private void loadData() {
@@ -124,13 +119,9 @@ public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickList
 
     private void initView() {
         title = view.findViewById(R.id.title);
-        container_img = view.findViewById(R.id.backdrop);
-        title_appbar = view.findViewById(R.id.title_on_appbar);
-        subtitle_appbar = view.findViewById(R.id.subtitle_on_appbar);
         time = view.findViewById(R.id.time);
-        toolbar = view.findViewById(R.id.toolbar);
+        toolbar = requireActivity().findViewById(R.id.layoutToolBar);
         webView = view.findViewById(R.id.webView);
-
         toolbar.setOnMenuItemClickListener(this);
 
     }
@@ -141,7 +132,6 @@ public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickList
             isLogged = true;
         }
     }
-
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {

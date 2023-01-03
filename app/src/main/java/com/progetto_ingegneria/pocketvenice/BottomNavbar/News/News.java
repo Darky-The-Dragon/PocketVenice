@@ -24,6 +24,7 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Models.NewsApiResp
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Models.NewsHeadlines;
 import com.progetto_ingegneria.pocketvenice.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class News extends Fragment implements View.OnClickListener, SelectListener, SwipeRefreshLayout.OnRefreshListener {
@@ -39,11 +40,10 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
     protected TextView errorTitle, errorMessage, btnRetry;
     protected View view;
 
-
     private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
-            showNews(list);
+            showNews(removeDuplicates(list));
             progressBar.setVisibility(View.GONE);
             errorLayout.setVisibility(View.GONE);
             requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
@@ -81,6 +81,22 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
 
     }
 
+    private List<NewsHeadlines> removeDuplicates(List<NewsHeadlines> list) {
+        return list.stream()
+                .reduce(new ArrayList<>(), (List<NewsHeadlines> accumulator, NewsHeadlines news) ->
+                {
+                    if (accumulator.stream().noneMatch(x -> x.getTitle().equals(news.getTitle())
+                            || x.getDescription().equals(news.getDescription()))) {
+                        accumulator.add(news);
+                    }
+                    return accumulator;
+                }, (acc1, acc2) ->
+                {
+                    acc1.addAll(acc2);
+                    return acc1;
+                });
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,7 +112,7 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
 
     private void requestAPI() {
         manager = new RequestManager(getContext());
-        manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it", "publishedAt");
+        manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it, ansa.it", "publishedAt");
     }
 
     private void startProgressBar() {
@@ -143,7 +159,7 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
         textHeader.setVisibility(View.VISIBLE);
-        manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it", "publishedAt");
+        manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it, ansa.it", "publishedAt");
     }
 
     @Override

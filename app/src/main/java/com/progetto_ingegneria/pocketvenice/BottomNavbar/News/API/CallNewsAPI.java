@@ -6,13 +6,14 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface NewsAPI {
+public interface CallNewsAPI {
     @GET("everything")
     Call<NewsApiResponse> callHeadlines(
             @Query("language") String language,
             @Query("q") String query,
             @Query("searchIn") String searchIn,
             @Query("domains") String domains,
+            @Query("from") String fromDate,
             @Query("sortBy") String sortBy,
             @Query("apiKey") String api_key
     );

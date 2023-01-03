@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,15 +13,16 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-
+            android:layout_height="220dp"
             android:background="#b31a34">
 
             <ImageView
                 android:id="@+id/imageView_info"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
                 android:foreground="@mipmap/ic_launcher"
                 tools:ignore="ContentDescription" />
 
@@ -30,17 +31,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageView_info"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:hint="@string/loading"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                tools:ignore="TextContrastCheck" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/white"
             android:padding="15dp">
 
@@ -48,6 +55,8 @@
                 android:id="@+id/credits"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="@string/credits"
@@ -63,9 +72,12 @@
                 android:background="#000" />
             <!--Member 1 -->
             <ImageView
+                android:id="@+id/img1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_0"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12.5dp"
                 android:background="@drawable/ic_profile"
                 tools:ignore="ContentDescription" />
@@ -75,10 +87,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider_member_0"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12.5dp"
+                android:layout_toEndOf="@id/img1"
                 android:hint="@string/loading"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
 
             <View
                 android:id="@+id/divider_member_1"
@@ -90,9 +104,12 @@
 
             <!--Member 2 -->
             <ImageView
+                android:id="@+id/img2"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12.5dp"
                 android:background="@drawable/ic_profile"
                 tools:ignore="ContentDescription" />
@@ -102,10 +119,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider_member_1"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12.5dp"
+                android:layout_toEndOf="@id/img2"
                 android:hint="@string/loading"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
 
             <View
                 android:id="@+id/divider_member_2"
@@ -117,9 +136,12 @@
 
             <!--Member 3 -->
             <ImageView
+                android:id="@+id/img3"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12.5dp"
                 android:background="@drawable/ic_profile"
                 tools:ignore="ContentDescription" />
@@ -129,10 +151,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider_member_2"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12.5dp"
+                android:layout_toEndOf="@id/img3"
                 android:hint="@string/loading"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
 
             <View
                 android:id="@+id/divider_member_3"
@@ -144,9 +168,12 @@
 
             <!--Member 4 -->
             <ImageView
+                android:id="@+id/img4"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12.5dp"
                 android:background="@drawable/ic_profile"
                 tools:ignore="ContentDescription" />
@@ -156,10 +183,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider_member_3"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12.5dp"
+                android:layout_toEndOf="@id/img4"
                 android:hint="@string/loading"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
 
             <View
                 android:id="@+id/divider_member_4"
@@ -171,9 +200,12 @@
 
             <!--Member 5 -->
             <ImageView
+                android:id="@+id/img5"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_member_4"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12.5dp"
                 android:background="@drawable/ic_profile"
                 tools:ignore="ContentDescription" />
@@ -183,10 +215,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider_member_4"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12.5dp"
+                android:layout_toEndOf="@id/img5"
                 android:hint="@string/loading"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
 
             <View
                 android:layout_width="match_parent"
@@ -197,4 +231,4 @@
 
         </RelativeLayout>
     </LinearLayout>
-</FrameLayout>
+</ScrollView>

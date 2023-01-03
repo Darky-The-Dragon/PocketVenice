@@ -6,222 +6,234 @@
     android:layout_height="match_parent"
     tools:context=".BottomNavbar.Events.EventsDetails">
 
-    <ImageView
-        android:id="@+id/item_event_container_img"
-        android:layout_width="0dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/container_bg"
-        android:transitionName="eventContainerTN"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/item_event_img"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:scaleType="centerCrop"
-        android:transitionName="eventTN"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/not_available"
-        tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/item_event_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/address"
-        android:transitionName="eventAddressTN"
-        app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
-        app:layout_constraintStart_toEndOf="@+id/item_event_address_name"
-        app:layout_constraintTop_toTopOf="@+id/item_event_address_name" />
-
-    <TextView
-        android:id="@+id/item_event_fromDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/from_date"
-        android:transitionName="eventFromDateTN"
-        app:layout_constraintBottom_toBottomOf="@+id/item_event_date_name"
-        app:layout_constraintStart_toEndOf="@+id/item_event_date_name"
-        app:layout_constraintTop_toTopOf="@+id/item_event_date_name" />
-
-    <TextView
-        android:id="@+id/hyphen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/hyphen"
-        android:transitionName="eventHyphenTN"
-        app:layout_constraintBottom_toBottomOf="@+id/item_event_fromDate"
-        app:layout_constraintStart_toEndOf="@+id/item_event_fromDate"
-        app:layout_constraintTop_toTopOf="@+id/item_event_fromDate" />
-
-    <TextView
-        android:id="@+id/item_event_toDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-
-        android:text="@string/to_date"
-        android:transitionName="eventToDateTN"
-        app:layout_constraintBottom_toBottomOf="@+id/hyphen"
-        app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/hyphen"
-        app:layout_constraintTop_toTopOf="@+id/hyphen"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/item_event_fromHour"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/from_hour"
-        android:transitionName="eventFromHourTN"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/item_event_time_name"
-        app:layout_constraintStart_toEndOf="@+id/item_event_time_name"
-        app:layout_constraintTop_toTopOf="@+id/item_event_time_name" />
-
-    <TextView
-        android:id="@+id/hyphen1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/hyphen"
-        android:transitionName="eventHyphen1TN"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/item_event_fromHour"
-        app:layout_constraintStart_toEndOf="@+id/item_event_fromHour"
-        app:layout_constraintTop_toTopOf="@+id/item_event_fromHour" />
-
-    <TextView
-        android:id="@+id/item_event_toHour"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/to_hour"
-        android:transitionName="eventToHourTN"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/hyphen1"
-        app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
-        app:layout_constraintStart_toEndOf="@+id/hyphen1"
-        app:layout_constraintTop_toTopOf="@+id/hyphen1" />
-
-    <ImageView
-        android:id="@+id/item_event_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
-        app:layout_constraintTop_toTopOf="@+id/item_event_container_img"
-        app:srcCompat="@drawable/ic_share"
-        app:tint="#c3b377"
-        tools:ignore="ContentDescription" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_event_img">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:orientation="vertical">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/item_event_container_img"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/container_bg"
+                android:transitionName="eventContainerTN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/item_event_img"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:scaleType="centerCrop"
+                android:transitionName="eventTN"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/not_available"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
 
             <TextView
-                android:id="@+id/item_event_title"
+                android:id="@+id/item_event_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/address"
+                android:transitionName="eventAddressTN"
+                app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
+                app:layout_constraintStart_toEndOf="@+id/item_event_address_name"
+                app:layout_constraintTop_toTopOf="@+id/item_event_address_name" />
+
+            <TextView
+                android:id="@+id/item_event_fromDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/from_date"
+                android:transitionName="eventFromDateTN"
+                app:layout_constraintBottom_toBottomOf="@+id/item_event_date_name"
+                app:layout_constraintStart_toEndOf="@+id/item_event_date_name"
+                app:layout_constraintTop_toTopOf="@+id/item_event_date_name" />
+
+            <TextView
+                android:id="@+id/hyphen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/hyphen"
+                android:transitionName="eventHyphenTN"
+                app:layout_constraintBottom_toBottomOf="@+id/item_event_fromDate"
+                app:layout_constraintStart_toEndOf="@+id/item_event_fromDate"
+                app:layout_constraintTop_toTopOf="@+id/item_event_fromDate" />
+
+            <TextView
+                android:id="@+id/item_event_toDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+
+                android:text="@string/to_date"
+                android:transitionName="eventToDateTN"
+                app:layout_constraintBottom_toBottomOf="@+id/hyphen"
+                app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/hyphen"
+                app:layout_constraintTop_toTopOf="@+id/hyphen"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/item_event_fromHour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/from_hour"
+                android:transitionName="eventFromHourTN"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/item_event_time_name"
+                app:layout_constraintStart_toEndOf="@+id/item_event_time_name"
+                app:layout_constraintTop_toTopOf="@+id/item_event_time_name" />
+
+            <TextView
+                android:id="@+id/hyphen1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/hyphen"
+                android:transitionName="eventHyphen1TN"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/item_event_fromHour"
+                app:layout_constraintStart_toEndOf="@+id/item_event_fromHour"
+                app:layout_constraintTop_toTopOf="@+id/item_event_fromHour" />
+
+            <TextView
+                android:id="@+id/item_event_toHour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/to_hour"
+                android:transitionName="eventToHourTN"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/hyphen1"
+                app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
+                app:layout_constraintStart_toEndOf="@+id/hyphen1"
+                app:layout_constraintTop_toTopOf="@+id/hyphen1" />
+
+            <ImageView
+                android:id="@+id/item_event_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/title"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:transitionName="eventTitleTN">
-
-            </TextView>
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/item_event_container_img"
+                app:layout_constraintTop_toTopOf="@+id/item_event_container_img"
+                app:srcCompat="@drawable/ic_share"
+                app:tint="#c3b377"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
 
             <TextView
-                android:id="@+id/details_event_description"
+                android:id="@+id/item_event_address_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:lineSpacingExtra="8sp"
-                android:text="@string/description" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/address"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/item_event_img"
+                app:layout_constraintTop_toTopOf="@+id/item_event_img" />
 
             <TextView
-                android:id="@+id/details_event_addEvent"
+                android:id="@+id/item_event_date_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/date"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/item_event_img"
+                app:layout_constraintTop_toBottomOf="@+id/item_event_address" />
+
+            <TextView
+                android:id="@+id/item_event_time_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/time_name"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/item_event_img"
+                app:layout_constraintTop_toBottomOf="@+id/item_event_date_name" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="65dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="65dp"
-                android:background="@drawable/red_fill__rounded_color"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp"
-                android:text="@string/add_event"
-                android:textColor="#c3b377"
-                android:textSize="15sp" />
-        </LinearLayout>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_event_img">
+
+                <TextView
+                    android:id="@+id/item_event_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:transitionName="eventTitleTN">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/details_event_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/description" />
+
+                <TextView
+                    android:id="@+id/details_event_addEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="65dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="65dp"
+                    android:background="@drawable/red_fill__rounded_color"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:text="@string/add_event"
+                    android:textColor="#c3b377"
+                    android:textSize="15sp"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <TextView
-        android:id="@+id/item_event_address_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/address"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/item_event_img"
-        app:layout_constraintTop_toTopOf="@+id/item_event_img" />
-
-    <TextView
-        android:id="@+id/item_event_date_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/date"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/item_event_img"
-        app:layout_constraintTop_toBottomOf="@+id/item_event_address" />
-
-    <TextView
-        android:id="@+id/item_event_time_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/time_name"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/item_event_img"
-        app:layout_constraintTop_toBottomOf="@+id/item_event_date_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

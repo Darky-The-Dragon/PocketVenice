@@ -1,60 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Auth.RegisterActivity">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="273dp"
-        android:background="@drawable/red_gold_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="45dp"
-            android:contentDescription="@string/desc_logo"
-            android:src="@drawable/logo" />
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="273dp"
+            android:background="@drawable/red_gold_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="45dp"
+                android:contentDescription="@string/desc_logo"
+                android:src="@drawable/logo" />
 
-    <TextView
-        android:id="@+id/titleRegister"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/register"
-        android:textAlignment="textStart"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        </FrameLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleRegister">
+        <TextView
+            android:id="@+id/titleRegister"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="64dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/register"
+            android:textAlignment="textStart"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frameLayout" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/titleRegister">
 
 
             <RelativeLayout
@@ -70,6 +66,12 @@
                     android:id="@+id/full_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_toEndOf="@+id/avatar_icon"
                     android:autofillHints="Full name"
                     android:background="@android:color/transparent"
@@ -84,7 +86,7 @@
                     android:textColorHint="#b31a34"
                     android:textCursorDrawable="@drawable/cursor_color"
                     android:textSize="12sp"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry,TextContrastCheck" />
 
                 <!--ICONS-->
                 <ImageView
@@ -94,7 +96,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="17dp"
                     android:contentDescription="@string/username_desc"
-                    android:src="@drawable/profile" />
+                    android:src="@drawable/profile"
+                    tools:ignore="ImageContrastCheck" />
 
             </RelativeLayout>
 
@@ -112,6 +115,12 @@
                     style="@android:style/Widget.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_toEndOf="@+id/date_icon"
                     android:autofillHints="Birthdate"
                     android:background="@android:color/transparent"
@@ -125,7 +134,7 @@
                     android:textColor="#b31a34"
                     android:textCursorDrawable="@drawable/cursor_color"
                     android:textSize="12sp"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry,TextContrastCheck" />
 
                 <!--ICONS-->
                 <ImageView
@@ -135,7 +144,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="17dp"
                     android:contentDescription="@string/date_desc"
-                    android:src="@drawable/ic_baseline_calendar_month_24" />
+                    android:src="@drawable/ic_baseline_calendar_month_24"
+                    tools:ignore="ImageContrastCheck" />
 
             </RelativeLayout>
 
@@ -152,6 +162,12 @@
                     android:id="@+id/mobile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_toEndOf="@+id/mobile_icon"
                     android:autofillHints="mobile"
                     android:background="@android:color/transparent"
@@ -166,7 +182,7 @@
                     android:textColorHint="#b31a34"
                     android:textCursorDrawable="@drawable/cursor_color"
                     android:textSize="12sp"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry,TextContrastCheck" />
 
                 <!--ICONS-->
                 <ImageView
@@ -176,7 +192,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="17dp"
                     android:contentDescription="@string/desc_mobile"
-                    android:src="@drawable/mobile" />
+                    android:src="@drawable/mobile"
+                    tools:ignore="ImageContrastCheck" />
 
             </RelativeLayout>
 
@@ -193,6 +210,12 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_toEndOf="@+id/email_icon"
                     android:autofillHints="emailAddress"
                     android:background="@android:color/transparent"
@@ -207,7 +230,7 @@
                     android:textColorHint="#b31a34"
                     android:textCursorDrawable="@drawable/cursor_color"
                     android:textSize="12sp"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry,TextContrastCheck" />
 
                 <!--ICONS-->
                 <ImageView
@@ -217,7 +240,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="17dp"
                     android:contentDescription="@string/desc_email"
-                    android:src="@drawable/email" />
+                    android:src="@drawable/email"
+                    tools:ignore="ImageContrastCheck" />
 
             </RelativeLayout>
 
@@ -258,7 +282,7 @@
                     android:textColorHint="#b31a34"
                     android:textCursorDrawable="@drawable/cursor_color"
                     android:textSize="12sp"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry,TextContrastCheck" />
 
                 <!--ICONS-->
 
@@ -342,7 +366,8 @@
                 android:paddingBottom="14dp"
                 android:text="@string/register"
                 android:textColor="#c3b377"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -377,24 +402,29 @@
 
         </LinearLayout>
 
-    </ScrollView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-    </RelativeLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

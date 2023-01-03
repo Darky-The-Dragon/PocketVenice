@@ -10,13 +10,14 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Listeners.OnFetchD
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Models.NewsApiResponse;
 import com.progetto_ingegneria.pocketvenice.R;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public class RequestManager {
     Context context;
@@ -32,8 +33,8 @@ public class RequestManager {
 
     public void getNewsHeadlines(OnFetchDataListener<NewsApiResponse> listener, SwipeRefreshLayout swipeRefreshLayout, String language, String query, String searchIn, String domains, String sortBy) {
 
-        CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
-        Call<NewsApiResponse> call = callNewsApi.callHeadlines(language, query, searchIn, domains, sortBy, context.getString(R.string.api_key));
+        CallNewsAPI callNewsAPI = retrofit.create(CallNewsAPI.class);
+        Call<NewsApiResponse> call = callNewsAPI.callHeadlines(language, query, searchIn, domains, fromDate(), sortBy, context.getString(R.string.api_key));
 
         try {
             call.enqueue(new Callback<NewsApiResponse>() {
@@ -63,15 +64,13 @@ public class RequestManager {
         }
     }
 
-    public interface CallNewsApi {
-        @GET("everything")
-        Call<NewsApiResponse> callHeadlines(
-                @Query("language") String language,
-                @Query("q") String query,
-                @Query("searchIn") String searchIn,
-                @Query("domains") String domains,
-                @Query("sortBy") String sortBy,
-                @Query("apiKey") String api_key
-        );
+    private String fromDate() {
+        //Getting the current Date value
+        LocalDate currentDate = LocalDate.now();
+        //Adding one week to the current date
+        LocalDate result = currentDate.minus(1, ChronoUnit.WEEKS);
+        return result.toString();
     }
+
+
 }

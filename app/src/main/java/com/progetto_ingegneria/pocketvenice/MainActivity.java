@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected View headerView;
     protected TextView textTitle, header_username;
     protected ImageView imageMenu;
+    protected Toolbar toolbar;
     protected BottomNavigationView bottomNavigationView;
     protected NavigationView navigationView;
     protected DrawerLayout drawerLayout;
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressBar = findViewById(R.id.progress_bar);
         textTitle = findViewById(R.id.menu_title);
         imageMenu = findViewById(R.id.menu_nav);
+        toolbar = findViewById(R.id.layoutToolBar);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(this);
         navigationView = findViewById(R.id.navigationView);
@@ -170,6 +173,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         int fragments = getSupportFragmentManager().getBackStackEntryCount();
 
+        toolbar.getMenu().clear();
+
         if (fragments == 1) {
             new AlertDialog.Builder(this)
                     .setMessage("Are you sure you want to exit?")
@@ -215,38 +220,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.news) {
+
+        toolbar.getMenu().clear();
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+        Fragment fragment = fragmentList.get(fragmentList.size() - 1);
+
+        if (item.getItemId() == R.id.news && !item.isChecked()) {
             replaceFragment(new News());
             textTitle.setText(R.string.news);
-        } else if (item.getItemId() == R.id.events) {
+        } else if (item.getItemId() == R.id.events && !item.isChecked()) {
             replaceFragment(new Events());
             textTitle.setText(R.string.events);
-        } else if (item.getItemId() == R.id.places) {
+        } else if (item.getItemId() == R.id.places && !item.isChecked()) {
             replaceFragment(new Places());
             textTitle.setText(R.string.place);
-        } else if (item.getItemId() == R.id.map) {
+        } else if (item.getItemId() == R.id.map && !item.isChecked()) {
             replaceFragment(new Maps());
             textTitle.setText(R.string.map);
         } else if (item.getItemId() == R.id.profile) {
-            if (isLogged) {
-                replaceFragment(new Profile());
-                textTitle.setText(Profile.class.getSimpleName());
-                drawerLayout.closeDrawer(GravityCompat.START);
+            if (!(fragment instanceof Profile)) {
+                if (isLogged) {
+                    replaceFragment(new Profile());
+                    textTitle.setText(Profile.class.getSimpleName());
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    Toast.makeText(this,
+                            "You need to be logged in to access your profile",
+                            Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this,
-                        "You need to be logged in to access your profile",
-                        Toast.LENGTH_SHORT).show();
+                drawerLayout.closeDrawer(GravityCompat.START);
             }
+
         } else if (item.getItemId() == R.id.login_sign_up) {
             startActivity(new Intent(this, LoginActivity.class));
         } else if (item.getItemId() == R.id.faq) {
-            replaceFragment(new FAQ());
-            textTitle.setText(FAQ.class.getSimpleName());
-            drawerLayout.closeDrawer(GravityCompat.START);
+            if (!(fragment instanceof FAQ)) {
+                replaceFragment(new FAQ());
+                textTitle.setText(FAQ.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
         } else if (item.getItemId() == R.id.info) {
-            replaceFragment(new Info());
-            textTitle.setText(Info.class.getSimpleName());
-            drawerLayout.closeDrawer(GravityCompat.START);
+            if (!(fragment instanceof Info)) {
+                replaceFragment(new Info());
+                textTitle.setText(Info.class.getSimpleName());
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
         } else if (item.getItemId() == R.id.guide) {
             startActivity(new Intent(this, GuideActivity.class));
         } else if (item.getItemId() == R.id.logout) {
