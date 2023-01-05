@@ -15,7 +15,6 @@
     <string name="forgot_your_password">FORGOT YOUR PASSWORD?</string>
     <string name="register">Register</string>
     <string name="submit">Submit</string>
-    <string name="resend_code">Resend Code</string>
     <string name="register_question">You don\'t have an account?</string>
 
     <!-- ICON DESC -->
@@ -27,7 +26,6 @@
     <string name="desc_pass">Password icon</string>
 
     <!-- MISCELLANEOUS -->
-    <string name="didn_t_receive">Didn\'t receive the OTP?</string>
 
 
     <string name="back">Go back to</string>
@@ -56,7 +54,6 @@
     <string name="source">Source</string>
     <string name="time">Time</string>
     <string name="api_key">1dd430c786bb4fd38e650493cb32755c</string>
-    <string name="subtitle">Subtitle</string>
     <string name="recent_news">Recent News</string>
     <string name="error_title">Error Title</string>
     <string name="error_message">Error Message</string>
@@ -77,7 +74,6 @@
     <string name="next">Next</string>
     <string name="add_event">Add Event</string>
     <string name="src_place">See on Map</string>
-    <string name="serach_for">Cerca</string>
     <string name="enter_some">Cerca un posto</string>
     <string name="credits">Credits</string>
     <string name="domanda_autorizzazione">Per quale scopo è necessaria l\'autorizzazione della posizione?</string>
@@ -98,5 +94,6 @@
     <string name="Beatrice">Spagnolo Beatrice</string>
     <string name="Maisha">Bhuiyan Maisha Fahmida</string>
     <string name="Darky">Zotea Dumitru</string>
+    <string name="confirm_password_message">Insert your current password to confirm your changes:</string>
 
 </resources>
