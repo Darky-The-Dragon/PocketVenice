@@ -49,7 +49,7 @@ public class Events extends Fragment implements EventClickListener {
         view = inflater.inflate(R.layout.fragment_events, container, false);
 
         initViews();
-        initDataPlaces();
+        initDataEvents();
         setupEventsAdapter();
 
         return view;
@@ -60,7 +60,7 @@ public class Events extends Fragment implements EventClickListener {
         recyclerView.setAdapter(eventAdapter);
     }
 
-    private void initDataPlaces() {
+    private void initDataEvents() {
         database = FirebaseDatabase.getInstance().getReference("Eventi");
 
         // Database handler
