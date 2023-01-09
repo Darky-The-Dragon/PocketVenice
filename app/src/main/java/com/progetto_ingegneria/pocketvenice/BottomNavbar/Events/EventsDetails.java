@@ -123,14 +123,13 @@ public class EventsDetails extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if (isLogged) {
 
-            if (v.getId() == R.id.details_event_addEvent) {
+        if (v.getId() == R.id.details_event_addEvent) {
 
-                getCalendarPermission();
+            getCalendarPermission();
 
-            } else if (v.getId() == R.id.item_event_share) {
-
+        } else if (v.getId() == R.id.item_event_share) {
+            if (isLogged) {
                 try {
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("text/plan");
@@ -141,11 +140,11 @@ public class EventsDetails extends Fragment implements View.OnClickListener {
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), "Something went wrong. Cannot share at this moment. Try again", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(getActivity(), "You have to be logged to share this event", Toast.LENGTH_SHORT).show();
             }
-
-        } else {
-            Toast.makeText(getActivity(), "You have to be logged to share this event", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private void getCalendarPermission() {
