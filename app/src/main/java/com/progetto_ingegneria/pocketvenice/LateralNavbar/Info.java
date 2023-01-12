@@ -10,15 +10,17 @@ import androidx.fragment.app.Fragment;
 
 import com.progetto_ingegneria.pocketvenice.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class Info extends Fragment {
 
+public class Info extends Fragment {
+    /**
+     * Costruttore vuoto necessario per poter effeturare la costruzione di un nuovo fragment.
+     */
     public Info() {
         // Required empty public constructor
     }
-
+    /**
+     * @return Ritorna la vista del fragment nella quale verranno visualizzati i nomi di coloro che hanno contribuito a creare l'applicazione Pocket Venice.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,4 +44,5 @@ public class Info extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+
 }

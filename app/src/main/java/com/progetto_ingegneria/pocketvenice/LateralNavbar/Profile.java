@@ -20,9 +20,7 @@ import com.progetto_ingegneria.pocketvenice.R;
 import com.progetto_ingegneria.pocketvenice.User.EditUserData;
 import com.progetto_ingegneria.pocketvenice.User.User;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class Profile extends Fragment implements View.OnClickListener {
 
     protected TextView titleWelcome, fullName, email, phone, birthdate, editBtn;
@@ -30,11 +28,15 @@ public class Profile extends Fragment implements View.OnClickListener {
     protected DatabaseReference databaseReference;
     protected View view;
 
-
+    /**
+     * Costruttore vuoto necessario per poter effeturare la costruzione di un nuovo fragment.
+     */
     public Profile() {
         // Required empty public constructor
     }
-
+    /**
+     * @return Ritorna la vista del fragment nella quale verranno visuallizzate le informazioni dell'utente
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,7 +49,9 @@ public class Profile extends Fragment implements View.OnClickListener {
         //Inflate the layout for this fragment*/
         return view;
     }
-
+    /**
+     * loadDatabase scarica dal database le informazioni riguardati l'utente attualmente loggato.
+     */
     private void loadDatabase() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -67,12 +71,16 @@ public class Profile extends Fragment implements View.OnClickListener {
             }
         });
     }
-
+    /**
+     * initDatabase inizializza le risorse necessarie per effettuare download/upload di informazioni dal/al database.
+     */
     private void initDatabase() {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
     }
-
+    /**
+     * initView collega le variabili della classe Profile agli elementi contenuti nel file xml colegata ad essa che formano l'interfaccia grafica attraverso la funzione findViewById
+     */
     private void initView() {
         titleWelcome = view.findViewById(R.id.show_Welcome);
         fullName = view.findViewById(R.id.show_full_name);
@@ -83,18 +91,17 @@ public class Profile extends Fragment implements View.OnClickListener {
         editBtn.setOnClickListener(this);
     }
 
-
+    /**
+     * onClick rappresenta il lister che permette all'utente di caricare il frammento EditUserData che permette di modifcare le informazioni dell'utente.
+     * @param v Rappresenta quale elemento ha scatenato l'evento
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.edit) {
-            loadEditUserDataFragment();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.main_frame_layout, new EditUserData())
+                    .addToBackStack(null)
+                    .commit();
         }
-    }
-
-    private void loadEditUserDataFragment() {
-        getParentFragmentManager().beginTransaction()
-                .replace(R.id.main_frame_layout, new EditUserData())
-                .addToBackStack(null)
-                .commit();
     }
 }

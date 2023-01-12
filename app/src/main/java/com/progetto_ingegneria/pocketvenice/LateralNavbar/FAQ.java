@@ -9,15 +9,17 @@ import androidx.fragment.app.Fragment;
 
 import com.progetto_ingegneria.pocketvenice.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class FAQ extends Fragment {
 
+public class FAQ extends Fragment {
+    /**
+     * Costruttore vuoto necessario per poter effeturare la costruzione di un nuovo fragment.
+     */
     public FAQ() {
         // Required empty public constructor
     }
-
+    /**
+     * @return Ritorna la vista del fragment nella quale verranno visualizzate le FAQ dell'applicazione
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

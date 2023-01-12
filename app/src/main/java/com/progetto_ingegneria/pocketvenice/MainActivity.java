@@ -55,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected FirebaseUser user;
     protected boolean isLogged = false;
 
+    /**
+     * Questo metodo crea l'attività Main, collegando il file xml contenente la struttura grafica al resto del codice.
+     * @param savedInstanceState Usato per salvare uno stato dell'istanza dell'app.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setup();
     }
 
+    /**
+     * startGuide controlla se la guida dell'app è stata visualizzata.
+     * Se un utente usa l'applicazione per la prima volta gli viene visualizzata la guida su come funziona l'applicazione.
+     */
     private void startGuide() {
         if (restorePrefData()) {
             SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
@@ -77,11 +85,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * @return Ritorna il valore booleano salvato nella memoria del dispositivo, il quale rappresenta se la guida dell'applicazione è stata visualizzata oppure no.
+     */
     private boolean restorePrefData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
         return pref.getBoolean("isIntroOpened", true);
     }
 
+    /**
+     * setHeaderUsername controlla se l'utente è collegato e setta il nome utente nella barra laterale con quello inserito al momento della registrazione.
+     * Se l'untente è collegato tramite modalità Guest tale nome nella barra laterale sarà settato a Guest.
+     */
     private void setHeaderUsername() {
 
         if (isLogged) {
@@ -106,6 +121,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * setup inizializza i listener delle varie componenti dell'activity main.
+     */
     private void setup() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             replaceFragment(new News());
@@ -115,8 +133,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         navigationView.setItemIconTintList(null);
     }
 
-    private void initview() {
 
+    /**
+     * initView collega le variabili della classe MainActivity agli elementi contenuti nel file xml colegata ad essa che formano l'interfaccia grafica attraverso la funzione findViewById
+     */
+    private void initview() {
         drawerLayout = findViewById(R.id.drawerLayout);
         progressBar = findViewById(R.id.progress_bar);
         textTitle = findViewById(R.id.menu_title);
@@ -143,6 +164,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * checkAuth controlla se un utente è collegato.
+     */
     private void checkAuth() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -150,6 +174,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * onClick rappresenta come metodo l'unione di tutti i listeren dei vari componenti dell'activity
+     * @param v Rappresenta quale elemento è stato cliccato dall'utente.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.menu_nav) {
@@ -157,6 +185,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * Il metodo sostituisce il fragment in uso con un nuovo fragment aggiungendo quest'ultimo allo stack.
+     * Tale stack permette all'utente di poter tornare indietro cliccando il pulsante indietro del tefono.
+     * @param fragment è il fragment da sostituire
+     */
     private void replaceFragment(Fragment fragment) {
 
         if (fragment != null) {
@@ -168,6 +201,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * onBackPressed permette di poter navigare a ritroso nell'applicazione settando opportunamente ciò che si vede sullo schermo con ciò che è selezionato nella barra di navigazione.
+     * Nel caso l'utente si trovi nella schermata iniziale viene viusalizzato un messaggio nel quale si chiede all'utente se vuole uscire dall'app oppure no.
+     */
     @Override
     public void onBackPressed() {
 
@@ -210,7 +247,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
+    /**
+     * logoutUser permette all'utente di scollegarsi dall'applicazione permettendo ad un altro utente di poter utilizzare l'app.
+     */
     private void logoutUser() {
         progressBar.setVisibility(View.VISIBLE);
         FirebaseAuth.getInstance().signOut();
@@ -218,6 +257,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
+    /**
+     * onNavigationItemSelected permette la gestione degli eventi sugli elementi di navigazione
+     * @param item Rappresenta quale elemento ha scatenato l'evento.
+     * @return Ritrona true per segnalare che operazione è avvenuta con successo.
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 

@@ -43,10 +43,16 @@ public class EditUserData extends Fragment implements View.OnClickListener {
     protected User user;
     protected View view;
 
+    /**
+     * Costruttore vuoto necessario per poter effeturare la costruzione di un nuovo fragment.
+     */
     public EditUserData() {
         // Required empty public constructor
     }
 
+    /**
+     * @return Ritorna la vista del fragment nella quale verrà visualizzata la possibilà di modifcare le informazioni dell'utente.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,6 +66,9 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    /**
+     * loadDatabase scarica dal database le informazioni riguardati l'utente attualmente loggato.
+     */
     private void loadDatabase() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -80,11 +89,16 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         });
     }
 
+    /**
+     * initDatabase inizializza le risorse necessarie per effettuare download/upload di informazioni dal/al database.
+     */
     private void initDatabase() {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
     }
-
+    /**
+     * initView collega le variabili della classe EditUserData agli elementi contenuti nel file xml colegata ad essa che formano l'interfaccia grafica attraverso la funzione findViewById
+     */
     private void initView() {
         editTextFullName = view.findViewById(R.id.edit_full_name);
         editTextEmail = view.findViewById(R.id.edit_email);
@@ -100,7 +114,10 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         submitBtn.setOnClickListener(this);
         progressBar = view.findViewById(R.id.progress_bar);
     }
-
+    /**
+     * onClick rappresenta come metodo l'unione di tutti i listeren dei vari componenti dell'activity
+     * @param v Rappresenta quale elemento è stato cliccato dall'utente.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.show_hide_password) {
@@ -129,6 +146,9 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * showHidePassword permente all'utente di visualizzare in chiaro il contenuto della password nel caso non si ricordasse quello che è stato digitato, così come permette di effettuare l'opposto trasformando il contenuto della password in chiaro in un contenuto non leggibile.
+     */
     private void showHidePassword(EditText password) {
 
         if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
@@ -140,6 +160,9 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * Controlla che i nuovi data inseriti dall'utente riusltino essere validi prima di essere modificati sul database.
+     */
     private void submitNewUserInfo() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         fullName = editTextFullName.getText().toString().trim();
@@ -218,7 +241,10 @@ public class EditUserData extends Fragment implements View.OnClickListener {
                     });
         }
     }
-
+    /**
+     * check_Age controlla che la data di nascità dell'utente inserita sia valida per poter usare l'applicazione.
+     * @return gli anni dell'utente fino alla data odierna.
+     */
     private int check_Age() {
 
         String[] start_string = age.split("/");
@@ -240,6 +266,9 @@ public class EditUserData extends Fragment implements View.OnClickListener {
 
     }
 
+    /**
+     * logoutUser permette all'utente di scollegarsi dall'applicazione permettendo ad un altro utente di poter utilizzare l'app.
+     */
     private void logoutUser() {
         progressBar.setVisibility(View.VISIBLE);
         FirebaseAuth.getInstance().signOut();
@@ -250,6 +279,9 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         startActivity(new Intent(getActivity(), LoginActivity.class));
     }
 
+    /**
+     * loadProfileFragment carica la schermata del profile personale nella quale sono visualizzate le info dell'utente collegato.
+     */
     private void loadProfileFragment() {
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.main_frame_layout, new Profile())
