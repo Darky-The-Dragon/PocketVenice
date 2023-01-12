@@ -36,7 +36,7 @@ public class EditUserData extends Fragment implements View.OnClickListener {
     protected EditText editTextFullName, editTextEmail, editTextMobile, editTextPassword;
     protected TextView TextViewBirthdate, cancelBtn, submitBtn;
     protected ImageView imageViewShowHidePassword;
-    protected String fullName, age, email, mobile, password;
+    protected String fullName, birthdate, email, mobile, password;
     protected FirebaseUser firebaseUser;
     protected DatabaseReference databaseReference;
     protected ProgressBar progressBar;
@@ -166,7 +166,7 @@ public class EditUserData extends Fragment implements View.OnClickListener {
     private void submitNewUserInfo() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         fullName = editTextFullName.getText().toString().trim();
-        age = TextViewBirthdate.getText().toString().trim();
+        birthdate = TextViewBirthdate.getText().toString().trim();
         email = editTextEmail.getText().toString().toLowerCase().trim();
         mobile = editTextMobile.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
@@ -177,10 +177,10 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         } else if (fullName.equals(user.getFullName())) {
             editTextFullName.setError("Your new full name can't be the same as your previous one");
             editTextFullName.requestFocus();
-        } else if (!age.isEmpty() && check_Age() < 14) {
-            TextViewBirthdate.setError("You can't be older less than 14 year old");
+        } else if (!birthdate.isEmpty() && check_Age() < 14) {
+            TextViewBirthdate.setError("You must be older than 14 years old");
             TextViewBirthdate.requestFocus();
-        } else if (age.equals(user.getBirthdate())) {
+        } else if (birthdate.equals(user.getBirthdate())) {
             TextViewBirthdate.setError("Your new birthday date can't be the same as your previous one");
             TextViewBirthdate.requestFocus();
         } else if (!email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -211,8 +211,8 @@ public class EditUserData extends Fragment implements View.OnClickListener {
                             if (!fullName.isEmpty() && !fullName.equals(user.getFullName())) {
                                 databaseReference.child("fullName").setValue(fullName);
                             }
-                            if (!age.isEmpty() && !age.equals(user.getBirthdate())) {
-                                databaseReference.child("age").setValue(age);
+                            if (!birthdate.isEmpty() && !birthdate.equals(user.getBirthdate())) {
+                                databaseReference.child("birthdate").setValue(birthdate);
                             }
                             if (!email.isEmpty() && !email.equals(user.getEmail())) {
                                 databaseReference.child("email").setValue(email);
@@ -247,7 +247,7 @@ public class EditUserData extends Fragment implements View.OnClickListener {
      */
     private int check_Age() {
 
-        String[] start_string = age.split("/");
+        String[] start_string = birthdate.split("/");
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;

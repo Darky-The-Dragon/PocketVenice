@@ -1,430 +1,466 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Auth.RegisterActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/frameLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="273dp"
-            android:background="@drawable/red_gold_bg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="45dp"
-                android:contentDescription="@string/desc_logo"
-                android:src="@drawable/logo" />
-
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/titleRegister"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="64dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/register"
-            android:textAlignment="textStart"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/frameLayout" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/titleRegister">
-
-
-            <RelativeLayout
+            <FrameLayout
+                android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="64dp"
-                android:background="@drawable/golden_border_rounded_corner">
-
-                <!-- Fields for input: -->
-                <EditText
-                    android:id="@+id/full_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_toEndOf="@+id/avatar_icon"
-                    android:autofillHints="Full name"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/full_name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:paddingStart="17dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColorHint="#b31a34"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:textSize="12sp"
-                    tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-                <!--ICONS-->
-                <ImageView
-                    android:id="@id/avatar_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="17dp"
-                    android:contentDescription="@string/username_desc"
-                    android:src="@drawable/profile"
-                    tools:ignore="ImageContrastCheck" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="64dp"
-                android:background="@drawable/golden_border_rounded_corner">
-
-                <!-- Fields for input: -->
-                <TextView
-                    android:id="@+id/birthdate"
-                    style="@android:style/Widget.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_toEndOf="@+id/date_icon"
-                    android:autofillHints="Birthdate"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/poppins_regular"
-                    android:maxLines="1"
-                    android:paddingStart="17dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="12dp"
-                    android:text="@string/date_format"
-                    android:textColor="#b31a34"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:textSize="12sp"
-                    tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-                <!--ICONS-->
-                <ImageView
-                    android:id="@id/date_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="17dp"
-                    android:contentDescription="@string/date_desc"
-                    android:src="@drawable/ic_baseline_calendar_month_24"
-                    tools:ignore="ImageContrastCheck" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="64dp"
-                android:background="@drawable/golden_border_rounded_corner">
-
-                <!-- Fields for input: -->
-                <EditText
-                    android:id="@+id/mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_toEndOf="@+id/mobile_icon"
-                    android:autofillHints="mobile"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/mobile"
-                    android:inputType="phone"
-                    android:maxLines="1"
-                    android:paddingStart="17dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColorHint="#b31a34"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:textSize="12sp"
-                    tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-                <!--ICONS-->
-                <ImageView
-                    android:id="@id/mobile_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="17dp"
-                    android:contentDescription="@string/desc_mobile"
-                    android:src="@drawable/mobile"
-                    tools:ignore="ImageContrastCheck" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="64dp"
-                android:background="@drawable/golden_border_rounded_corner">
-
-                <!-- Fields for input: -->
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_toEndOf="@+id/email_icon"
-                    android:autofillHints="emailAddress"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/email"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:paddingStart="17dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColorHint="#b31a34"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:textSize="12sp"
-                    tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-                <!--ICONS-->
-                <ImageView
-                    android:id="@id/email_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="10dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="17dp"
-                    android:contentDescription="@string/desc_email"
-                    android:src="@drawable/email"
-                    tools:ignore="ImageContrastCheck" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="64dp"
-                android:background="@drawable/golden_border_rounded_corner"
-                android:orientation="horizontal">
+                android:layout_height="273dp"
+                android:background="@drawable/red_gold_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="17dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/desc_pass"
-                    android:src="@drawable/password"
-                    tools:ignore="ImageContrastCheck" />
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="45dp"
+                    android:contentDescription="@string/desc_logo"
+                    android:src="@drawable/logo" />
 
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="205dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:autofillHints="password"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:paddingStart="17dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColorHint="#b31a34"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:textSize="12sp"
-                    tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-                <!--ICONS-->
-
-                <ImageView
-                    android:id="@+id/show_hide_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="17dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_show_hide_password_24"
-                    tools:ignore="ContentDescription,ImageContrastCheck" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="64dp"
-                android:background="@drawable/golden_border_rounded_corner"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="17dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/desc_pass"
-                    android:src="@drawable/password"
-                    tools:ignore="ImageContrastCheck" />
-
-                <EditText
-                    android:id="@+id/confirm_password"
-                    android:layout_width="205dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:autofillHints="Confirm password"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/confirm_password"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:paddingStart="17dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColorHint="#b31a34"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:textSize="12sp"
-                    tools:ignore="RtlSymmetry" />
-
-                <!--ICONS-->
-
-                <ImageView
-                    android:id="@+id/show_hide_confirm_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="17dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_show_hide_password_24"
-                    tools:ignore="ContentDescription,ImageContrastCheck" />
-
-            </LinearLayout>
+            </FrameLayout>
 
             <TextView
-                android:id="@+id/register"
-                android:layout_width="match_parent"
+                android:id="@+id/titleRegister"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="65dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="65dp"
-                android:background="@drawable/red_fill__rounded_color"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="64dp"
                 android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp"
                 android:text="@string/register"
-                android:textColor="#c3b377"
-                android:textSize="15sp"
-                tools:ignore="TextContrastCheck" />
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frameLayout" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/titleRegister">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/golden_border_rounded_corner">
+
+                    <!-- Fields for input: -->
+                    <EditText
+                        android:id="@+id/full_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_toEndOf="@+id/avatar_icon"
+                        android:autofillHints="Full name"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/full_name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingStart="17dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="12dp"
+                        android:textColorHint="#b31a34"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="12sp"
+                        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+                    <!--ICONS-->
+                    <ImageView
+                        android:id="@id/avatar_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="17dp"
+                        android:contentDescription="@string/username_desc"
+                        android:src="@drawable/profile"
+                        tools:ignore="ImageContrastCheck" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/golden_border_rounded_corner">
+
+                    <!-- Fields for input: -->
+                    <TextView
+                        android:id="@+id/birthdate"
+                        style="@android:style/Widget.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_toEndOf="@+id/date_icon"
+                        android:autofillHints="Birthdate"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="1"
+                        android:paddingStart="17dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="12dp"
+                        android:text="@string/date_format"
+                        android:textColor="#b31a34"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="12sp"
+                        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+                    <!--ICONS-->
+                    <ImageView
+                        android:id="@id/date_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="17dp"
+                        android:contentDescription="@string/date_desc"
+                        android:src="@drawable/ic_baseline_calendar_month_24"
+                        tools:ignore="ImageContrastCheck" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/golden_border_rounded_corner">
+
+                    <!-- Fields for input: -->
+                    <EditText
+                        android:id="@+id/mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_toEndOf="@+id/mobile_icon"
+                        android:autofillHints="mobile"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/mobile"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingStart="17dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="12dp"
+                        android:textColorHint="#b31a34"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="12sp"
+                        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+                    <!--ICONS-->
+                    <ImageView
+                        android:id="@id/mobile_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="17dp"
+                        android:contentDescription="@string/desc_mobile"
+                        android:src="@drawable/mobile"
+                        tools:ignore="ImageContrastCheck" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/golden_border_rounded_corner">
+
+                    <!-- Fields for input: -->
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_toEndOf="@+id/email_icon"
+                        android:autofillHints="emailAddress"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:paddingStart="17dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="12dp"
+                        android:textColorHint="#b31a34"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="12sp"
+                        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+                    <!--ICONS-->
+                    <ImageView
+                        android:id="@id/email_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="17dp"
+                        android:contentDescription="@string/desc_email"
+                        android:src="@drawable/email"
+                        tools:ignore="ImageContrastCheck" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/golden_border_rounded_corner"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                    <!-- Fields for input: -->
+                    <ImageView
+                        android:id="@id/icon_key"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignParentBottom="false"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="17dp"
+                        android:contentDescription="@string/desc_pass"
+                        android:src="@drawable/password"
+                        tools:ignore="ImageContrastCheck" />
+
+                    <ImageView
+                        android:id="@+id/show_hide_password"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_show_hide_password_24"
+                        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                    <!--ICONS-->
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_toStartOf="@+id/show_hide_password"
+                        android:layout_toEndOf="@+id/icon_key"
+                        android:autofillHints="password"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingStart="17dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="12dp"
+                        android:textColorHint="#b31a34"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="12sp"
+                        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/golden_border_rounded_corner"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                    <!-- Fields for input: -->
+                    <ImageView
+                        android:id="@id/icon_key1"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignParentBottom="false"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="17dp"
+                        android:contentDescription="@string/desc_pass"
+                        android:src="@drawable/password"
+                        tools:ignore="ImageContrastCheck" />
+
+                    <ImageView
+                        android:id="@+id/show_hide_confirm_password"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_show_hide_password_24"
+                        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                    <!--ICONS-->
+
+                    <EditText
+                        android:id="@+id/confirm_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_toStartOf="@+id/show_hide_confirm_password"
+                        android:layout_toEndOf="@+id/icon_key1"
+                        android:autofillHints="Confirm Password"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingStart="17dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="12dp"
+                        android:textColorHint="#b31a34"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="12sp"
+                        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+
+                </RelativeLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/register"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="65dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="65dp"
+                    android:background="@drawable/red_fill__rounded_color"
                     android:fontFamily="@font/poppins_medium"
-                    android:gravity="end"
-                    android:padding="4dp"
-                    android:text="@string/back"
-                    android:textColor="#666666"
-                    android:textSize="11sp" />
+                    android:gravity="center"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:text="@string/register"
+                    android:textColor="#c3b377"
+                    android:textSize="15sp"
+                    tools:ignore="TextContrastCheck" />
 
-                <TextView
-                    android:id="@+id/login"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/poppins_medium"
-                    android:padding="4dp"
-                    android:text="@string/login"
-                    android:textColor="#b31a34"
-                    android:textSize="11sp" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="end"
+                        android:padding="4dp"
+                        android:text="@string/back"
+                        android:textColor="#666666"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:padding="4dp"
+                        android:text="@string/login"
+                        android:textColor="#b31a34"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </RelativeLayout>
 
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-        </RelativeLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
