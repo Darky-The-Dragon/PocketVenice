@@ -12,9 +12,6 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 
 public class Info extends Fragment {
-    /**
-     * Costruttore vuoto necessario per poter effeturare la costruzione di un nuovo fragment.
-     */
     public Info() {
         // Required empty public constructor
     }

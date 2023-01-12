@@ -4,15 +4,12 @@ public class User {
 
     protected String fullName, birthdate, email, mobile;
 
-    /**
-     * Costruttore pubblico senza parametri usato per creare un utente vuoto.
-     */
+
     public User() {
         //MUST BE EMPTY
     }
 
     /**
-     * Costruttore pubblico con parametri usato per creare un utente con le informazioni fornite.
      * @param fullName indica il nome e cognome.
      * @param birthdate indica la data di nascita.
      * @param email indica la mail.
@@ -26,7 +23,6 @@ public class User {
     }
 
     /**
-     * Getter
      * @return Ritorna il nome e cognome.
      */
     public String getFullName() {
@@ -34,7 +30,6 @@ public class User {
     }
 
     /**
-     * Getter
      * @return Ritrona la data di nascita.
      */
     public String getBirthdate() {
@@ -42,7 +37,6 @@ public class User {
     }
 
     /**
-     * Getter
      * @return Ritorna la mail.
      */
     public String getEmail() {
@@ -50,7 +44,6 @@ public class User {
     }
 
     /**
-     * Getter
      * @return Ritorna il numero di telefono.
      */
     public String getMobile() {

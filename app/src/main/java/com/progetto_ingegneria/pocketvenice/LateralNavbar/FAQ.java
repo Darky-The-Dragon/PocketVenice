@@ -11,9 +11,7 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 
 public class FAQ extends Fragment {
-    /**
-     * Costruttore vuoto necessario per poter effeturare la costruzione di un nuovo fragment.
-     */
+
     public FAQ() {
         // Required empty public constructor
     }

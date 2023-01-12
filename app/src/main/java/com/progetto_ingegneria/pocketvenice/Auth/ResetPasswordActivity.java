@@ -21,10 +21,6 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     protected EditText editTextEmail;
     protected ProgressBar progressBar;
 
-    /**
-     * Questo metodo crea l'attività di ResetPassword, collegando il file xml contenente la struttura grafica al resto del codice.
-     * @param savedInstanceState Usato per salvare uno stato dell'istanza dell'app.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +28,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         initView();
 
     }
-    /**
-     * initView collega le variabili della classe ResetPasswordActivity agli elementi contenuti nel file xml colegata ad essa che formano l'interfaccia grafica attraverso la funzione findViewById
-     */
+
     private void initView() {
         editTextEmail = findViewById(R.id.email);
         textViewSubmit = findViewById(R.id.submit);
@@ -45,8 +39,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     }
 
     /**
-     * onClick rappresenta come metodo l'unione di tutti i listeren dei vari componenti dell'activity
-     * @param v Rappresenta quale elemento è stato cliccato dall'utente.
+     * @param v Rappresenta quale elemento ha scatenato l'eveneto.
      */
     @Override
     public void onClick(View v) {
@@ -58,9 +51,6 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    /**
-     * resetPassword permette all'utente di resettale la propria password nel caso non dovesse più ricordarla.
-     */
     private void resetPassword() {
 
         String email = editTextEmail.getText().toString().trim();

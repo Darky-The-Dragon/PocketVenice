@@ -32,19 +32,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected ProgressBar progressBar;
     protected FirebaseAuth mAuth;
     protected String fullName, birthdate, email, mobile, password, confirmPassword;
-    /**
-     * Questo metodo crea l'attività di Register, collegando il file xml contenente la struttura grafica al resto del codice.
-     * @param savedInstanceState Usato per salvare uno stato dell'istanza dell'app.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initView();
     }
-    /**
-     * initView collega le variabili della classe LoginActivity agli elementi contenuti nel file xml colegata ad essa che formano l'interfaccia grafica attraverso la funzione findViewById
-     */
+
     private void initView() {
         textViewRegister = findViewById(R.id.register);
         textViewRegister.setOnClickListener(this);
@@ -65,8 +60,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAuth = FirebaseAuth.getInstance();
     }
     /**
-     * onClick rappresenta come metodo l'unione di tutti i listeren dei vari componenti dell'activity
-     * @param v Rappresenta quale elemento è stato cliccato dall'utente.
+     * @param v Rappresenta quale elemento ha scatenato l'evento.
      */
     @Override
     public void onClick(View v) {
@@ -99,9 +93,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    /**
-     * showHidePassword permente all'utente di visualizzare in chiaro il contenuto della password nel caso non si ricordasse quello che è stato digitato, così come permette di effettuare l'opposto trasformando il contenuto della password in chiaro in un contenuto non leggibile.
-     */
+
     private void showHidePassword(EditText password) {
 
         if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
@@ -113,10 +105,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    /**
-     * registerUser controlla che tutti i dati forniti dall'utente siano validi.
-     * Una volta che tutti i controlli siano andati a buon fine i dati dell'utente vengono salvati sul database.
-     */
+
     private void registerUser() {
         fullName = editTextFullName.getText().toString().trim();
         birthdate = age_tv.getText().toString().trim();
@@ -171,7 +160,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * check_Age controlla che la data di nascità dell'utente inserita sia valida per poter usare l'applicazione.
      * @return gli anni dell'utente fino alla data odierna.
      */
     private int check_Age() {
@@ -195,10 +183,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    /**
-     * createNewUser contata il database per poter inserire i dati dell'utente.
-     * Questi dati vengono inseriti se e solo se la mail inserità dall'utente non è associata ad una altro account esistente.
-     */
     private void createNewUser() {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
@@ -229,9 +213,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     }
                 });
     }
-    /**
-     * showLoginActivity ridireziona l'untete sulla schermata di login per effutare l'accesso, che verrà effettuato solo se l'utente verifica la propria mail.
-     */
+
     private void showLoginActivity() {
         startActivity(new Intent(this, LoginActivity.class));
         finish();
