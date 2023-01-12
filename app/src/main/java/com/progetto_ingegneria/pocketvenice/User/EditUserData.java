@@ -31,6 +31,14 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.Calendar;
 
+/**
+ * La classe fornisce gli strumenti per poter modificare le informazioni dell'utente.
+ * La classe contatta il database per poter effettuare l'aggiornamento delle informazioni.
+ * Il fragment EditUserData viene eseguito dal fragment profile e una volta terminata l'esecuzione viene reindirizzato sempre verso profile.
+ * @see Profile
+ * Profilo
+ */
+
 public class EditUserData extends Fragment implements View.OnClickListener {
 
     protected EditText editTextFullName, editTextEmail, editTextMobile, editTextPassword;

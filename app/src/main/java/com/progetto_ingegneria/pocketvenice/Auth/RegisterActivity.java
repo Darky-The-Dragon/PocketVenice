@@ -23,7 +23,15 @@ import com.progetto_ingegneria.pocketvenice.User.User;
 import java.util.Calendar;
 import java.util.Objects;
 
-
+/**
+ * La classe fornisce gli strumenti per poter registrare i dati di un utente in un database, al quale è stata aperta una connessione.
+ * Nel database vengono salvate le informazioni del nuovo utente, ma solo se esse non siano già presenti.
+ * Una volta registrato l'applicazione viene reindirizzata verso l'activity login.
+ * @see User
+ * User
+ * @see LoginActivity
+ * LoginAcivity
+ */
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected ImageView imageViewShowHidePassword, imageViewShowHideConfirmPassword;

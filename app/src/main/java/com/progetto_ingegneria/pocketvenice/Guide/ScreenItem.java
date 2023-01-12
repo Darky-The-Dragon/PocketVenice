@@ -1,5 +1,8 @@
 package com.progetto_ingegneria.pocketvenice.Guide;
 
+/**
+ * Permette di costruire oggetti di tipo ScreenItem
+ */
 public class ScreenItem {
 
     private String title, description;

@@ -9,15 +9,15 @@ import androidx.fragment.app.Fragment;
 
 import com.progetto_ingegneria.pocketvenice.R;
 
-
+/**
+ * La classe crea la view FAQ che contengono le fast asked question contenute nel file fragment_FAQ.xml
+ */
 public class FAQ extends Fragment {
 
     public FAQ() {
         // Required empty public constructor
     }
-    /**
-     * @return Ritorna la vista del fragment nella quale verranno visualizzate le FAQ dell'applicazione
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

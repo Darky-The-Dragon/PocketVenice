@@ -7,6 +7,9 @@ import android.transition.ChangeTransform;
 import android.transition.TransitionSet;
 import android.util.AttributeSet;
 
+/**
+ * La classe permette di creare delle transizioni per effettuare correttamente le animazioni.
+ */
 public class Transition extends TransitionSet {
     public Transition() {
         init();

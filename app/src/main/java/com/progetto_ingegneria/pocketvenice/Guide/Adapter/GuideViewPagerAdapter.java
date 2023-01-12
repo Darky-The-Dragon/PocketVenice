@@ -14,7 +14,12 @@ import com.progetto_ingegneria.pocketvenice.Guide.ScreenItem;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.List;
-
+/**
+ * Popola opportunamente l'elemento di screen_guide.xml con un elemento presente nella lista screenItemList.
+ * Tale procedura viene replicata per ogni elemento della lista che corrisponde ad una tab visualizzata dal'activity GuideActivity.
+ * @see com.progetto_ingegneria.pocketvenice.Guide.GuideActivity
+ * GuideActivity
+ */
 public class GuideViewPagerAdapter extends PagerAdapter {
 
     private final Context context;

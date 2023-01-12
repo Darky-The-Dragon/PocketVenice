@@ -18,7 +18,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.progetto_ingegneria.pocketvenice.MainActivity;
 import com.progetto_ingegneria.pocketvenice.R;
 
-
+/**
+ * La classe si collega al database per poter effettuare il login di un utente dopo aver effettuato i controlli necessari.
+ * E' possibile fare la registrazione nel caso si volgia creare un nuovo utente.
+ * E' possibile fare il login anche come utente guest
+ * Alla fine l'activity lancia la mainActivity
+ * @see RegisterActivity
+ * RegisterActivity
+ * @see MainActivity
+ * MainActivity
+ */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected TextView textViewLogin, textViewRegister, textViewGuest, textViewForgotPassword;

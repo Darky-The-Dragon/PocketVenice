@@ -23,12 +23,22 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Adapter.EventAda
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Adapter.EventViewHolder;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Listeners.EventClickListener;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Model.Event;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.Model.Place;
+import com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.PlacesDetails;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Utility.Transition;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Il fragment Events permette di visualizzare l'elenco degli eventi in corso a Venezia.
+ * La classe contatta il database per ottenere le informazioni riguardanti gli eventi aggiungendo ciascuno ad una lista di Event.
+ * La classe implementa gli strumenti per generare nel dettaglio uno specifico evento creando un fragment specifico e passando ad esso l'evento scelto come argomento.
+ * @see Event
+ * Event
+ * @see EventsDetails
+ * EventsDetails
+ */
 public class Events extends Fragment implements EventClickListener {
 
     protected ProgressBar progressBar;

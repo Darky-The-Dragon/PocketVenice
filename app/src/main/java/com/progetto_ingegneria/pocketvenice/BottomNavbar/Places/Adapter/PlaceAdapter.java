@@ -19,7 +19,12 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.Model.Place;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.List;
-
+/**
+ * Popola opportunamente l'elemento di item_place.xml con un evento presente nella lista placesData.
+ * Tale procedura viene replicata per ogni elemento della lista che corrisponde a un luogo visualizzato dal fragment Places.java
+ * @see com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.Places
+ * Places
+ */
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
 
     private final Context context;

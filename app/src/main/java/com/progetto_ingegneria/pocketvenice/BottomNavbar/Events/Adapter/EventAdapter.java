@@ -17,6 +17,12 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.List;
 
+/**
+ * Popola opportunamente l'elemento di item_event.xml con un evento presente nella lista eventsData.
+ * Tale procedura viene replicata per ogni elemento della lista che corrisponde a un evento visualizzato dal fragment Events.java
+ * @see com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Events
+ * Events
+ */
 public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
 
     private final Context context;

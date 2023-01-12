@@ -27,6 +27,20 @@ import com.progetto_ingegneria.pocketvenice.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fornisce la possibilità di visualizzare le news, ordinandole in modo temporale dalla più recente alla meno recente, contattando, attraverso opportune API dei domini esterni all'applicazione.
+ * La lista delle news ottenuta in caso contenga dei duplicati per titolo o desrizione viene rimossa in modo da visualizzare notizie tutte diverse tra loro.
+ * Fornisce gli strumenti per visualizzare nel dettaglio una particolare news.
+ * In caso di mancata connessione con i domini esterni viene visualizzato l'errore con il relativo codice.
+ * @see NewsApiResponse
+ * NewsApiResponse
+ * @see NewsDetails
+ * NewsDetails
+ * @see NewsHeadlines
+ * NewsHeadlines
+ * @see RequestManager
+ * RequestManager
+ */
 public class News extends Fragment implements View.OnClickListener, SelectListener, SwipeRefreshLayout.OnRefreshListener {
 
     protected TextView textHeader;

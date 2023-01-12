@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.progetto_ingegneria.pocketvenice.R;
 
+/**
+ * La classe resetPassword fornisce gli strumenti per poter modificare la password di un utente, nel caso venga smarrita o dimenticata.
+ * Per poter cambiare la password la classe si collega al database, dopo aver controllato se la mail sia contenente nel database stesso.
+ */
 public class ResetPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected FirebaseAuth mAuth;

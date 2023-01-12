@@ -3,6 +3,9 @@ package com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Models;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Consente la creazione di oggetti di tipo NewsApiResponse.
+ */
 public class NewsApiResponse implements Serializable {
 
     private String status;

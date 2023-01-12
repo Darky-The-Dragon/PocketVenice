@@ -28,7 +28,15 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * EventDetails fornisce gli strumenti per visualizzare in modo corretto un particolare evento in corso nella città di venezia.
+ * E' implementata la possibilità di condividere con altre persone l'evento selezionato. Tale funzionalità è operativa solo le l'utente ha effettauto il login.
+ * E' implementata la funzione che permette di aggiungere al calendario del dispositivo, settando opportunamente date e descrizioni, l'evento selezionato nella classe Events.java.
+ * @see Events
+ * Events
+ * @see com.progetto_ingegneria.pocketvenice.Auth.LoginActivity
+ * Login Activity
+ */
 public class EventsDetails extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match

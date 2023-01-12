@@ -19,6 +19,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Fornisce tutte le procedure per poter effettuare correttamente la creazione della lista di news richiesta per l'uso in News.java
+ * @see com.progetto_ingegneria.pocketvenice.BottomNavbar.News.News
+ * News
+ */
 public class RequestManager {
     Context context;
 

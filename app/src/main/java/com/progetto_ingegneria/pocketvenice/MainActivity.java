@@ -31,9 +31,31 @@ import com.progetto_ingegneria.pocketvenice.Guide.GuideActivity;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.FAQ;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Info;
 import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
-import com.progetto_ingegneria.pocketvenice.databinding.ActivityMainBinding;
 
-
+/**
+ * La classe fornisce gli strumenti per la navigazione e il corretto funzionamento dell'applicazione, cambiando la vista con nuovi fragment in base a eventi scatenati.
+ * Inoltre permette la navigazione all'intetro utilizzando il tasto indietro del telefono.
+ * La classe controlla anche se la guida dell'applicazione è stata visualizzata per la prima volta leggendo dal dispositivo un valore precedentemente salvato.
+ * La navigazione nell'app viene utilizzata una BottomNavigationView, la quale mostra le tab principali.
+ * Le tab principali sono realizzate tramite fragemnt.
+ * Una lateral NavigationView view utilizzata per le informazioni riguardanti l'applicazione stessa o dell'utente nel caso abbia effettuato il login.
+ * @see GuideActivity
+ * Guide Activity
+ * @see News
+ * News
+ * @see Places
+ * Places
+ * @see Events
+ * Events
+ * @see Maps
+ * Maps
+ * @see FAQ
+ * FAQ
+ * @see Info
+ * Info
+ * @see Profile
+ * Profile
+ */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationBarView.OnItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected BottomNavigationView bottomNavigationView;
     protected NavigationView navigationView;
     protected DrawerLayout drawerLayout;
-    protected ActivityMainBinding binding;
     protected ProgressBar progressBar;
 
     @Override

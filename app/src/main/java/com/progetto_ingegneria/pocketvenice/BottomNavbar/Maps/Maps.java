@@ -32,7 +32,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.progetto_ingegneria.pocketvenice.R;
 
-
+/**
+ * Il fragment Maps fornisce gli strumenti per creare, visualizzare e utilizzare una mappa in stile google maps.
+ * Può essere chiamata da PlaceDetails quando si cerca la posizione del luogo sulla mappa.
+ * @see com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.PlacesDetails
+ * PlaceDetails
+ */
 public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCallback {
 
     protected static final String TAG = "Maps";

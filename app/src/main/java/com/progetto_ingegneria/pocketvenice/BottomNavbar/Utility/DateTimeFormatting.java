@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Permette di formattare delle stringhe in base a determinati pattern.
+ */
 public class DateTimeFormatting {
     public static String DateToTimeFormat(String oldStringDate) {
         PrettyTime p = new PrettyTime(new Locale(getCountry()));

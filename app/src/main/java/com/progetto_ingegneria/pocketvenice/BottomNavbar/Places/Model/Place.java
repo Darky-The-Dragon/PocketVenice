@@ -2,6 +2,9 @@ package com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.Model;
 
 import java.io.Serializable;
 
+/**
+ * Permette di costruire oggetti di tipo Place
+ */
 public class Place implements Serializable {
 
     private String title, district, address, photoSrc, description;

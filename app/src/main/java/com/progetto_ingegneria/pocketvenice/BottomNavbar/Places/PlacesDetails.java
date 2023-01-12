@@ -24,7 +24,15 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.Maps.Maps;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.Model.Place;
 import com.progetto_ingegneria.pocketvenice.R;
 
-
+/**
+ * Il fragment PlacesDetails, che viene creato da Places, visualizza nel dettaglio uno specifico luogo di intereses di Venezia.
+ * Implementa le funzioni di condivisione con altri utenti, anche quelli che non sono salvati nel database, ma questa funzionalità è permessa solo se si è loggati.
+ * Fornisce la funzione di creare un fragment Map con le coordinare del luogo selezionata come argomento. Il fragment poi si preoccuperà di settare il marker sulla mappa.
+ * @see com.progetto_ingegneria.pocketvenice.Auth.LoginActivity
+ * Login Activity
+ * @see Maps
+ * Maps
+ */
 public class PlacesDetails extends Fragment implements View.OnClickListener {
 
 

@@ -20,7 +20,12 @@ import com.progetto_ingegneria.pocketvenice.R;
 import com.progetto_ingegneria.pocketvenice.User.EditUserData;
 import com.progetto_ingegneria.pocketvenice.User.User;
 
-
+/**
+ * Il fragment profile fornisce le informazioni dell'utente, se loggato, e le visualizza in textView che vengono prese dal file fragment_profile.xml.
+ * La classe fornisce anche il modo per
+ * @see EditUserData
+ *  cambiare i dati dell'utente
+ */
 public class Profile extends Fragment implements View.OnClickListener {
 
     protected TextView titleWelcome, fullName, email, phone, birthdate, editBtn;
@@ -31,9 +36,6 @@ public class Profile extends Fragment implements View.OnClickListener {
     public Profile() {
         // Required empty public constructor
     }
-    /**
-     * @return Ritorna la vista del fragment nella quale verranno visuallizzate le informazioni dell'utente
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,9 +84,6 @@ public class Profile extends Fragment implements View.OnClickListener {
         editBtn.setOnClickListener(this);
     }
 
-    /**
-     * @param v Rappresenta quale elemento ha scatenato l'evento
-     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.edit) {

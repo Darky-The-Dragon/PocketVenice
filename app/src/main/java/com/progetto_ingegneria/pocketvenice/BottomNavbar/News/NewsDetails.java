@@ -25,6 +25,15 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Models.NewsHeadlin
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Utility.DateTimeFormatting;
 import com.progetto_ingegneria.pocketvenice.R;
 
+/**
+ * Forniscle la possibilità di visualizzare in modo corretto nel dettaglio una particolare News.
+ * La visualizzazione viene effettuata tramite una webView integrata nell'applicazione, ma viene fornita la possiblità di aprire la news selezionata in un browser web esterno come Chrome.
+ * Se l'utente ha effettuato il login, è possibile effettaure la condivisione di della news sepcifica con altri utenti.
+ * @see com.progetto_ingegneria.pocketvenice.Auth.LoginActivity
+ * Login Activity
+ * @see News
+ * News
+ */
 public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickListener {
 
     private static final String HEADLINES = "param1";

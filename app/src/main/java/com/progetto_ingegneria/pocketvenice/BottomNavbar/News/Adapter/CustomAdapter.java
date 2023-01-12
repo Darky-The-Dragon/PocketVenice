@@ -18,7 +18,12 @@ import com.progetto_ingegneria.pocketvenice.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
+/**
+ * Popola opportunamente l'elemento di item_news.xml con una news presente nella lista headlines.
+ * Tale procedura viene replicata per ogni elemento della lista che corrisponde a una news visualizzata dal fragment News.java
+ * @see com.progetto_ingegneria.pocketvenice.BottomNavbar.News.News
+ * News
+ */
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     private final Context context;
     private final List<NewsHeadlines> headlines;

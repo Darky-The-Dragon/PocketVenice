@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment;
 
 import com.progetto_ingegneria.pocketvenice.R;
 
-
+/**
+ * Il fragment info genera e visualizza l'elenco delle persone che hanno contribuito lla creazione dell'applicazione pocketVenice.
+ */
 public class Info extends Fragment {
     public Info() {
         // Required empty public constructor

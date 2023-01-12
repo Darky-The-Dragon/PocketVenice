@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.progetto_ingegneria.pocketvenice.R;
 
+/**
+ * Permette di creare oggetti di tipo EventViewHolder.
+ */
 public class EventViewHolder extends RecyclerView.ViewHolder {
 
     public TextView title, address, fromDate, hyphen, toDate, fromHour, hyphen1, toHour;

@@ -20,6 +20,13 @@ import com.progetto_ingegneria.pocketvenice.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * L'activity permette di visualizzare l'elenco delle tab con una breve descrizione delle stesse.
+ * La visualizzazione della activity viene effettuata a fullscreen.
+ * La descrizione di ogni singola tab viene costruita e visualizzata nella classe GuideViewPagerAdapter.java.
+ * @see GuideViewPagerAdapter
+ * GuideViewPagerAdapter
+ */
 public class GuideActivity extends AppCompatActivity implements View.OnClickListener, TabLayout.OnTabSelectedListener {
 
     protected ViewPager screenPager;

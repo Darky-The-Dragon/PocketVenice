@@ -2,6 +2,9 @@ package com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Models;
 
 import java.io.Serializable;
 
+/**
+ * Consente la creazione di oggetti di tipo NewsHeadlines.
+ */
 public class NewsHeadlines implements Serializable {
 
     private Source source = null;
