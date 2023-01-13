@@ -1,5 +1,4 @@
 package com.progetto_ingegneria.pocketvenice.Guide;
-
 /**
  * Permette di costruire oggetti di tipo ScreenItem
  */

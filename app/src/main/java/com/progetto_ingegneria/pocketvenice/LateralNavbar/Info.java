@@ -14,12 +14,11 @@ import com.progetto_ingegneria.pocketvenice.R;
  * Il fragment info genera e visualizza l'elenco delle persone che hanno contribuito lla creazione dell'applicazione pocketVenice.
  */
 public class Info extends Fragment {
+
     public Info() {
         // Required empty public constructor
     }
-    /**
-     * @return Ritorna la vista del fragment nella quale verranno visualizzati i nomi di coloro che hanno contribuito a creare l'applicazione Pocket Venice.
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,5 +42,4 @@ public class Info extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-
 }

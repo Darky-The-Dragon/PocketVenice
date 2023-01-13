@@ -24,7 +24,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.News.Models.NewsHeadlines;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Utility.DateTimeFormatting;
 import com.progetto_ingegneria.pocketvenice.R;
-
 /**
  * Forniscle la possibilità di visualizzare in modo corretto nel dettaglio una particolare News.
  * La visualizzazione viene effettuata tramite una webView integrata nell'applicazione, ma viene fornita la possiblità di aprire la news selezionata in un browser web esterno come Chrome.

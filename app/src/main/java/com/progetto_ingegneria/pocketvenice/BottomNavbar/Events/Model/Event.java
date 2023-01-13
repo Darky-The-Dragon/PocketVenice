@@ -1,7 +1,6 @@
 package com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Model;
 
 import java.io.Serializable;
-
 /**
  * Permette di creare oggetti id tipo Event.
  */

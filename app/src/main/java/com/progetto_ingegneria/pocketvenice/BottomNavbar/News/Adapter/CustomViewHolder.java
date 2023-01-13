@@ -10,7 +10,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.progetto_ingegneria.pocketvenice.R;
-
 /**
  * Fornisce il settaggio pportuno delle informazioni delle news nello specifico per ogni elemento da visualizzare in News.java
  * @see com.progetto_ingegneria.pocketvenice.BottomNavbar.News.News

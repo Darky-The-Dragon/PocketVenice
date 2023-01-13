@@ -19,7 +19,6 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * L'activity permette di visualizzare l'elenco delle tab con una breve descrizione delle stesse.
  * La visualizzazione della activity viene effettuata a fullscreen.

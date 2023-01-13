@@ -30,7 +30,6 @@ import com.progetto_ingegneria.pocketvenice.LateralNavbar.Profile;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.Calendar;
-
 /**
  * La classe fornisce gli strumenti per poter modificare le informazioni dell'utente.
  * La classe contatta il database per poter effettuare l'aggiornamento delle informazioni.
@@ -51,14 +50,10 @@ public class EditUserData extends Fragment implements View.OnClickListener {
     protected User user;
     protected View view;
 
-
     public EditUserData() {
         // Required empty public constructor
     }
 
-    /**
-     * @return Ritorna la vista del fragment nella quale verrà visualizzata la possibilà di modifcare le informazioni dell'utente.
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,7 +66,6 @@ public class EditUserData extends Fragment implements View.OnClickListener {
 
         return view;
     }
-
 
     private void loadDatabase() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -113,9 +107,7 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         submitBtn.setOnClickListener(this);
         progressBar = view.findViewById(R.id.progress_bar);
     }
-    /**
-     * @param v Rappresenta quale elemento ha scatenato l'evento.
-     */
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.show_hide_password) {
@@ -143,7 +135,6 @@ public class EditUserData extends Fragment implements View.OnClickListener {
             TextViewBirthdate.setError(null);
         }
     }
-
 
     private void showHidePassword(EditText password) {
 
@@ -235,9 +226,6 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         }
     }
 
-    /**
-     * @return gli anni dell'utente fino alla data odierna.
-     */
     private int check_Age() {
 
         String[] start_string = birthdate.split("/");

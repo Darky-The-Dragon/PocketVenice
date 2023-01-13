@@ -23,8 +23,6 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Adapter.EventAda
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Adapter.EventViewHolder;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Listeners.EventClickListener;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Model.Event;
-import com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.Model.Place;
-import com.progetto_ingegneria.pocketvenice.BottomNavbar.Places.PlacesDetails;
 import com.progetto_ingegneria.pocketvenice.BottomNavbar.Utility.Transition;
 import com.progetto_ingegneria.pocketvenice.R;
 

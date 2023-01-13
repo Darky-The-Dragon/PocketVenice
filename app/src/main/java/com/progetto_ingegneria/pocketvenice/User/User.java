@@ -1,6 +1,8 @@
 package com.progetto_ingegneria.pocketvenice.User;
 
-
+/**
+ * Permette di creare oggetti di tipo User
+ */
 public class User {
 
     protected String fullName, birthdate, email, mobile;

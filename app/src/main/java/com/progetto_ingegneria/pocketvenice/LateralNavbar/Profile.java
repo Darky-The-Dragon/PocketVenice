@@ -33,9 +33,11 @@ public class Profile extends Fragment implements View.OnClickListener {
     protected DatabaseReference databaseReference;
     protected View view;
 
+
     public Profile() {
         // Required empty public constructor
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,13 +86,18 @@ public class Profile extends Fragment implements View.OnClickListener {
         editBtn.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.edit) {
-            getParentFragmentManager().beginTransaction()
-                    .replace(R.id.main_frame_layout, new EditUserData())
-                    .addToBackStack(null)
-                    .commit();
+            loadEditUserDataFragment();
         }
+    }
+
+    private void loadEditUserDataFragment() {
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.main_frame_layout, new EditUserData())
+                .addToBackStack(null)
+                .commit();
     }
 }

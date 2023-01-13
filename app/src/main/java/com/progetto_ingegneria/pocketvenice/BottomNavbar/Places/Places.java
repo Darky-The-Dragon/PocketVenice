@@ -30,7 +30,6 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Il fragment Places Permette di visualizzare l'elenco dei luoghi di interesse a Venezia.
  * La classe contatta il database per ottenere le informazioni riguardanti i luoghi di interesse aggiungendo ad una lista di Place.

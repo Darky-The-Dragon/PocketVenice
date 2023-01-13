@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.progetto_ingegneria.pocketvenice.R;
-
 /**
  * Permette di creare oggetti di tipo EventViewHolder.
  */

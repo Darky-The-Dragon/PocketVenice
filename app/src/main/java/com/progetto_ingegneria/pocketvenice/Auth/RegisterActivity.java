@@ -22,7 +22,6 @@ import com.progetto_ingegneria.pocketvenice.User.User;
 
 import java.util.Calendar;
 import java.util.Objects;
-
 /**
  * La classe fornisce gli strumenti per poter registrare i dati di un utente in un database, al quale è stata aperta una connessione.
  * Nel database vengono salvate le informazioni del nuovo utente, ma solo se esse non siano già presenti.
@@ -32,6 +31,7 @@ import java.util.Objects;
  * @see LoginActivity
  * LoginAcivity
  */
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected ImageView imageViewShowHidePassword, imageViewShowHideConfirmPassword;
@@ -67,9 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressBar = findViewById(R.id.progress_bar);
         mAuth = FirebaseAuth.getInstance();
     }
-    /**
-     * @param v Rappresenta quale elemento ha scatenato l'evento.
-     */
+
     @Override
     public void onClick(View v) {
 
@@ -101,7 +99,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-
     private void showHidePassword(EditText password) {
 
         if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
@@ -112,7 +109,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             password.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
     }
-
 
     private void registerUser() {
         fullName = editTextFullName.getText().toString().trim();
@@ -167,9 +163,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    /**
-     * @return gli anni dell'utente fino alla data odierna.
-     */
     private int check_Age() {
 
         String[] start_string = birthdate.split("/");

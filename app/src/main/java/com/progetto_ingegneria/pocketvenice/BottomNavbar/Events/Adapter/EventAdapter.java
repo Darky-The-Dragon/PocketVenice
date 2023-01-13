@@ -16,7 +16,6 @@ import com.progetto_ingegneria.pocketvenice.BottomNavbar.Events.Model.Event;
 import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.List;
-
 /**
  * Popola opportunamente l'elemento di item_event.xml con un evento presente nella lista eventsData.
  * Tale procedura viene replicata per ogni elemento della lista che corrisponde a un evento visualizzato dal fragment Events.java

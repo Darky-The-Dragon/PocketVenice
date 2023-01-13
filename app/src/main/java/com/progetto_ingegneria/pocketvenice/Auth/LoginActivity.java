@@ -12,12 +12,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.progetto_ingegneria.pocketvenice.MainActivity;
 import com.progetto_ingegneria.pocketvenice.R;
-
 /**
  * La classe si collega al database per poter effettuare il login di un utente dopo aver effettuato i controlli necessari.
  * E' possibile fare la registrazione nel caso si volgia creare un nuovo utente.
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected EditText editTextUsername, editTextPassword;
     protected ImageView imageViewShowHidePassword;
     protected ProgressBar progressBar;
+
     private FirebaseAuth mAuth;
 
     @Override
@@ -80,11 +82,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         imageViewShowHidePassword.setOnClickListener(this);
     }
 
-    /**
-     * @param v Rappresenta quale elemento è stato cliccato dall'utente.
-     */
     @Override
     public void onClick(View v) {
+
         if (v.getId() == R.id.show_hide_password) {
             showHidePassword();
         } else if (v.getId() == R.id.login) {

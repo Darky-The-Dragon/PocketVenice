@@ -8,7 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 /**
  * Permette di formattare delle stringhe in base a determinati pattern.
  */

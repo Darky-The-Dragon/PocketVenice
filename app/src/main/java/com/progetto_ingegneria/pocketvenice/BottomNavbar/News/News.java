@@ -26,7 +26,6 @@ import com.progetto_ingegneria.pocketvenice.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Fornisce la possibilità di visualizzare le news, ordinandole in modo temporale dalla più recente alla meno recente, contattando, attraverso opportune API dei domini esterni all'applicazione.
  * La lista delle news ottenuta in caso contenga dei duplicati per titolo o desrizione viene rimossa in modo da visualizzare notizie tutte diverse tra loro.
