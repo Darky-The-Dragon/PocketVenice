@@ -94,6 +94,10 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
 
     }
 
+    /**
+     * @param list Lista di NewsHeadlines da cui rimuovere i duplicati
+     * @return Lista di NewsHeadlines senza duplicati
+     */
     private List<NewsHeadlines> removeDuplicates(List<NewsHeadlines> list) {
         return list.stream()
                 .reduce(new ArrayList<>(), (List<NewsHeadlines> accumulator, NewsHeadlines news) ->
@@ -150,6 +154,11 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
 
     }
 
+    /**
+     * @param imageView Indica id dell'immagine della news
+     * @param title Indica il titolo della news
+     * @param message Indica il messaggio di errore relativo alla news
+     */
     public void showErrorMessage(int imageView, String title, String message) {
         if (errorLayout.getVisibility() == View.GONE) {
             errorLayout.setVisibility(View.VISIBLE);
@@ -160,6 +169,9 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
 
     }
 
+    /**
+     * @param list Indica la lista di NewsHeadlines da visualizzare
+     */
     private void showNews(List<NewsHeadlines> list) {
         recyclerView = view.findViewById(R.id.recycler_news);
         recyclerView.setHasFixedSize(true);
@@ -175,6 +187,9 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
         manager.getNewsHeadlines(listener, swipeRefreshLayout, "it", "venezia", "", "veneziatoday.it, ansa.it", "publishedAt");
     }
 
+    /**
+     * @param headlines Indica quale NewsHeadlines è stata selezionata
+     */
     @Override
     public void OnNewsClicked(NewsHeadlines headlines) {
         Fragment fragment = NewsDetails.newInstance(headlines);
@@ -182,7 +197,9 @@ public class News extends Fragment implements View.OnClickListener, SelectListen
         ft.replace(R.id.main_frame_layout, fragment).addToBackStack(null).commit();
     }
 
-
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnRetry) {

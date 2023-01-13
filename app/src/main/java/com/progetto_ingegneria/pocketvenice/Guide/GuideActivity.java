@@ -35,7 +35,9 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
     protected List<ScreenItem> screenItemList = new ArrayList<>();
     protected int position = 0;
     protected Animation btnLoadAnimation, btnUnloadAnimation;
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +116,9 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         btnGetStarted.setVisibility(View.INVISIBLE);
         tabIndicator.setVisibility(View.VISIBLE);
     }
-
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.next_button) {
@@ -135,6 +139,9 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * @param tab Indica quale tab è stata selezionata
+     */
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         if (position != screenPager.getCurrentItem()) {
@@ -146,14 +153,18 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             unloadLastScreen();
         }
     }
-
+    /**
+     * @param tab Indica quale tab è stata selezionata
+     */
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
         if (position != screenPager.getCurrentItem()) {
             position = screenPager.getCurrentItem();
         }
     }
-
+    /**
+     * @param tab Indica quale tab è stata selezionata
+     */
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
         if (position != screenPager.getCurrentItem()) {

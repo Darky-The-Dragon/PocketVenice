@@ -53,7 +53,10 @@ public class EventsDetails extends Fragment implements View.OnClickListener {
     public EventsDetails() {
         // Required empty public constructor
     }
-
+    /**
+     * @param event Indica l'elento passato come argomento dai fragment precedenti.
+     * @return Nuova istanza della classe EventsDetails
+     */
     public static EventsDetails newInstance(Event event) {
         EventsDetails fragment = new EventsDetails();
         Bundle args = new Bundle(1);
@@ -61,7 +64,9 @@ public class EventsDetails extends Fragment implements View.OnClickListener {
         fragment.setArguments(args);
         return fragment;
     }
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,7 +132,9 @@ public class EventsDetails extends Fragment implements View.OnClickListener {
             isLogged = true;
         }
     }
-
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
 

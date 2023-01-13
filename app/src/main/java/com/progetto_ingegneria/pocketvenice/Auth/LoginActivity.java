@@ -37,7 +37,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +83,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         imageViewShowHidePassword = findViewById(R.id.show_hide_password);
         imageViewShowHidePassword.setOnClickListener(this);
     }
-
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
 

@@ -102,6 +102,11 @@ public class Events extends Fragment implements EventClickListener {
         eventsData = new ArrayList<>();
     }
 
+    /**
+     *
+     * @param holder Indica quale evento è stato selezionato
+     * @param pos Indica la posizione dell'elemento Event nella lista di eventsData
+     */
     @Override
     public void onEventItemClick(EventViewHolder holder, int pos) {
 

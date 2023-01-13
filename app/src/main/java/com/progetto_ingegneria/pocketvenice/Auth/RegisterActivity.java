@@ -40,7 +40,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected ProgressBar progressBar;
     protected FirebaseAuth mAuth;
     protected String fullName, birthdate, email, mobile, password, confirmPassword;
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +69,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressBar = findViewById(R.id.progress_bar);
         mAuth = FirebaseAuth.getInstance();
     }
-
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
 
@@ -98,7 +102,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             age_tv.setError(null);
         }
     }
-
+    /**
+     * @param password Rapressenta la password inserita dall'utente.
+     */
     private void showHidePassword(EditText password) {
 
         if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
@@ -162,7 +168,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             createNewUser();
         }
     }
-
+    /**
+     * @return Ritorna l'età dell'utente.
+     */
     private int check_Age() {
 
         String[] start_string = birthdate.split("/");

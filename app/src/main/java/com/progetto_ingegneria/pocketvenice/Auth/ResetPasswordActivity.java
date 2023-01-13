@@ -23,7 +23,9 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     protected TextView textViewSubmit, textViewLogin;
     protected EditText editTextEmail;
     protected ProgressBar progressBar;
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,9 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         textViewLogin.setOnClickListener(this);
         progressBar = findViewById(R.id.progress_bar);
     }
-
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
 

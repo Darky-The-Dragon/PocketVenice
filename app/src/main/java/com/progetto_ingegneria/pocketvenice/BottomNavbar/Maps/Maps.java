@@ -64,6 +64,10 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
         // Required empty public constructor
     }
 
+    /**
+     * @param address Indica l'indirizzo del luogo da segnare sulla mappa
+     * @return Istanza della classe Maps
+     */
     public static Maps newInstance(String address) {
         Maps fragment = new Maps();
         Bundle args = new Bundle(1);
@@ -71,7 +75,9 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
         fragment.setArguments(args);
         return fragment;
     }
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +98,9 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
 
         return view;
     }
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     private void initMaps(Bundle savedInstanceState) {
 
         // Retrieve location and camera position from saved instance state.
@@ -123,7 +131,9 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
         etCity = view.findViewById(R.id.et_SearchFor);
         progressBar = view.findViewById(R.id.progress_bar);
     }
-
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fabSearchCity) {
@@ -133,6 +143,9 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
 
     }
 
+    /**
+     * @param googleMap Indica l'elemto mappa creato.
+     */
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.mMap = googleMap;
@@ -222,7 +235,9 @@ public class Maps extends Fragment implements View.OnClickListener, OnMapReadyCa
             Log.e("Exception: %s", e.getMessage());
         }
     }
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     private void getLocationPermission(Bundle savedInstanceState) {
         /*
          * Request location permission, so that we can get the location of the

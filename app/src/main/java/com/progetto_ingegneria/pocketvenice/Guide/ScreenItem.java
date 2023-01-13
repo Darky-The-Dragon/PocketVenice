@@ -13,26 +13,39 @@ public class ScreenItem {
         this.screenImg = screenImg;
     }
 
+    /**
+     * @return Ritorna il titolo della schermata.
+     */
     public String getTitle() {
         return title;
     }
-
+    /**
+     * @param title Nuovo titolo della schermata
+     */
     public void setTitle(String title) {
         this.title = title;
     }
-
+    /**
+     * @return Ritorna la descrizione della schermata.
+     */
     public String getDescription() {
         return description;
     }
-
+    /**
+     * @param description Nuova descrizione della schermata
+     */
     public void setDescription(String description) {
         this.description = description;
     }
-
+    /**
+     * @return Ritorna id dell'immagine della schermata.
+     */
     public int getScreenImg() {
         return screenImg;
     }
-
+    /**
+     * @param screenImg Nuovo id dell'immagine della schermata
+     */
     public void setScreenImg(int screenImg) {
         this.screenImg = screenImg;
     }

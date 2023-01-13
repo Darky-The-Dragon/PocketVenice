@@ -86,7 +86,9 @@ public class Profile extends Fragment implements View.OnClickListener {
         editBtn.setOnClickListener(this);
     }
 
-
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.edit) {

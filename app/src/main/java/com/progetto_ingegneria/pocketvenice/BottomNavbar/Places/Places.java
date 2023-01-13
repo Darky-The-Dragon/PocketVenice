@@ -105,6 +105,15 @@ public class Places extends Fragment implements PlaceCallback {
         placesData = new ArrayList<>();
     }
 
+    /**
+     * @param pos Posizione del place selezionato nella lista placeData
+     * @param imgContainer Indica la ImageView per l'animazione del nuovo fragment
+     * @param imgPlace Indica la ImageView contenente l'immagine del place per l'animazione del nuovo fragment
+     * @param title Indica la TextView contenente il titolo del place per l'animazione del nuovo fragment
+     * @param address Indica la TextView contenente l'indirizzo del place per l'animazione del nuovo fragment
+     * @param score Indica la TextView contenente il punteggio del place per l'animazione del nuovo fragment
+     * @param ratingBar Indica la TextView contenente la rating bar del place per l'animazione del nuovo fragment
+     */
     @Override
     public void onPlaceItemClick(int pos,
                                  ImageView imgContainer,

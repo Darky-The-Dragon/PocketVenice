@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected FirebaseUser user;
     protected boolean isLogged = false;
 
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +103,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * @return Ritorna il valore booleano salvato in memoria del dispositivo.
+     */
     private boolean restorePrefData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Guide", MODE_PRIVATE);
         return pref.getBoolean("isIntroOpened", true);
@@ -173,6 +179,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.menu_nav) {
@@ -180,6 +189,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * @param fragment Indica quale fragment deve essere sostituito a quello attuale.
+     */
     private void replaceFragment(Fragment fragment) {
 
         if (fragment != null) {
@@ -241,6 +253,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
+    /**
+     * @param item Indica quale elemento del menù ha scatenato l'evento di selezione.
+     * @return Ritorna il risultato dell'operazione.
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 

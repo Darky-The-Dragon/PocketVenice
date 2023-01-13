@@ -51,6 +51,10 @@ public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickList
         // Required empty public constructor
     }
 
+    /**
+     * @param headlines Indica l'elento passato come argomento dai fragment precedenti.
+     * @return Nuova istanza della classe NewsDetails
+     */
     public static NewsDetails newInstance(NewsHeadlines headlines) {
         NewsDetails fragment = new NewsDetails();
         Bundle args = new Bundle(1);
@@ -58,7 +62,9 @@ public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickList
         fragment.setArguments(args);
         return fragment;
     }
-
+    /**
+     * @param savedInstanceState salva i dati di stato dell'applicazione.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,7 +146,10 @@ public class NewsDetails extends Fragment implements Toolbar.OnMenuItemClickList
             isLogged = true;
         }
     }
-
+    /**
+     * @param item Indica quale elemento del menù ha scatenato l'evento di selezione.
+     * @return Ritorna il risultato dell'operazione.
+     */
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         if (item.getItemId() == R.id.view_web) {

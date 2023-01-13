@@ -108,6 +108,9 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         progressBar = view.findViewById(R.id.progress_bar);
     }
 
+    /**
+     * @param v Rappresenta quale elemento ha scatento l'evento.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.show_hide_password) {
@@ -136,6 +139,9 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * @param password Rapressenta la password inserita dall'utente.
+     */
     private void showHidePassword(EditText password) {
 
         if (password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
@@ -226,6 +232,9 @@ public class EditUserData extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * @return Ritorna l'età dell'utente.
+     */
     private int check_Age() {
 
         String[] start_string = birthdate.split("/");

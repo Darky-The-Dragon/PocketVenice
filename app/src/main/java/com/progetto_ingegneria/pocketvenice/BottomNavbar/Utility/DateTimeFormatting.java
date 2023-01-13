@@ -12,6 +12,10 @@ import java.util.Locale;
  * Permette di formattare delle stringhe in base a determinati pattern.
  */
 public class DateTimeFormatting {
+    /**
+     * @param oldStringDate Stringa di input su cui effettuare le operazioni di formattazzione
+     * @return Ritorna stringa formattata
+     */
     public static String DateToTimeFormat(String oldStringDate) {
         PrettyTime p = new PrettyTime(new Locale(getCountry()));
         String isTime = null;
@@ -26,7 +30,10 @@ public class DateTimeFormatting {
 
         return isTime;
     }
-
+    /**
+     * @param oldstringDate Stringa di input su cui effettuare le operazioni di formattazzione
+     * @return Ritorna stringa formattata
+     */
     public static String DateFormat(String oldstringDate) {
         String newDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("E, d MMM yyyy", new Locale(getCountry()));

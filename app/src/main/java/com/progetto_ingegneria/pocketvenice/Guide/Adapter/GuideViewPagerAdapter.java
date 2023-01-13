@@ -19,6 +19,8 @@ import java.util.List;
  * Tale procedura viene replicata per ogni elemento della lista che corrisponde ad una tab visualizzata dal'activity GuideActivity.
  * @see com.progetto_ingegneria.pocketvenice.Guide.GuideActivity
  * GuideActivity
+ * @see ScreenItem
+ * Screen item
  */
 public class GuideViewPagerAdapter extends PagerAdapter {
 
@@ -30,6 +32,9 @@ public class GuideViewPagerAdapter extends PagerAdapter {
         this.screenItemList = screenItemList;
     }
 
+    /**
+     * @return Ritorna la lunghezza della lista di ScreenItem
+     */
     @Override
     public int getCount() {
         return this.screenItemList.size();

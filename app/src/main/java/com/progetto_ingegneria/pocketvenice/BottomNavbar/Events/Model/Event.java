@@ -23,75 +23,88 @@ public class Event implements Serializable {
         this.toHour = toHour;
     }
 
+    /**
+     *
+     * @return Ritorna il titolo di Event
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @param title Nuovo tittolo dell'evento
+     */
     public void setTitle(String title) {
         this.title = title;
     }
-
+    /**
+     *
+     * @return Ritorna l'indirzzo di Event
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     *
+     * @param address Nuovo indirizzo di Event
+     */
     public void setAddress(String address) {
         this.address = address;
     }
-
+    /**
+     *
+     * @return Ritorna la srogente dell'immagine di Event
+     */
     public String getPhotoSrc() {
         return photoSrc;
     }
-
-    public void setPhotoSrc(String photoSrc) {
-        this.photoSrc = photoSrc;
-    }
-
+    /**
+     *
+     * @return Ritorna la descrizione di Event
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description Nuova descrizione di Event
+     */
     public void setDescription(String description) {
         this.description = description;
     }
-
+    /**
+     *
+     * @return Ritorna la data di inizio di Event
+     */
     public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(String fromDate) {
-        this.fromDate = fromDate;
-    }
-
+    /**
+     *
+     * @return Ritorna la data di fine di Event
+     */
     public String getToDate() {
         return toDate;
     }
 
-    public void setToDate(String toDate) {
-        this.toDate = toDate;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
+    /**
+     *
+     * @return Ritorna l'ora di inizio per ogni giorno di Event
+     */
     public String getFromHour() {
         return fromHour;
     }
 
-    public void setFromHour(String fromHour) {
-        this.fromHour = fromHour;
-    }
-
+    /**
+     *
+     * @return Ritorna l'ora di fine per ogni giorno di Event
+     */
     public String getToHour() {
         return toHour;
     }
 
-    public void setToHour(String toHour) {
-        this.toHour = toHour;
-    }
 }
